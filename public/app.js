@@ -17,6 +17,14 @@
     "F": "#913d38", "?": "#6a716d",
   };
   const tierOrder = ["S", "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "?"];
+  const tierChoiceGroups = [
+    { family: "S", label: "S tier", tiers: ["S"] },
+    { family: "A", label: "A tier variants", tiers: ["A-", "A", "A+"] },
+    { family: "B", label: "B tier variants", tiers: ["B-", "B", "B+"] },
+    { family: "C", label: "C tier variants", tiers: ["C-", "C", "C+"] },
+    { family: "D", label: "D tier variants", tiers: ["D-", "D", "D+"] },
+    { family: "other", label: "F and unknown tiers", tiers: ["F", "?"] },
+  ];
 
   const colorGroups = [
     { id: "W", name: "White", note: "Plains" },
@@ -480,18 +488,28 @@
   }
 
   function renderTierChoices() {
-    const buttons = tierOrder.map((tier) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "tier-choice";
-      button.dataset.tierGuess = tier;
-      button.style.setProperty("--tier-color", tierColors[tier]);
-      button.setAttribute("aria-label", `Guess tier ${tier}`);
-      button.innerHTML = `<strong>${tier}</strong>`;
-      button.addEventListener("click", () => answerTrainingCard(tier));
-      return button;
+    const rows = tierChoiceGroups.map((group) => {
+      const row = document.createElement("div");
+      row.className = "tier-choice-row";
+      row.dataset.tierFamily = group.family;
+      row.setAttribute("role", "group");
+      row.setAttribute("aria-label", group.label);
+
+      const buttons = group.tiers.map((tier) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "tier-choice";
+        button.dataset.tierGuess = tier;
+        button.style.setProperty("--tier-color", tierColors[tier]);
+        button.setAttribute("aria-label", `Guess tier ${tier}`);
+        button.innerHTML = `<strong>${tier}</strong>`;
+        button.addEventListener("click", () => answerTrainingCard(tier));
+        return button;
+      });
+      row.replaceChildren(...buttons);
+      return row;
     });
-    tierChoices.replaceChildren(...buttons);
+    tierChoices.replaceChildren(...rows);
   }
 
   function drawTrainingCard({ focusChoices = false } = {}) {

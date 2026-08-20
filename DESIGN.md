@@ -337,7 +337,7 @@ The All cards leaf groups every card by Magic colour. A sticky colour index, cir
 
 ### Trail Training
 
-The Train leaf opens with the Trail training title and a brass session score stamp showing exact accuracy plus reviewed/exact counts. A colour-identity filter trail changes the session queue without changing the atlas language. One card occupies the Forest Cloth stage while all 15 exact tiers—S, A+, A, A-, B+, B, B-, C+, C, C-, D+, D, D-, F, and ?—remain visible as tinted, bordered choices.
+The Train leaf opens with the Trail training title and a brass session score stamp showing exact accuracy plus reviewed/exact counts. A colour-identity filter trail changes the session queue without changing the atlas language. One card occupies the Forest Cloth stage while all 15 exact tiers remain visible as tinted, bordered choices. The choice map groups tier families into horizontal bands: S alone; A-, A, A+; B-, B, B+; C-, C, C+; D-, D, D+; then F and ?. Map-line rules and a wider inter-row rhythm separate families without boxing them into new containers.
 
 After a guess or reveal, the choice map locks and distinguishes correct, near-miss, wrong, and reveal outcomes. The answer names the exact tier and global rank, then reveals a flat three-column statistics ledger for in-hand win rate, average last offered pick, and in-hand game sample. Supporting copy defines the metrics, and the answer scrolls into view before showing up to three adjacent route positions labelled One above, This card, and One below and the full-width brass Next card action. The statistics must stay hidden before the answer so they cannot leak tier strength. Misses and reveals are inserted back into the session queue after roughly three cards. Filter, queue, and score exist only in memory for the current page session; refreshing clears them, and the interface must never imply an account, backend, localStorage, or durable training history.
 
@@ -352,6 +352,7 @@ After a guess or reveal, the choice map locks and distinguishes correct, near-mi
 - **Do** preserve card rank, tier, Magic-colour grouping, keyboard focus, touch targets, and reduced-motion behavior.
 - **Do** keep contour and route imagery quiet enough that card names and ranks remain dominant.
 - **Do** keep all 15 tier choices visible and distinguish correct, near-miss, wrong, and reveal outcomes without changing their labels.
+- **Do** keep each A-through-D modifier family on its own row in minus, plain, plus order, with focus order matching the visual order.
 - **Do** show global rank with One above, This card, and One below context after every answer when those neighbours exist.
 - **Do** show the three supporting draft statistics as a flat ruled ledger, with sample size and snapshot provenance visible.
 - **Do** keep training statistics hidden until the user has guessed or revealed the tier.
