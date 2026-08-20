@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-20T15:30:46Z",
+  "generatedAt": "2026-08-20T15:42:09Z",
   "title": "Design System: The Hobbit Pick Order",
   "extensions": {
     "brandAssets": {
@@ -239,9 +239,17 @@
       "name": "Trail Training Header",
       "kind": "custom",
       "refersTo": "training-score-stamp",
-      "description": "Literary training heading paired with the lifted brass session score stamp and colour-filter trail.",
+      "description": "Literary training heading paired with the lifted brass progress stamp, device-local persistence copy, quiet reset control, and colour-filter trail.",
       "html": "<section class=\"ds-training-head\"><header class=\"ds-training-title\"><div><h2>Trail training</h2><p>Study one card at a time. Misses return sooner until the tier sticks.</p></div><aside class=\"ds-training-score\" aria-label=\"Training session score\"><strong>78%</strong><span>exact</span><span>9 reviewed · 7 exact</span></aside></header><div class=\"ds-training-toolbar\"><div><h3>Choose a trail</h3><p>Filter by colour identity or practise the whole atlas.</p></div><div class=\"ds-training-filters\" role=\"group\" aria-label=\"Training colour filter\"><button class=\"ds-training-filter\" type=\"button\" aria-pressed=\"true\"><span class=\"ds-filter-mark ds-filter-all\" aria-hidden=\"true\"></span><strong>All colours</strong></button><button class=\"ds-training-filter\" type=\"button\" aria-pressed=\"false\"><span class=\"ds-filter-mark ds-filter-green\" aria-hidden=\"true\"></span><strong>Green</strong></button></div></div></section>",
       "css": ".ds-training-head { color: var(--ink); background: var(--paper); font-family: \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; } .ds-training-title { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 30px; border-bottom: 2px solid var(--forest); } .ds-training-title h2 { margin: 0; font: 700 clamp(3rem, 7vw, 5.7rem)/.88 \"Alegreya\", Georgia, serif; letter-spacing: -.035em; text-wrap: balance; } .ds-training-title p { max-width: 58ch; margin: 14px 0 0; color: var(--muted); } .ds-training-score { display: grid; grid-template-columns: auto auto; align-items: center; min-width: 150px; padding: 11px 15px; color: var(--forest-deep); background: var(--brass-light); border-radius: 8px; box-shadow: 0 7px 18px rgba(22, 39, 31, .18); font-size: .72rem; font-weight: 700; line-height: 1.15; } .ds-training-score strong { grid-row: span 2; margin-right: 10px; font: 700 2.25rem/.85 \"Alegreya\", Georgia, serif; font-variant-numeric: tabular-nums; } .ds-training-score span:last-child { font-size: .64rem; font-variant-numeric: tabular-nums; } .ds-training-toolbar { display: grid; grid-template-columns: minmax(180px, .35fr) minmax(0, 1fr); align-items: center; gap: 28px; padding: 22px 0; border-bottom: 1px solid var(--line); } .ds-training-toolbar h3 { margin: 0; font: 700 1.5rem/1 \"Alegreya\", Georgia, serif; } .ds-training-toolbar p { margin: 6px 0 0; color: var(--muted); font-size: .78rem; } .ds-training-filters { display: flex; gap: 8px; padding: 2px 1px; overflow-x: auto; } .ds-training-filter { display: inline-grid; grid-template-columns: 16px auto; align-items: center; gap: 7px; min-height: 40px; padding: 0 12px; white-space: nowrap; color: var(--ink); background: var(--paper-light); border: 1px solid var(--line); border-radius: 999px; font: 400 .76rem/1.5 \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; cursor: pointer; transition: color 160ms var(--ease-out), background-color 160ms var(--ease-out), border-color 160ms var(--ease-out); } .ds-training-filter:hover { border-color: var(--forest); } .ds-training-filter[aria-pressed=\"true\"] { color: var(--paper-light); background: var(--forest); border-color: var(--forest); } .ds-training-filter:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-filter-mark { display: block; width: 16px; height: 16px; border: 2px solid rgba(37, 48, 41, .28); border-radius: 50%; } .ds-filter-all { background: conic-gradient(#f3e7c3 0 14%, #4f8198 0 28%, #34353a 0 42%, #b85f46 0 56%, #6a8a48 0 70%, #b3a16e 0 84%, #aaa 0); } .ds-filter-green { background: #6a8a48; } .ds-training-filter[aria-pressed=\"true\"] .ds-filter-mark { border-color: rgba(248, 242, 223, .62); } @media (max-width: 760px) { .ds-training-title { align-items: flex-start; padding-bottom: 24px; } .ds-training-title h2 { font-size: 2.75rem; } .ds-training-title p { max-width: 34ch; font-size: .88rem; } .ds-training-score { min-width: 104px; padding: 9px 10px; border-radius: 6px; font-size: .63rem; } .ds-training-score strong { margin-right: 7px; font-size: 1.75rem; } .ds-training-score span:last-child { font-size: .52rem; } .ds-training-toolbar { display: block; padding: 18px 16px 14px; } .ds-training-filters { margin-top: 13px; } .ds-training-filter { min-height: 38px; } }"
+    },
+    {
+      "name": "Training Progress Reset",
+      "kind": "button",
+      "refersTo": "reset-training-progress",
+      "description": "A quiet outlined control directly beneath the brass progress stamp. It clears the locally saved card, filter, queue, requeued misses, answer, and accuracy, then starts a fresh whole-atlas trail.",
+      "html": "<div class=\"ds-progress-tools\"><aside class=\"ds-training-score\" aria-label=\"Training progress\"><strong>78%</strong><span>exact</span><span>9 reviewed · 7 exact</span></aside><button class=\"ds-reset-progress\" type=\"button\">Reset progress</button></div>",
+      "css": ".ds-progress-tools { display: grid; justify-items: end; gap: 7px; } .ds-reset-progress { min-height: 38px; padding: 0 10px; color: var(--forest-deep); background: transparent; border: 1px solid color-mix(in srgb, var(--forest) 68%, var(--line)); border-radius: 6px; font: 700 .68rem/1.2 \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; cursor: pointer; transition: color 160ms var(--ease-out), background-color 160ms var(--ease-out), border-color 160ms var(--ease-out); } .ds-reset-progress:hover { color: var(--paper-light); background: var(--oxblood); border-color: var(--oxblood-dark); } .ds-reset-progress:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } @media (max-width: 760px) { .ds-progress-tools { gap: 5px; } .ds-reset-progress { min-height: 36px; padding-inline: 8px; font-size: .63rem; } }"
     },
     {
       "name": "Atlas Search Field",
@@ -397,7 +405,8 @@
       "Do show global rank with One above, This card, and One below context after every answer when those neighbours exist.",
       "Do show in-hand win rate, average last offered pick, and in-hand game sample as one flat ruled ledger with snapshot provenance.",
       "Do keep training statistics hidden until the user guesses or reveals the tier.",
-      "Do keep training filters, score, queue, and requeue behavior session-only and honest about resetting on refresh.",
+      "Do restore the current card, filter, queue, requeued misses, answer state, and score from validated local data.",
+      "Do keep Reset progress visible beneath the brass score stamp and describe persistence as device-local.",
       "Do load only the inspected high-resolution image and preserve the precached thumbnail as its offline fallback."
     ],
     "donts": [
@@ -410,7 +419,7 @@
       "Don't let preview controls obscure mana cost, rules text, or other parts of the card face.",
       "Don't present draft statistics as live or deck-aware, and don't let them compete visually with rank and tier.",
       "Don't mix search, complete atlas, and training into competing dashboard panels.",
-      "Don't imply training progress persists or add localStorage, an account, or backend state to support it.",
+      "Don't imply saved training progress syncs across devices or leaves the browser.",
       "Don't replace literal card, rank, state, and colour labels with ambiguous icons alone."
     ]
   }

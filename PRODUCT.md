@@ -32,9 +32,9 @@ Used alongside a live draft or in short study sessions. The user may type a part
 - Fuzzy, accent-insensitive name search.
 - High-resolution previews open from Search and Cards by hover, keyboard focus, click, or tap.
 - Card previews show the current Bronze–Platinum in-hand win rate, average last offered pick, and in-hand game sample beside the rank and tier.
-- Exact-tier training can filter by colour, report session accuracy, reveal adjacent ranks and card statistics after the answer, and return missed cards sooner.
-- Training progress is session-only memory and disappears on refresh.
-- No localStorage, cookies, analytics, account, backend, or external runtime dependency.
+- Exact-tier training can filter by colour, report accuracy, reveal adjacent ranks and card statistics after the answer, and return missed cards sooner.
+- Training progress—including the current card, colour filter, queue, requeued misses, and accuracy—is saved locally on the current device and can be reset from the Train page.
+- Use localStorage only for training progress; no cookies, analytics, account, backend, or external runtime dependency.
 - Deploy as a static GitHub Pages site and remain useful if installed or revisited offline.
 - Preserve the captured Untapped.gg pick-order snapshot date and source attribution.
 - Keep the pick-order and performance-statistics snapshot dates explicit when they differ; statistics are bundled at build time rather than fetched in the browser.
@@ -52,7 +52,7 @@ Used alongside a live draft or in short study sessions. The user may type a part
 - Every interaction should reduce time-to-rank.
 - Supporting statistics should add confidence without becoming a dashboard or revealing a training answer early.
 - Rankings are a baseline; the interface must not imply deck-context intelligence it does not have.
-- The tool should remain private by default and operational without an account.
+- The tool should remain private by default and operational without an account; saved training progress never leaves the device.
 
 ## Accessibility & Inclusion
 

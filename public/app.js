@@ -4,7 +4,10 @@
   const cards = Array.isArray(window.HOBBIT_CARDS) ? window.HOBBIT_CARDS : [];
   const dataset = window.HOBBIT_DATASET || {};
   const byRank = new Map(cards.map((card) => [card.rank, card]));
+  const byName = new Map(cards.map((card) => [card.name, card]));
   const resultLimit = 10;
+  const trainingStorageKey = "hobbit-pick-order:training-progress:v1";
+  const trainingStorageVersion = 1;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
@@ -56,6 +59,7 @@
   const trainingCardCount = document.querySelector("#training-card-count");
   const trainingAccuracy = document.querySelector("#training-accuracy");
   const trainingAttempts = document.querySelector("#training-attempts");
+  const resetTrainingProgressButton = document.querySelector("#reset-training-progress");
   const tierChoices = document.querySelector("#tier-choices");
   const revealTierButton = document.querySelector("#reveal-tier");
   const trainingAnswer = document.querySelector("#training-answer");
@@ -84,6 +88,7 @@
   let trainingQueue = [];
   let trainingCard = null;
   let trainingAnswered = false;
+  let trainingGuess;
   let trainingReviewed = 0;
   let trainingCorrect = 0;
   let activePreviewTrigger = null;
@@ -112,6 +117,73 @@
   function shortDate(value) {
     const date = new Date(value);
     return Number.isNaN(date.getTime()) ? "—" : shortDateFormatter.format(date);
+  }
+
+  function cardMatchesTrainingFilter(card, filter) {
+    return card && (filter === "ALL" || card.color === filter);
+  }
+
+  function readTrainingProgress() {
+    try {
+      const raw = localStorage.getItem(trainingStorageKey);
+      if (!raw) return null;
+
+      const saved = JSON.parse(raw);
+      const validFilters = new Set(["ALL", ...colorGroups.map((group) => group.id)]);
+      if (saved?.version !== trainingStorageVersion || !validFilters.has(saved.filter)) return null;
+
+      const currentCard = byName.get(saved.currentCard);
+      if (!cardMatchesTrainingFilter(currentCard, saved.filter)) return null;
+
+      const poolSize = cards.filter((card) => cardMatchesTrainingFilter(card, saved.filter)).length;
+      if (!Array.isArray(saved.queue) || saved.queue.length > poolSize) return null;
+      if (new Set(saved.queue).size !== saved.queue.length) return null;
+      if (!saved.queue.every((name) => cardMatchesTrainingFilter(byName.get(name), saved.filter))) return null;
+
+      const queue = saved.queue.map((name) => byName.get(name));
+      if (!Number.isInteger(saved.reviewed) || saved.reviewed < 0) return null;
+      if (!Number.isInteger(saved.correct) || saved.correct < 0 || saved.correct > saved.reviewed) return null;
+      if (typeof saved.answered !== "boolean") return null;
+
+      const reviewed = saved.reviewed;
+      const correct = saved.correct;
+      const answered = saved.answered;
+      const guess = saved.guess === null || tierOrder.includes(saved.guess) ? saved.guess : undefined;
+      if (answered && guess === undefined) return null;
+
+      return {
+        filter: saved.filter,
+        queue,
+        currentCard,
+        reviewed,
+        correct,
+        answered,
+        guess,
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  function saveTrainingProgress() {
+    if (!trainingCard) return;
+    const progress = {
+      version: trainingStorageVersion,
+      filter: trainingFilter,
+      queue: trainingQueue.map((card) => card.name),
+      currentCard: trainingCard.name,
+      reviewed: trainingReviewed,
+      correct: trainingCorrect,
+      answered: trainingAnswered,
+      savedAt: new Date().toISOString(),
+    };
+    if (trainingAnswered) progress.guess = trainingGuess;
+
+    try {
+      localStorage.setItem(trainingStorageKey, JSON.stringify(progress));
+    } catch {
+      // The trainer continues in memory when browser storage is unavailable.
+    }
   }
 
   function setCardStats(card, winRateElement, lastOfferedElement, gamesElement) {
@@ -512,10 +584,14 @@
     tierChoices.replaceChildren(...rows);
   }
 
-  function drawTrainingCard({ focusChoices = false } = {}) {
-    if (trainingQueue.length === 0) resetTrainingQueue();
-    trainingCard = trainingQueue.shift() || null;
+  function drawTrainingCard({ focusChoices = false, card = null, persist = true } = {}) {
+    if (card) trainingCard = card;
+    else {
+      if (trainingQueue.length === 0) resetTrainingQueue();
+      trainingCard = trainingQueue.shift() || null;
+    }
     trainingAnswered = false;
+    trainingGuess = undefined;
     if (!trainingCard) return;
 
     trainingCardElement.dataset.color = trainingCard.color;
@@ -536,6 +612,8 @@
       button.dataset.result = "";
       button.setAttribute("aria-pressed", "false");
     });
+
+    if (persist) saveTrainingProgress();
 
     if (focusChoices) {
       requestAnimationFrame(() => {
@@ -567,10 +645,10 @@
     trainingNeighbours.replaceChildren(...nearby.map((entry) => neighbourItem(entry.card, entry.label, entry.current)));
   }
 
-  function answerTrainingCard(guess) {
-    if (!trainingCard || trainingAnswered) return;
+  function answerTrainingCard(guess, { restoring = false } = {}) {
+    if (!trainingCard || (trainingAnswered && !restoring)) return;
     trainingAnswered = true;
-    trainingReviewed += 1;
+    trainingGuess = guess;
 
     const revealed = guess === null;
     const correct = guess === trainingCard.tier;
@@ -578,8 +656,11 @@
     const correctIndex = tierOrder.indexOf(trainingCard.tier);
     const nearMiss = !revealed && !correct && Math.abs(guessedIndex - correctIndex) === 1;
 
-    if (correct) trainingCorrect += 1;
-    else trainingQueue.splice(Math.min(3, trainingQueue.length), 0, trainingCard);
+    if (!restoring) {
+      trainingReviewed += 1;
+      if (correct) trainingCorrect += 1;
+      else trainingQueue.splice(Math.min(3, trainingQueue.length), 0, trainingCard);
+    }
 
     updateTrainingScore();
     tierChoices.querySelectorAll("[data-tier-guess]").forEach((button) => {
@@ -613,13 +694,10 @@
     setCardStats(trainingCard, trainingInHandWinRate, trainingLastOffered, trainingInHandGames);
     revealTierButton.hidden = true;
     trainingAnswer.hidden = false;
-    requestAnimationFrame(() => {
-      trainingAnswer.scrollIntoView({
-        behavior: prefersReducedMotion ? "auto" : "smooth",
-        block: "start",
-      });
+    if (!restoring) requestAnimationFrame(() => {
+      trainingAnswer.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
     });
-    if (!prefersReducedMotion) {
+    if (!restoring && !prefersReducedMotion) {
       trainingAnswer.animate(
         [
           { clipPath: "inset(0 0 100% 0)", filter: "saturate(.7)" },
@@ -629,10 +707,34 @@
       );
     }
 
-    const winRateContext = Number.isFinite(trainingCard.stats?.inHandWinRate)
-      ? `In-hand win rate ${trainingCard.stats.inHandWinRate.toFixed(1)} percent across ${numberFormatter.format(trainingCard.stats.inHandGames)} games.`
-      : "";
-    liveRegion.textContent = `${trainingResultTitle.textContent}. ${trainingResultCopy.textContent} ${winRateContext}`.trim();
+    if (!restoring) {
+      const winRateContext = Number.isFinite(trainingCard.stats?.inHandWinRate)
+        ? `In-hand win rate ${trainingCard.stats.inHandWinRate.toFixed(1)} percent across ${numberFormatter.format(trainingCard.stats.inHandGames)} games.`
+        : "";
+      liveRegion.textContent = `${trainingResultTitle.textContent}. ${trainingResultCopy.textContent} ${winRateContext}`.trim();
+      saveTrainingProgress();
+    }
+  }
+
+  function resetTrainingProgress() {
+    try {
+      localStorage.removeItem(trainingStorageKey);
+    } catch {
+      // Reset still applies to this page when browser storage is unavailable.
+    }
+
+    trainingFilter = "ALL";
+    trainingQueue = [];
+    trainingCard = null;
+    trainingAnswered = false;
+    trainingGuess = undefined;
+    trainingReviewed = 0;
+    trainingCorrect = 0;
+    updateTrainingScore();
+    updateTrainingFilters();
+    resetTrainingQueue();
+    drawTrainingCard({ focusChoices: true });
+    liveRegion.textContent = "Training progress reset. Starting a new whole-atlas trail.";
   }
 
   function clearSearch() {
@@ -728,6 +830,7 @@
   window.addEventListener("resize", () => positionCardPreview(activePreviewTrigger));
   revealTierButton.addEventListener("click", () => answerTrainingCard(null));
   nextTrainingCardButton.addEventListener("click", () => drawTrainingCard({ focusChoices: true }));
+  resetTrainingProgressButton.addEventListener("click", resetTrainingProgress);
 
   const statsDate = shortDate(dataset.statsCapturedAt);
   const pickOrderDate = shortDate(dataset.pickOrderCapturedAt);
@@ -736,12 +839,29 @@
   cardPreviewSource.textContent = `Untapped.gg · ${datasetDetails} · stats ${statsDate}`;
   datasetContext.textContent = `Untapped.gg snapshots · Pick order ${pickOrderDate} · Stats ${statsDate} · ${dataset.totalMatchesDisplay || "410,000"} matches`;
 
+  const savedTrainingProgress = readTrainingProgress();
+  if (savedTrainingProgress) {
+    trainingFilter = savedTrainingProgress.filter;
+    trainingQueue = savedTrainingProgress.queue;
+    trainingReviewed = savedTrainingProgress.reviewed;
+    trainingCorrect = savedTrainingProgress.correct;
+  }
+
   renderResults();
   renderAtlas();
   renderTrainingFilters();
   renderTierChoices();
-  resetTrainingQueue();
-  drawTrainingCard();
+  updateTrainingScore();
+
+  if (savedTrainingProgress) {
+    drawTrainingCard({ card: savedTrainingProgress.currentCard, persist: false });
+    if (savedTrainingProgress.answered) {
+      answerTrainingCard(savedTrainingProgress.guess, { restoring: true });
+    } else saveTrainingProgress();
+  } else {
+    resetTrainingQueue();
+    drawTrainingCard();
+  }
   activateView(location.hash === "#all-cards" ? "atlas" : location.hash === "#train" ? "training" : "picker", { updateHash: false });
 
   if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {

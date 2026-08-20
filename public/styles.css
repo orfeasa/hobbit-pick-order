@@ -872,6 +872,12 @@ kbd {
   color: var(--muted);
 }
 
+.training-progress-tools {
+  display: grid;
+  justify-items: end;
+  gap: 7px;
+}
+
 .training-score {
   display: grid;
   grid-template-columns: auto auto;
@@ -899,6 +905,25 @@ kbd {
 .training-score span:last-child {
   font-size: .64rem;
   font-variant-numeric: tabular-nums;
+}
+
+.reset-training-progress {
+  min-height: 38px;
+  padding: 0 10px;
+  color: var(--forest-deep);
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--forest) 68%, var(--line));
+  border-radius: 6px;
+  font-size: .68rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 160ms var(--ease-out), background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+
+.reset-training-progress:hover {
+  color: var(--paper-light);
+  background: var(--oxblood);
+  border-color: var(--oxblood-dark);
 }
 
 .training-toolbar {
@@ -1782,6 +1807,16 @@ body.preview-open {
 
   .training-score span:last-child {
     font-size: .52rem;
+  }
+
+  .training-progress-tools {
+    gap: 5px;
+  }
+
+  .reset-training-progress {
+    min-height: 36px;
+    padding-inline: 8px;
+    font-size: .63rem;
   }
 
   .training-toolbar {

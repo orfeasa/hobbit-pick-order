@@ -339,7 +339,9 @@ The All cards leaf groups every card by Magic colour. A sticky colour index, cir
 
 The Train leaf opens with the Trail training title and a brass session score stamp showing exact accuracy plus reviewed/exact counts. A colour-identity filter trail changes the session queue without changing the atlas language. One card occupies the Forest Cloth stage while all 15 exact tiers remain visible as tinted, bordered choices. The choice map groups tier families into horizontal bands: S alone; A-, A, A+; B-, B, B+; C-, C, C+; D-, D, D+; then F and ?. Map-line rules and a wider inter-row rhythm separate families without boxing them into new containers.
 
-After a guess or reveal, the choice map locks and distinguishes correct, near-miss, wrong, and reveal outcomes. The answer names the exact tier and global rank, then reveals a flat three-column statistics ledger for in-hand win rate, average last offered pick, and in-hand game sample. Supporting copy defines the metrics, and the answer scrolls into view before showing up to three adjacent route positions labelled One above, This card, and One below and the full-width brass Next card action. The statistics must stay hidden before the answer so they cannot leak tier strength. Misses and reveals are inserted back into the session queue after roughly three cards. Filter, queue, and score exist only in memory for the current page session; refreshing clears them, and the interface must never imply an account, backend, localStorage, or durable training history.
+After a guess or reveal, the choice map locks and distinguishes correct, near-miss, wrong, and reveal outcomes. The answer names the exact tier and global rank, then reveals a flat three-column statistics ledger for in-hand win rate, average last offered pick, and in-hand game sample. Supporting copy defines the metrics, and the answer scrolls into view before showing up to three adjacent route positions labelled One above, This card, and One below and the full-width brass Next card action. The statistics must stay hidden before the answer so they cannot leak tier strength. Misses and reveals are inserted back into the queue after roughly three cards.
+
+The current card, colour filter, queue, requeued misses, revealed answer, reviewed/exact counts, and accuracy persist in localStorage on the current device. The header copy names that behavior, while a quiet Reset progress control sits beneath the brass score stamp and returns the trainer to a fresh whole-atlas trail. Storage failures and invalid saved data fall back to an in-memory session without blocking training. The interface must never imply an account, backend, or cross-device sync.
 
 ## Do's and Don'ts
 
@@ -356,7 +358,8 @@ After a guess or reveal, the choice map locks and distinguishes correct, near-mi
 - **Do** show global rank with One above, This card, and One below context after every answer when those neighbours exist.
 - **Do** show the three supporting draft statistics as a flat ruled ledger, with sample size and snapshot provenance visible.
 - **Do** keep training statistics hidden until the user has guessed or revealed the tier.
-- **Do** keep training filters, score, queue, and requeue behavior session-only and honest about resetting on refresh.
+- **Do** restore the current training card, filter, queue, requeued misses, answer state, and score from validated local data.
+- **Do** keep Reset progress visible beside the score and describe persistence as device-local rather than synced.
 - **Do** load only the inspected high-resolution image and preserve the precached thumbnail as its offline fallback.
 
 ### Don't:
@@ -370,5 +373,5 @@ After a guess or reveal, the choice map locks and distinguishes correct, near-mi
 - **Don't** let preview controls obscure mana cost, rules text, or other parts of the card face.
 - **Don't** present draft statistics as live, deck-aware predictions or let them compete visually with rank and tier.
 - **Don't** mix search, complete atlas, and training into competing dashboard panels.
-- **Don't** imply training progress persists or add localStorage, an account, or backend state to support it.
+- **Don't** imply saved progress syncs across devices or leaves the browser.
 - **Don't** replace literal card, rank, state, and colour labels with ambiguous icons alone.

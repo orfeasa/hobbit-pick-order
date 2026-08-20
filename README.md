@@ -8,12 +8,14 @@ A static card search, colour-grouped atlas, and tier trainer for The Hobbit on M
 - Complete 188-card atlas grouped by color identity
 - On-demand high-resolution card previews from Search and Cards by hover, focus, click, or tap
 - In-hand win rate, average last offered pick, and in-hand game sample in every card preview
-- Session-only tier training with colour filters, accuracy, rank reveal, post-answer card statistics, nearby cards, and faster repeats for misses
+- Persistent tier training with colour filters, accuracy, rank reveal, post-answer card statistics, nearby cards, and faster repeats for misses
 - Keyboard, mouse, and touch support
 - Offline static-asset cache
-- No account, analytics, cookies, backend, or `localStorage`
+- No account, analytics, cookies, or backend
 
-The training session exists only in page memory and resets on refresh. The service worker caches public site assets for offline use; it stores no training history or personal data.
+Training progress is stored in `localStorage` on the current device. It preserves the active colour filter, current card, remaining queue, requeued misses, revealed answer, and accuracy across refreshes and browser sessions. Use **Reset progress** on the Train page to start again. Nothing is synced to an account or sent to a backend.
+
+The service worker caches public site assets for offline use. Training progress and cached assets both remain local to the browser.
 
 ## Run locally
 
