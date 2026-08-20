@@ -1,5 +1,5 @@
 /* Generated static cache manifest. */
-const CACHE = "hobbit-pick-order-ac2c332f2901";
+const CACHE = "hobbit-pick-order-8f41f4ddf094";
 const ASSETS = [
   "./",
   "./index.html",

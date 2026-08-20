@@ -1,17 +1,17 @@
 # The Hobbit Pick Order
 
-A static, searchable pack comparator for The Hobbit on MTG Arena. It ships all 188 card names, ranks, tiers, and thumbnails with the site.
+A static card search, colour-grouped atlas, and tier trainer for The Hobbit on MTG Arena. It ships all 188 card names, ranks, tiers, and thumbnails with the site.
 
 ## What it does
 
 - Fuzzy, accent-insensitive card search
-- Multi-card pack comparison sorted by pick rank
 - Complete 188-card atlas grouped by color identity
+- Session-only tier training with colour filters, accuracy, rank reveal, nearby cards, and faster repeats for misses
 - Keyboard, mouse, and touch support
 - Offline static-asset cache
 - No account, analytics, cookies, backend, or `localStorage`
 
-The selected pack exists only in page memory and resets on refresh. The service worker caches public site assets for offline use; it stores no draft selections or personal data.
+The training session exists only in page memory and resets on refresh. The service worker caches public site assets for offline use; it stores no training history or personal data.
 
 ## Run locally
 

@@ -12,25 +12,26 @@ Static HTML, CSS, and JavaScript for GitHub Pages. No framework or build step.
 
 ## Users
 
-Magic: The Gathering Arena players drafting The Hobbit who need to compare several visible pack candidates quickly on desktop or mobile.
+Magic: The Gathering Arena players drafting The Hobbit who need to look up a card quickly, browse the set by colour, or memorise the pick order on desktop or mobile.
 
 ## Product Purpose
 
-Turn a static pick-order list into a fast pack decision tool. Success means a drafter can find several card names, add them to the current pack, and immediately see the candidates ordered from strongest to weakest baseline pick.
+Turn a static pick-order list into a fast lookup and study tool. Success means a drafter can find a card’s rank and tier immediately, browse the complete set, or practise exact tiers until missed cards stick.
 
 ## Positioning
 
-The product compares the cards actually under consideration in one compact view instead of making the user search a long tier list one card at a time.
+The product combines quick name search with a complete colour-grouped atlas and focused tier recall, instead of making the user scan or memorise a long static list unaided.
 
 ## Operating Context
 
-Used alongside a live draft. The user may type partial card names, select several results, review their order, and clear the pack between picks. The interaction must work well with keyboard, mouse, and touch.
+Used alongside a live draft or in short study sessions. The user may type a partial card name, browse every card by colour identity, or guess one card’s exact tier and immediately see its rank context. The interaction must work well with keyboard, mouse, and touch.
 
 ## Capabilities and Constraints
 
 - Ship all 188 card names, pick ranks, tiers, and thumbnails with the site.
 - Fuzzy, accent-insensitive name search.
-- Current-pack selection is session-only memory and disappears on refresh.
+- Exact-tier training can filter by colour, report session accuracy, reveal adjacent ranks, and return missed cards sooner.
+- Training progress is session-only memory and disappears on refresh.
 - No localStorage, cookies, analytics, account, backend, or external runtime dependency.
 - Deploy as a static GitHub Pages site and remain useful if installed or revisited offline.
 - Preserve the captured Untapped.gg pick-order snapshot date and source attribution.
@@ -43,8 +44,8 @@ Used alongside a live draft. The user may type partial card names, select severa
 
 ## Product Principles
 
-- The pack decision is always the primary object on screen.
-- Every interaction should reduce time-to-pick.
+- Search, colour browsing, and training each have one dedicated tab and one clear job.
+- Every interaction should reduce time-to-rank.
 - Rankings are a baseline; the interface must not imply deck-context intelligence it does not have.
 - The tool should remain private by default and operational without an account.
 

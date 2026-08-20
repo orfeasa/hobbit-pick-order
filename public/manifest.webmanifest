@@ -1,7 +1,7 @@
 {
   "name": "The Hobbit Pick Order",
   "short_name": "HOB Picks",
-  "description": "A fast pack comparator for The Hobbit MTG Arena draft pick order.",
+  "description": "Search, browse by colour, and train on The Hobbit MTG Arena draft pick order.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

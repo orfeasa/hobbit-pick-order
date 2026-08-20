@@ -3,7 +3,6 @@
 
   const cards = Array.isArray(window.HOBBIT_CARDS) ? window.HOBBIT_CARDS : [];
   const byRank = new Map(cards.map((card) => [card.rank, card]));
-  const selectedRanks = new Set();
   const resultLimit = 10;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -15,6 +14,7 @@
     "D+": "#716657", "D": "#83786a", "D-": "#958b7e",
     "F": "#913d38", "?": "#6a716d",
   };
+  const tierOrder = ["S", "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F", "?"];
 
   const colorGroups = [
     { id: "W", name: "White", note: "Plains" },
@@ -32,27 +32,35 @@
   const noResultsElement = document.querySelector("#no-results");
   const resultLabel = document.querySelector("#result-label");
   const resultCount = document.querySelector("#result-count");
-  const packElement = document.querySelector("#pack");
-  const packTitle = document.querySelector("#pack-title");
-  const packCount = document.querySelector("#pack-count");
-  const clearPackButton = document.querySelector("#clear-pack");
-  const packEmpty = document.querySelector("#pack-empty");
-  const packContent = document.querySelector("#pack-content");
-  const bestPick = document.querySelector("#best-pick");
-  const packList = document.querySelector("#pack-list");
-  const packDock = document.querySelector("#pack-dock");
-  const packDockCard = document.querySelector("#pack-dock-card");
-  const packDockCount = document.querySelector("#pack-dock-count");
   const liveRegion = document.querySelector("#live-region");
   const viewTabs = [...document.querySelectorAll("[data-view]")];
   const pickerView = document.querySelector("#picker-view");
   const atlasView = document.querySelector("#atlas-view");
+  const trainingView = document.querySelector("#training-view");
   const colorNavigation = document.querySelector("#color-navigation");
   const cardAtlas = document.querySelector("#card-atlas");
+  const trainingColors = document.querySelector("#training-colors");
+  const trainingCardElement = document.querySelector("#training-card");
+  const trainingCardImage = document.querySelector("#training-card-image");
+  const trainingCardName = document.querySelector("#training-card-name");
+  const trainingCardCount = document.querySelector("#training-card-count");
+  const trainingAccuracy = document.querySelector("#training-accuracy");
+  const trainingAttempts = document.querySelector("#training-attempts");
+  const tierChoices = document.querySelector("#tier-choices");
+  const revealTierButton = document.querySelector("#reveal-tier");
+  const trainingAnswer = document.querySelector("#training-answer");
+  const trainingResultTitle = document.querySelector("#training-result-title");
+  const trainingResultCopy = document.querySelector("#training-result-copy");
+  const trainingNeighbours = document.querySelector("#training-neighbours");
+  const nextTrainingCardButton = document.querySelector("#next-training-card");
 
-  let currentResults = [];
-  let activeResultIndex = -1;
   let currentView = "picker";
+  let trainingFilter = "ALL";
+  let trainingQueue = [];
+  let trainingCard = null;
+  let trainingAnswered = false;
+  let trainingReviewed = 0;
+  let trainingCorrect = 0;
 
   const normalize = (value) => value
     .normalize("NFD")
@@ -112,24 +120,11 @@
     return badge;
   }
 
-  function selectedCards() {
-    return [...selectedRanks]
-      .map((rank) => byRank.get(rank))
-      .filter(Boolean)
-      .sort((a, b) => a.rank - b.rank);
-  }
-
   function resultRow(card, index) {
-    const isSelected = selectedRanks.has(card.rank);
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "result-row";
-    button.id = `result-${card.rank}`;
-    button.dataset.rank = String(card.rank);
-    button.dataset.active = String(index === activeResultIndex);
-    button.setAttribute("role", "option");
-    button.setAttribute("aria-selected", String(isSelected));
-    button.setAttribute("aria-label", `${isSelected ? "Remove" : "Add"} ${card.name}, rank ${card.rank}, tier ${card.tier}`);
+    const item = document.createElement("article");
+    item.className = "result-row";
+    item.setAttribute("role", "listitem");
+    item.setAttribute("aria-label", `${card.name}, pick rank ${card.rank}, tier ${card.tier}`);
 
     const image = document.createElement("img");
     image.className = "card-thumb";
@@ -146,34 +141,20 @@
 
     const name = document.createElement("span");
     name.className = "result-name";
-    const strongestSelected = selectedCards()[0];
-    const relation = strongestSelected
-      ? card.rank < strongestSelected.rank
-        ? "Stronger than current leader"
-        : card.rank === strongestSelected.rank
-          ? "Current leader"
-          : `${card.rank - strongestSelected.rank} ${card.rank - strongestSelected.rank === 1 ? "place" : "places"} below leader`
-      : "Add to current pack";
-    name.innerHTML = `<strong>${escapeHtml(card.name)}</strong><span>${relation}</span>`;
-
-    const action = document.createElement("span");
-    action.className = "result-action";
-    action.textContent = isSelected ? "Mapped" : "Add";
+    const colorName = colorGroups.find((group) => group.id === card.color)?.name || "Card";
+    name.innerHTML = `<strong>${escapeHtml(card.name)}</strong><span>${colorName}</span>`;
 
     const metadata = document.createElement("span");
     metadata.className = "result-metadata";
-    metadata.append(tierBadge(card.tier), action);
+    metadata.append(tierBadge(card.tier));
 
-    button.append(image, rank, name, metadata);
-    button.addEventListener("click", () => toggleCard(card.rank));
-    return button;
+    item.append(image, rank, name, metadata);
+    return item;
   }
 
   function renderResults() {
     const query = searchInput.value;
-    currentResults = resultCards(query);
-    activeResultIndex = Math.min(activeResultIndex, currentResults.length - 1);
-    if (activeResultIndex < -1) activeResultIndex = -1;
+    const currentResults = resultCards(query);
 
     resultsElement.replaceChildren(...currentResults.map(resultRow));
     const hasResults = currentResults.length > 0;
@@ -184,98 +165,13 @@
     resultCount.textContent = query
       ? `${currentResults.length} result${currentResults.length === 1 ? "" : "s"}`
       : `Showing ${currentResults.length} of ${cards.length}`;
-    searchInput.setAttribute("aria-expanded", String(hasResults));
-    updateActiveDescendant();
-  }
-
-  function bestPickMarkup(card) {
-    return `
-      <svg class="best-route" viewBox="0 0 220 120" aria-hidden="true">
-        <path d="M-8 104C32 74 53 98 85 65s68-6 105-44 39-8 45-2" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="5 8"/>
-        <circle cx="190" cy="21" r="7" fill="currentColor"/>
-      </svg>
-      <img class="best-image" src="${card.image}" alt="" width="110" height="155">
-      <div class="best-copy">
-        <span class="best-label">Route leader</span>
-        <h3>${escapeHtml(card.name)}</h3>
-        <div class="best-meta">
-          <span class="best-rank">#${card.rank}</span>
-          <span class="tier" style="--tier-color:${tierColors[card.tier] || tierColors["?"]}" aria-label="Tier ${card.tier}">${card.tier}</span>
-        </div>
-        <button class="best-remove" type="button" data-remove-rank="${card.rank}">Remove from pack</button>
-      </div>`;
-  }
-
-  function packListItem(card, bestRank) {
-    const item = document.createElement("li");
-    item.className = "pack-item";
-    item.dataset.rank = String(card.rank);
-
-    const image = document.createElement("img");
-    image.src = card.image;
-    image.alt = "";
-    image.width = 43;
-    image.height = 61;
-    image.loading = "eager";
-
-    const rank = document.createElement("span");
-    rank.className = "pack-item-rank";
-    rank.textContent = `#${card.rank}`;
-
-    const copy = document.createElement("span");
-    copy.className = "pack-item-copy";
-    copy.innerHTML = `<strong>${escapeHtml(card.name)}</strong><span>${card.rank === bestRank ? "Leader" : `+${card.rank - bestRank} ranks`} · Tier ${card.tier}</span>`;
-
-    const remove = document.createElement("button");
-    remove.type = "button";
-    remove.className = "remove-card";
-    remove.dataset.removeRank = String(card.rank);
-    remove.setAttribute("aria-label", `Remove ${card.name} from current pack`);
-    remove.innerHTML = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2"/></svg>`;
-
-    item.append(image, rank, copy, remove);
-    return item;
-  }
-
-  function renderPack({ animate = true } = {}) {
-    const selected = selectedCards();
-    const hasCards = selected.length > 0;
-    packCount.textContent = `${selected.length} card${selected.length === 1 ? "" : "s"} mapped`;
-    clearPackButton.disabled = !hasCards;
-    packEmpty.hidden = hasCards;
-    packContent.hidden = !hasCards;
-    packDock.hidden = !hasCards;
-
-    if (!hasCards) {
-      bestPick.replaceChildren();
-      packList.replaceChildren();
-      return;
-    }
-
-    const leader = selected[0];
-    bestPick.innerHTML = bestPickMarkup(leader);
-    packList.replaceChildren(...selected.map((card) => packListItem(card, leader.rank)));
-    packDockCard.textContent = `#${leader.rank} ${leader.name}`;
-    packDockCount.textContent = `${selected.length} mapped`;
-
-    if (animate && !prefersReducedMotion) {
-      bestPick.animate(
-        [
-          { clipPath: "inset(0 100% 0 0)", filter: "saturate(.6)" },
-          { clipPath: "inset(0 0 0 0)", filter: "saturate(1)" },
-        ],
-        { duration: 460, easing: "cubic-bezier(.16, 1, .3, 1)" }
-      );
-    }
   }
 
   function atlasCard(card) {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "atlas-card";
-    button.dataset.atlasRank = String(card.rank);
-    button.setAttribute("aria-pressed", String(selectedRanks.has(card.rank)));
-    button.setAttribute("aria-label", `${selectedRanks.has(card.rank) ? "Remove" : "Add"} ${card.name}, rank ${card.rank}, tier ${card.tier}`);
+    const item = document.createElement("article");
+    item.className = "atlas-card";
+    item.setAttribute("role", "listitem");
+    item.setAttribute("aria-label", `${card.name}, pick rank ${card.rank}, tier ${card.tier}`);
 
     const image = document.createElement("img");
     image.src = card.image;
@@ -295,15 +191,10 @@
     const meta = document.createElement("span");
     meta.className = "atlas-card-meta";
     meta.append(tierBadge(card.tier));
-    const action = document.createElement("span");
-    action.className = "atlas-card-action";
-    action.textContent = selectedRanks.has(card.rank) ? "In pack" : "Add";
-    meta.append(action);
     copy.append(rank, name, meta);
 
-    button.append(image, copy);
-    button.addEventListener("click", () => toggleCard(card.rank));
-    return button;
+    item.append(image, copy);
+    return item;
   }
 
   function renderAtlas() {
@@ -337,6 +228,7 @@
 
       const grid = document.createElement("div");
       grid.className = "atlas-grid";
+      grid.setAttribute("role", "list");
       grid.replaceChildren(...groupCards.map(atlasCard));
       section.append(heading, grid);
       return section;
@@ -344,72 +236,201 @@
     cardAtlas.replaceChildren(...sections);
   }
 
-  function updateAtlasSelection() {
-    cardAtlas.querySelectorAll("[data-atlas-rank]").forEach((button) => {
-      const rank = Number(button.dataset.atlasRank);
-      const card = byRank.get(rank);
-      const selected = selectedRanks.has(rank);
+  function shuffled(values) {
+    const copy = [...values];
+    for (let index = copy.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(Math.random() * (index + 1));
+      [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
+    }
+    return copy;
+  }
+
+  function trainingPool() {
+    return trainingFilter === "ALL" ? cards : cards.filter((card) => card.color === trainingFilter);
+  }
+
+  function trainingFilterName() {
+    if (trainingFilter === "ALL") return "Whole atlas";
+    return colorGroups.find((group) => group.id === trainingFilter)?.name || "Whole atlas";
+  }
+
+  function resetTrainingQueue() {
+    trainingQueue = shuffled(trainingPool());
+    if (trainingCard && trainingQueue.length > 1 && trainingQueue[0].rank === trainingCard.rank) {
+      trainingQueue.push(trainingQueue.shift());
+    }
+  }
+
+  function updateTrainingScore() {
+    const accuracy = trainingReviewed === 0 ? null : Math.round((trainingCorrect / trainingReviewed) * 100);
+    trainingAccuracy.textContent = accuracy === null ? "—" : `${accuracy}%`;
+    trainingAttempts.textContent = `${trainingReviewed} reviewed · ${trainingCorrect} exact`;
+  }
+
+  function updateTrainingFilters() {
+    trainingColors.querySelectorAll("[data-training-color]").forEach((button) => {
+      const selected = button.dataset.trainingColor === trainingFilter;
       button.setAttribute("aria-pressed", String(selected));
-      button.setAttribute("aria-label", `${selected ? "Remove" : "Add"} ${card.name}, rank ${card.rank}, tier ${card.tier}`);
-      button.querySelector(".atlas-card-action").textContent = selected ? "In pack" : "Add";
     });
   }
 
-  function toggleCard(rank) {
-    const card = byRank.get(rank);
-    if (!card) return;
-
-    const removing = selectedRanks.has(rank);
-    if (removing) selectedRanks.delete(rank);
-    else selectedRanks.add(rank);
-
-    renderPack();
-    renderResults();
-    updateAtlasSelection();
-    const leader = selectedCards()[0];
-    liveRegion.textContent = removing
-      ? `${card.name} removed. ${leader ? `${leader.name} is now the best baseline pick.` : "Current pack is empty."}`
-      : `${card.name} added. ${leader ? `${leader.name} is the best baseline pick.` : ""}`;
-  }
-
-  function clearPack() {
-    if (selectedRanks.size === 0) return;
-    selectedRanks.clear();
-    renderPack();
-    renderResults();
-    updateAtlasSelection();
-    liveRegion.textContent = "Current pack cleared.";
-    if (currentView === "picker") searchInput.focus({ preventScroll: true });
-  }
-
-  function updateActiveDescendant() {
-    const active = currentResults[activeResultIndex];
-    if (active) searchInput.setAttribute("aria-activedescendant", `result-${active.rank}`);
-    else searchInput.removeAttribute("aria-activedescendant");
-    resultsElement.querySelectorAll(".result-row").forEach((row, index) => {
-      row.dataset.active = String(index === activeResultIndex);
+  function renderTrainingFilters() {
+    const filters = [{ id: "ALL", name: "All colours" }, ...colorGroups];
+    const buttons = filters.map((filter) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "training-color";
+      button.dataset.trainingColor = filter.id;
+      button.dataset.color = filter.id;
+      button.innerHTML = `<span class="color-mark" aria-hidden="true"></span><strong>${filter.name}</strong>`;
+      button.addEventListener("click", () => {
+        if (trainingFilter === filter.id) return;
+        trainingFilter = filter.id;
+        updateTrainingFilters();
+        resetTrainingQueue();
+        drawTrainingCard({ focusChoices: true });
+      });
+      return button;
     });
+    trainingColors.replaceChildren(...buttons);
+    updateTrainingFilters();
   }
 
-  function moveActive(delta) {
-    if (currentResults.length === 0) return;
-    activeResultIndex = (activeResultIndex + delta + currentResults.length) % currentResults.length;
-    updateActiveDescendant();
-    document.querySelector(`#result-${currentResults[activeResultIndex].rank}`)?.scrollIntoView({ block: "nearest" });
+  function renderTierChoices() {
+    const buttons = tierOrder.map((tier) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "tier-choice";
+      button.dataset.tierGuess = tier;
+      button.style.setProperty("--tier-color", tierColors[tier]);
+      button.setAttribute("aria-label", `Guess tier ${tier}`);
+      button.innerHTML = `<strong>${tier}</strong>`;
+      button.addEventListener("click", () => answerTrainingCard(tier));
+      return button;
+    });
+    tierChoices.replaceChildren(...buttons);
+  }
+
+  function drawTrainingCard({ focusChoices = false } = {}) {
+    if (trainingQueue.length === 0) resetTrainingQueue();
+    trainingCard = trainingQueue.shift() || null;
+    trainingAnswered = false;
+    if (!trainingCard) return;
+
+    trainingCardElement.dataset.color = trainingCard.color;
+    trainingCardImage.src = trainingCard.image;
+    trainingCardImage.alt = `${trainingCard.name} card`;
+    trainingCardName.textContent = trainingCard.name;
+    trainingCardCount.textContent = `${trainingFilterName()} · ${trainingQueue.length + 1} ${trainingQueue.length === 0 ? "card" : "cards"} in this pass`;
+    trainingAnswer.hidden = true;
+    trainingAnswer.dataset.result = "";
+    revealTierButton.hidden = false;
+
+    tierChoices.querySelectorAll("[data-tier-guess]").forEach((button) => {
+      button.disabled = false;
+      button.dataset.result = "";
+      button.setAttribute("aria-pressed", "false");
+    });
+
+    if (focusChoices) {
+      requestAnimationFrame(() => {
+        trainingCardElement.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+        tierChoices.querySelector("button")?.focus({ preventScroll: true });
+      });
+    }
+  }
+
+  function neighbourItem(card, label, isCurrent = false) {
+    const item = document.createElement("li");
+    if (isCurrent) item.className = "is-current";
+    const routeLabel = document.createElement("span");
+    routeLabel.textContent = label;
+    const name = document.createElement("strong");
+    name.textContent = `#${card.rank} ${card.name}`;
+    const tier = document.createElement("span");
+    tier.textContent = `Tier ${card.tier}`;
+    item.append(routeLabel, name, tier);
+    return item;
+  }
+
+  function renderTrainingNeighbours(card) {
+    const nearby = [
+      { card: byRank.get(card.rank - 1), label: "One above" },
+      { card, label: "This card", current: true },
+      { card: byRank.get(card.rank + 1), label: "One below" },
+    ].filter((entry) => entry.card);
+    trainingNeighbours.replaceChildren(...nearby.map((entry) => neighbourItem(entry.card, entry.label, entry.current)));
+  }
+
+  function answerTrainingCard(guess) {
+    if (!trainingCard || trainingAnswered) return;
+    trainingAnswered = true;
+    trainingReviewed += 1;
+
+    const revealed = guess === null;
+    const correct = guess === trainingCard.tier;
+    const guessedIndex = guess === null ? -1 : tierOrder.indexOf(guess);
+    const correctIndex = tierOrder.indexOf(trainingCard.tier);
+    const nearMiss = !revealed && !correct && Math.abs(guessedIndex - correctIndex) === 1;
+
+    if (correct) trainingCorrect += 1;
+    else trainingQueue.splice(Math.min(3, trainingQueue.length), 0, trainingCard);
+
+    updateTrainingScore();
+    tierChoices.querySelectorAll("[data-tier-guess]").forEach((button) => {
+      const tier = button.dataset.tierGuess;
+      button.disabled = true;
+      button.setAttribute("aria-pressed", String(tier === guess));
+      if (tier === trainingCard.tier) button.dataset.result = "correct";
+      else if (tier === guess) button.dataset.result = "wrong";
+      else button.dataset.result = "muted";
+    });
+
+    if (correct) {
+      trainingResultTitle.textContent = "Right on the mark";
+      trainingResultCopy.textContent = `${trainingCard.name} is tier ${trainingCard.tier}, ranked #${trainingCard.rank} overall.`;
+      trainingAnswer.dataset.result = "correct";
+    } else if (revealed) {
+      trainingResultTitle.textContent = `Tier ${trainingCard.tier} revealed`;
+      trainingResultCopy.textContent = `${trainingCard.name} is ranked #${trainingCard.rank}. It will return again in a few cards.`;
+      trainingAnswer.dataset.result = "review";
+    } else if (nearMiss) {
+      trainingResultTitle.textContent = "One trail marker away";
+      trainingResultCopy.textContent = `You chose ${guess}; ${trainingCard.name} is tier ${trainingCard.tier}, ranked #${trainingCard.rank}.`;
+      trainingAnswer.dataset.result = "near";
+    } else {
+      trainingResultTitle.textContent = `Tier ${trainingCard.tier}, not ${guess}`;
+      trainingResultCopy.textContent = `${trainingCard.name} is ranked #${trainingCard.rank}. It will return again in a few cards.`;
+      trainingAnswer.dataset.result = "wrong";
+    }
+
+    renderTrainingNeighbours(trainingCard);
+    revealTierButton.hidden = true;
+    trainingAnswer.hidden = false;
+    if (!prefersReducedMotion) {
+      trainingAnswer.animate(
+        [
+          { clipPath: "inset(0 0 100% 0)", filter: "saturate(.7)" },
+          { clipPath: "inset(0 0 0 0)", filter: "saturate(1)" },
+        ],
+        { duration: 320, easing: "cubic-bezier(.16, 1, .3, 1)" }
+      );
+    }
+
+    liveRegion.textContent = `${trainingResultTitle.textContent}. ${trainingResultCopy.textContent}`;
   }
 
   function clearSearch() {
     searchInput.value = "";
-    activeResultIndex = -1;
     renderResults();
     searchInput.focus();
   }
 
   function activateView(view, { focus = false, updateHash = true } = {}) {
-    currentView = view === "atlas" ? "atlas" : "picker";
-    const atlasIsActive = currentView === "atlas";
-    pickerView.hidden = atlasIsActive;
-    atlasView.hidden = !atlasIsActive;
+    currentView = ["atlas", "training"].includes(view) ? view : "picker";
+    pickerView.hidden = currentView !== "picker";
+    atlasView.hidden = currentView !== "atlas";
+    trainingView.hidden = currentView !== "training";
     document.body.dataset.view = currentView;
 
     viewTabs.forEach((tab) => {
@@ -420,7 +441,11 @@
     });
 
     if (updateHash) {
-      const nextHash = atlasIsActive ? "#all-cards" : `${location.pathname}${location.search}`;
+      const nextHash = currentView === "atlas"
+        ? "#all-cards"
+        : currentView === "training"
+          ? "#train"
+          : `${location.pathname}${location.search}`;
       history.replaceState(null, "", nextHash);
     }
 
@@ -438,21 +463,11 @@
   }
 
   searchInput.addEventListener("input", () => {
-    activeResultIndex = -1;
     renderResults();
   });
 
   searchInput.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-      moveActive(1);
-    } else if (event.key === "ArrowUp") {
-      event.preventDefault();
-      moveActive(-1);
-    } else if (event.key === "Enter" && activeResultIndex >= 0) {
-      event.preventDefault();
-      toggleCard(currentResults[activeResultIndex].rank);
-    } else if (event.key === "Escape" && searchInput.value) {
+    if (event.key === "Escape" && searchInput.value) {
       event.preventDefault();
       clearSearch();
     }
@@ -480,33 +495,16 @@
   });
 
   clearSearchButton.addEventListener("click", clearSearch);
-  clearPackButton.addEventListener("click", clearPack);
-  packElement.addEventListener("click", (event) => {
-    const removeButton = event.target.closest("[data-remove-rank]");
-    if (removeButton) toggleCard(Number(removeButton.dataset.removeRank));
-  });
-  packDock.addEventListener("click", () => {
-    activateView("picker");
-    requestAnimationFrame(() => {
-      packElement.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
-      packTitle.focus({ preventScroll: true });
-    });
-  });
-
-  if ("IntersectionObserver" in window) {
-    const packObserver = new IntersectionObserver(([entry]) => {
-      const suppressed = currentView === "picker" && entry.isIntersecting;
-      packDock.classList.toggle("is-suppressed", suppressed);
-      packDock.tabIndex = suppressed ? -1 : 0;
-      packDock.setAttribute("aria-hidden", String(suppressed));
-    }, { threshold: 0.08 });
-    packObserver.observe(packElement);
-  }
+  revealTierButton.addEventListener("click", () => answerTrainingCard(null));
+  nextTrainingCardButton.addEventListener("click", () => drawTrainingCard({ focusChoices: true }));
 
   renderResults();
-  renderPack({ animate: false });
   renderAtlas();
-  activateView(location.hash === "#all-cards" ? "atlas" : "picker", { updateHash: false });
+  renderTrainingFilters();
+  renderTierChoices();
+  resetTrainingQueue();
+  drawTrainingCard();
+  activateView(location.hash === "#all-cards" ? "atlas" : location.hash === "#train" ? "training" : "picker", { updateHash: false });
 
   if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
     window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" }).catch(() => {}));
