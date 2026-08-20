@@ -28,7 +28,7 @@ Used alongside a live draft or in short study sessions. The user may type a part
 
 ## Capabilities and Constraints
 
-- Ship all 188 card names, pick ranks, tiers, and thumbnails with the site.
+- Ship all 188 card names, pick ranks, tiers, lightweight thumbnails, and high-resolution training images with the site.
 - Fuzzy, accent-insensitive name search.
 - Exact-tier training can filter by colour, report session accuracy, reveal adjacent ranks, and return missed cards sooner.
 - Training progress is session-only memory and disappears on refresh.
@@ -39,7 +39,7 @@ Used alongside a live draft or in short study sessions. The user may type a part
 ## Evidence on Hand
 
 - Verified 188-card pick-order snapshot captured from Untapped.gg on 19 August 2026.
-- Matching card thumbnails downloaded from the source page.
+- Matching card thumbnails downloaded from the source page, with large local Scryfall images reserved for training.
 - Existing searchable PDF established the rank, tier, and thumbnail mapping.
 
 ## Product Principles

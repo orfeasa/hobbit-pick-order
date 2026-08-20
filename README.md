@@ -1,6 +1,6 @@
 # The Hobbit Pick Order
 
-A static card search, colour-grouped atlas, and tier trainer for The Hobbit on MTG Arena. It ships all 188 card names, ranks, tiers, and thumbnails with the site.
+A static card search, colour-grouped atlas, and tier trainer for The Hobbit on MTG Arena. It ships all 188 card names, ranks, tiers, lightweight thumbnails, and high-resolution training images with the site.
 
 ## What it does
 
@@ -34,6 +34,8 @@ The live custom domain is `hobbit.orfeasa.com`, configured in GitHub Pages with 
 
 `scripts/build-data.mjs` regenerates `public/cards.js` and the service-worker asset list from the captured JSON source files in `data/`. The current dataset is the Untapped.gg snapshot captured on 19 August 2026.
 
-`scripts/sync-colors.mjs` refreshes the local color-identity mapping from Scryfall. The deployed site does not call Scryfall at runtime.
+`scripts/sync-colors.mjs` refreshes the local color-identity mapping from Scryfall. `scripts/sync-training-images.mjs` downloads Scryfall's large card images for the trainer; pass `--force` to replace existing files. Run the image sync before `scripts/build-data.mjs` when refreshing the set. The deployed site does not call Scryfall at runtime.
+
+Search and Cards use the original 80 × 112 thumbnails to stay quick. Train loads a 672 × 936 card on demand and runtime-caches each one after it is viewed, rather than precaching the full high-resolution set on first visit. If a large image is unavailable while offline, Train falls back to the precached thumbnail.
 
 Card images and names remain the property of their respective rights holders. This is an unofficial reference tool and is not affiliated with Wizards of the Coast or Untapped.gg.

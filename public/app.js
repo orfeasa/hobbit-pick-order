@@ -318,7 +318,11 @@
     if (!trainingCard) return;
 
     trainingCardElement.dataset.color = trainingCard.color;
-    trainingCardImage.src = trainingCard.image;
+    trainingCardImage.onerror = () => {
+      trainingCardImage.onerror = null;
+      trainingCardImage.src = trainingCard.image;
+    };
+    trainingCardImage.src = trainingCard.trainingImage;
     trainingCardImage.alt = `${trainingCard.name} card`;
     trainingCardName.textContent = trainingCard.name;
     trainingCardCount.textContent = `${trainingFilterName()} · ${trainingQueue.length + 1} ${trainingQueue.length === 0 ? "card" : "cards"} in this pass`;

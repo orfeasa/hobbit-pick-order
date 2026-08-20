@@ -15,7 +15,7 @@ An MTG Arena drafter searches partial card names and reads the matching card’s
 
 ## Content and constraints
 
-Use the verified 188-card Untapped.gg snapshot, local thumbnails, rank, colour identity, and all 15 exact tier labels. Search results and colour-atlas cards are passive references with no add, remove, mapped, selected, or pack state. Training filter, queue, score, and reviewed state remain session-only and reset on refresh. No deck-context claims, backend, account, analytics, localStorage, or external runtime dependency. Keyboard, touch, responsive, reduced-motion, and offline behavior are first-class.
+Use the verified 188-card Untapped.gg snapshot, lightweight local thumbnails, high-resolution local training images, rank, colour identity, and all 15 exact tier labels. Search results and colour-atlas cards are passive references with no add, remove, mapped, selected, or pack state. Training filter, queue, score, and reviewed state remain session-only and reset on refresh. No deck-context claims, backend, account, analytics, localStorage, or external runtime dependency. Keyboard, touch, responsive, reduced-motion, and offline behavior are first-class.
 
 ## Chosen direction
 

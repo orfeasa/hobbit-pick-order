@@ -24,6 +24,7 @@ for (const section of pickOrder.sections) {
       name,
       color: colorData.colors[name],
       image: `assets/cards/${artIds[rank - 1]}.jpg`,
+      trainingImage: `assets/cards-large/${artIds[rank - 1]}.jpg`,
     });
     rank += 1;
   }
@@ -36,6 +37,11 @@ if (cards.length !== 188 || artIds.length !== 188) {
 const missingColors = cards.filter((card) => !card.color);
 if (missingColors.length > 0) {
   throw new Error(`Missing color identity for: ${missingColors.map((card) => card.name).join(", ")}`);
+}
+
+const missingTrainingImages = cards.filter((card) => !fs.existsSync(path.join(publicDir, card.trainingImage)));
+if (missingTrainingImages.length > 0) {
+  throw new Error(`Missing high-resolution training images for: ${missingTrainingImages.map((card) => card.name).join(", ")}`);
 }
 
 const cardData = `/* Generated from the verified 19 Aug 2026 Untapped.gg snapshot. */\nwindow.HOBBIT_CARDS = ${JSON.stringify(cards, null, 2)};\n`;

@@ -991,7 +991,7 @@ kbd {
   z-index: 1;
   width: min(250px, 100%);
   height: auto;
-  aspect-ratio: 125.3 / 176.4;
+  aspect-ratio: 672 / 936;
   object-fit: cover;
   border-radius: 6px;
   box-shadow: 0 15px 34px rgba(7, 20, 13, .42);
