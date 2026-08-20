@@ -1,286 +1,324 @@
 ---
 name: "The Hobbit Pick Order"
-description: "A pick-to-light field terminal for fast pack comparison."
+description: "A clothbound expedition atlas for fast pack decisions and complete colour browsing."
 colors:
-  ink: "#171c18"
-  rack-steel: "#142019"
-  warm-stock: "#f2eee1"
-  paper-light: "#fffaf0"
-  paper-deep: "#e8e1cf"
-  line: "#b9b29f"
-  muted: "#565e56"
-  pick-light: "#c9ff4a"
-  pick-light-dark: "#526d0f"
-  safety-orange: "#f16a2b"
-  tier-s-purple: "#65429a"
-  focus-blue: "#2270e6"
+  forest-cloth: "#263c31"
+  forest-deep: "#16271f"
+  forest-soft: "#3d5a49"
+  map-leaf: "#eee4ca"
+  map-leaf-light: "#f8f2df"
+  map-leaf-deep: "#ddcfad"
+  atlas-ground: "#d7c6a0"
+  contour-ink: "#253029"
+  muted-ink: "#5e655e"
+  map-line: "#b6a98a"
+  oxblood-route: "#a44832"
+  oxblood-deep: "#773224"
+  river-blue: "#466c75"
+  brass: "#b48c43"
+  brass-page-flag: "#d9bd74"
+  focus-blue: "#0868c4"
 typography:
   display:
-    fontFamily: "Barlow Condensed, sans-serif"
-    fontSize: "clamp(2.25rem, 5vw, 4.25rem)"
-    fontWeight: 900
+    fontFamily: "Alegreya, Georgia, serif"
+    fontSize: "clamp(3rem, 7vw, 5.7rem)"
+    fontWeight: 700
     lineHeight: 0.88
-    letterSpacing: "-0.025em"
+    letterSpacing: "-0.035em"
   headline:
-    fontFamily: "Barlow Condensed, sans-serif"
-    fontSize: "clamp(1.65rem, 3.2vw, 2.25rem)"
-    fontWeight: 900
-    lineHeight: 0.9
+    fontFamily: "Alegreya, Georgia, serif"
+    fontSize: "clamp(2.5rem, 5vw, 4.7rem)"
+    fontWeight: 700
+    lineHeight: 0.92
+    letterSpacing: "-0.03em"
+  brand:
+    fontFamily: "Alegreya, Georgia, serif"
+    fontSize: "clamp(1.8rem, 3vw, 2.7rem)"
+    fontWeight: 700
+    lineHeight: 0.98
     letterSpacing: "-0.02em"
+  rank:
+    fontFamily: "Alegreya, Georgia, serif"
+    fontSize: "1.7rem"
+    fontWeight: 700
+    lineHeight: 1
   body:
-    fontFamily: "Barlow, sans-serif"
+    fontFamily: "Atkinson Hyperlegible Next, Segoe UI, sans-serif"
     fontSize: "16px"
     fontWeight: 400
-    lineHeight: 1.45
+    lineHeight: 1.5
   title:
-    fontFamily: "Barlow, sans-serif"
+    fontFamily: "Atkinson Hyperlegible Next, Segoe UI, sans-serif"
     fontSize: "1rem"
-    fontWeight: 600
-    lineHeight: 1.2
+    fontWeight: 700
+    lineHeight: 1.22
   search:
-    fontFamily: "Barlow, sans-serif"
-    fontSize: "clamp(1.12rem, 2.2vw, 1.4rem)"
-    fontWeight: 600
-    lineHeight: 1.2
+    fontFamily: "Atkinson Hyperlegible Next, Segoe UI, sans-serif"
+    fontSize: "clamp(1.05rem, 2vw, 1.25rem)"
+    fontWeight: 700
+    lineHeight: 1.5
   label:
-    fontFamily: "Barlow, sans-serif"
-    fontSize: "0.68rem"
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "0.1em"
+    fontFamily: "Atkinson Hyperlegible Next, Segoe UI, sans-serif"
+    fontSize: "0.72rem"
+    fontWeight: 700
+    lineHeight: 1.15
 rounded:
-  scanner-mark: "2px"
+  card-mini: "3px"
   thumbnail: "4px"
-  control-sm: "5px"
+  utility: "5px"
   control: "6px"
+  page-flag: "8px"
   mobile-dock: "9px"
-  feature: "12px"
-  surface: "14px"
+  compact-leaf: "10px"
+  field: "12px"
+  atlas-leaf: "14px"
   pill: "999px"
 components:
-  app-header:
-    backgroundColor: "{colors.rack-steel}"
-    textColor: "{colors.paper-light}"
-    height: "78px"
-    padding: "12px clamp(18px, 3vw, 42px)"
-  dataset-stamp:
-    backgroundColor: "{colors.pick-light}"
-    textColor: "{colors.rack-steel}"
-    padding: "9px 24px"
-    typography: "{typography.label}"
+  clothbound-header:
+    backgroundColor: "{colors.forest-cloth}"
+    textColor: "{colors.map-leaf-light}"
+    height: "142px"
+    padding: "18px clamp(20px, 4vw, 58px) 22px"
+  page-flag:
+    backgroundColor: "{colors.forest-soft}"
+    textColor: "{colors.map-leaf-light}"
+    rounded: "{rounded.page-flag}"
+    height: "50px"
+    padding: "0 22px"
+  page-flag-active:
+    backgroundColor: "{colors.brass-page-flag}"
+    textColor: "{colors.forest-deep}"
+    rounded: "{rounded.page-flag}"
+    height: "58px"
+    padding: "0 22px"
   input-search:
-    backgroundColor: "{colors.paper-light}"
-    textColor: "{colors.rack-steel}"
-    rounded: "{rounded.surface}"
-    height: "70px"
-    padding: "0 12px 0 19px"
+    backgroundColor: "{colors.map-leaf-light}"
+    textColor: "{colors.forest-deep}"
+    rounded: "{rounded.field}"
+    height: "68px"
+    padding: "0 11px 0 18px"
     typography: "{typography.search}"
-  button-icon-dark:
-    backgroundColor: "{colors.rack-steel}"
-    textColor: "{colors.paper-light}"
-    rounded: "{rounded.control}"
-    size: "38px"
   result-row:
     backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    height: "80px"
-    padding: "9px 10px 9px 4px"
-  result-row-selected:
-    backgroundColor: "{colors.paper-light}"
-    textColor: "{colors.ink}"
-    height: "80px"
-    padding: "9px 10px 9px 4px"
-  chip-tier-s:
-    backgroundColor: "{colors.tier-s-purple}"
-    textColor: "#fff"
-    rounded: "{rounded.pill}"
-    height: "24px"
-    padding: "0 8px"
-  button-confirmation:
-    backgroundColor: "{colors.pick-light}"
-    textColor: "{colors.rack-steel}"
+    textColor: "{colors.contour-ink}"
+    height: "82px"
+    padding: "9px 8px 9px 2px"
+  result-row-mapped:
+    backgroundColor: "rgba(217, 189, 116, .23)"
+    textColor: "{colors.contour-ink}"
+    height: "82px"
+    padding: "9px 8px 9px 2px"
+  button-brass:
+    backgroundColor: "{colors.brass-page-flag}"
+    textColor: "{colors.forest-deep}"
     rounded: "{rounded.control}"
+    width: "70px"
     height: "42px"
-    padding: "0 18px"
     typography: "{typography.label}"
-  card-best-pick:
-    backgroundColor: "{colors.pick-light}"
-    textColor: "{colors.rack-steel}"
-    rounded: "{rounded.feature}"
+  route-leader-card:
+    backgroundColor: "{colors.map-leaf}"
+    textColor: "{colors.contour-ink}"
+    rounded: "{rounded.field}"
     padding: "18px"
-  panel-pack:
-    backgroundColor: "{colors.rack-steel}"
-    textColor: "{colors.paper-light}"
-    rounded: "{rounded.surface}"
+  color-jump-chip:
+    backgroundColor: "{colors.map-leaf-light}"
+    textColor: "{colors.contour-ink}"
+    rounded: "{rounded.pill}"
+    height: "38px"
+    padding: "0 11px"
+  atlas-card:
+    backgroundColor: "transparent"
+    textColor: "{colors.contour-ink}"
+    height: "112px"
+    padding: "11px 5px"
 ---
 
 # Design System: The Hobbit Pick Order
 
 ## Overview
 
-**Creative North Star: "The Pick-to-Light Terminal"**
+**Creative North Star: "Bilbo’s Expedition Atlas"**
 
-This system feels like a purpose-built field terminal: operational, decisive, tactile, fast, and grounded. Warm stock carries the working surface, rack steel frames the decision machinery, and pick light confirms the action that matters. The atmosphere is physical and practical without becoming retro pastiche.
+The system turns a pick order into a working expedition volume. Forest-cloth binding and brass page flags frame warm map leaves; contour lines, oxblood route marks, river-blue details, and compass geometry create a sense of place without becoming decorative fantasy. It should feel learned, practical, companionable, and ready to be opened mid-journey for a quick decision.
 
-Information is organized like a pick list rather than a tier-list article. Compressed headlines, numbered lanes, literal labels, and immediate selection feedback let a drafter scan before they read. The system rejects fantasy parchment and generic dashboard polish; its character comes from workwear materials, signal color, and strict hierarchy.
+Hierarchy remains operational inside that world. Alegreya gives titles and ranks a bookish editorial voice, Atkinson Hyperlegible Next keeps search and metadata exceptionally legible, and the open spread makes the current route as tangible as the cards being considered. The system rejects generic dashboard chrome and theatrical parchment styling; materials stay quiet enough for immediate interaction.
 
 **Key Characteristics:**
 
-- Warm stock work fields against near-black rack-steel structure.
-- Acid-lime confirmation used as a pick light, not ambient decoration.
-- Condensed command typography paired with clear, compact body copy.
-- Numbered lanes, literal status labels, and decisive selected states.
-- Structural elevation with tactile shadows only where hierarchy needs them.
+- Forest-cloth framing around warm, lightly contoured map leaves.
+- Alegreya for titles and ranks; Atkinson Hyperlegible Next for working text.
+- Brass page flags for navigation, provenance, and route wayfinding.
+- Oxblood route marks for selection and consequential state; river blue for cartographic detail.
+- An open two-leaf picker spread paired with a complete colour-indexed atlas.
+- Restrained tactile shadows that make the atlas feel handled rather than glossy.
 
 ## Colors
 
-The palette combines warm working stock with near-black green steel, then reserves high-chroma signal colors for decisions, exceptions, and focus.
+The palette is a field atlas: deep forest binding, warm leaves and ground, dark contour ink, then oxblood, river blue, and brass as purposeful cartographic marks.
 
 ### Primary
 
-- **Pick Light** (`pick-light`): Confirms selection, marks the leading choice, and illuminates active decision surfaces.
-- **Pick Light Dark** (`pick-light-dark`): Carries the same signal family into scrollbar and focused-field details where full-bright lime would overpower the content.
+- **Oxblood Route** (`oxblood-route`): Marks mapped selections, route details, active search emphasis, and consequential hover states.
+- **Oxblood Deep** (`oxblood-deep`): Carries route emphasis into small labels and high-contrast status copy.
 
 ### Secondary
 
-- **Safety Orange** (`safety-orange`): Marks exceptions, destructive hover feedback, caret attention, and tier-related emphasis.
+- **Brass Page Flag** (`brass-page-flag`): Identifies the active leaf, dataset provenance, clear actions, route ticks, and mobile wayfinding.
+- **Brass** (`brass`): Supplies the darker metal note for scroll affordances and supporting accents.
 
 ### Tertiary
 
-- **Tier S Purple** (`tier-s-purple`): Identifies the highest tier without competing with pick confirmation.
-- **Focus Blue** (`focus-blue`): Provides a distinct, accessible keyboard-focus signal separate from product state.
+- **River Blue** (`river-blue`): Colours atlas contours and establishes the cool cartographic counterpoint to oxblood.
+- **Focus Blue** (`focus-blue`): Remains a distinct, accessible keyboard-focus signal rather than a thematic selection colour.
 
 ### Neutral
 
-- **Rack Steel** (`rack-steel`): Grounds the header, pack rail, dark controls, and high-authority labels.
-- **Warm Stock** (`warm-stock`): Supplies the broad work surface and keeps the interface tactile rather than clinical.
-- **Paper Light** (`paper-light`): Lifts inputs, selected rows, and light-on-dark text.
-- **Paper Deep** (`paper-deep`): Supports tracks and unloaded thumbnail surfaces.
-- **Ink** (`ink`): Carries primary copy on light surfaces.
-- **Line** (`line`): Separates dense list rows without creating card chrome.
-- **Muted** (`muted`): Handles supporting instructions and metadata.
+- **Forest Cloth** (`forest-cloth`): Frames the masthead, pack route, dark controls, and bound edge of the spread.
+- **Forest Deep** (`forest-deep`): Deepens fixed navigation, footer, and high-contrast structural details.
+- **Forest Soft** (`forest-soft`): Carries inactive page flags and intermediate cloth surfaces.
+- **Map Leaf** (`map-leaf`): The principal warm reading and working surface.
+- **Map Leaf Light** (`map-leaf-light`): Lifts search fields, chips, and text placed on forest cloth.
+- **Map Leaf Deep** (`map-leaf-deep`): Supports thumbnails and quiet footer text.
+- **Atlas Ground** (`atlas-ground`): Sits behind the open volume and exposes broad contour texture.
+- **Contour Ink** (`contour-ink`): Carries primary text and strong rules on the leaves.
+- **Muted Ink** (`muted-ink`): Handles instructions, counts, and secondary metadata.
+- **Map Line** (`map-line`): Separates ranked rows and atlas entries without enclosing every item.
 
 ### Named Rules
 
-**The Signal Economy Rule.** Pick Light means selection, leadership, or confirmation; Safety Orange means exception or a consequential state change. Neither is background decoration.
+**The Route Mark Rule.** Oxblood belongs to mapped state, route emphasis, and consequential actions; it is never a broad decorative fill.
 
-**The Warm Ground Rule.** Keep the work field on Warm Stock or Paper Light; pure white is reserved for small contrast-critical details, not broad surfaces.
+**The Brass Flag Rule.** Brass identifies places to turn, clear, or orient. Keep it compact so it continues to read as a page flag or waypoint.
+
+**The Ink-on-Leaves Rule.** Primary reading happens in Contour Ink on Map Leaf. Forest reversals are reserved for binding, navigation, and the current route.
 
 ## Typography
 
-**Display Font:** Barlow Condensed (with sans-serif fallback)  
-**Body Font:** Barlow (with sans-serif fallback)  
-**Label/Mono Font:** Barlow, using tabular numerals where rank alignment matters
+**Display Font:** Alegreya (with Georgia and serif fallbacks)
 
-**Character:** Barlow Condensed delivers compressed, stencil-like command energy at heavy weight. Barlow keeps instructions and metadata compact, legible, and contemporary without softening the terminal character.
+**Body Font:** Atkinson Hyperlegible Next (with Segoe UI and sans-serif fallbacks)
+
+**Label Font:** Atkinson Hyperlegible Next; ranks use Alegreya with tabular numerals
+
+**Character:** Alegreya provides the confident, well-travelled book voice without slipping into costume lettering. Atkinson Hyperlegible Next is deliberately plain and highly legible, keeping fast draft decisions clear at small sizes and on mobile.
 
 ### Hierarchy
 
-- **Display** (900, fluid headline scale, 0.88 line-height): Uppercase task headings and dominant card names.
-- **Headline** (900, fluid compact scale, 0.9 line-height): Product identity and sectional commands.
-- **Title** (600, compact body scale, 1.2 line-height): Card names and other high-scan row content.
-- **Body** (400, base reading scale, 1.45 line-height): Instructions, context, and explanatory copy kept to short measures.
-- **Search** (600, fluid control scale, 1.2 line-height): The primary text-entry voice, visually stronger than ordinary body copy.
-- **Label** (600, compact scale, tracked uppercase): Dataset stamps, states, actions, and operational metadata.
+- **Display** (700, fluid atlas scale, 0.88 line-height): The complete-atlas title and other singular page-level statements.
+- **Headline** (700, fluid leaf scale, 0.92 line-height): Picker and current-route headings.
+- **Brand** (700, compact fluid scale, 0.98 line-height): The clothbound masthead title.
+- **Rank** (700, 1.7rem, 1 line-height): Pick numbers and route positions, always with tabular numerals.
+- **Title** (700, 1rem, 1.22 line-height): Card names and other high-scan working content.
+- **Body** (400, 16px, 1.5 line-height): Instructions, source context, and explanatory copy.
+- **Search** (700, fluid control scale, 1.5 line-height): Search input text with enough weight to remain legible beside card art.
+- **Label** (700, compact scale, 1.15 line-height): Dataset stamps, controls, counts, and tier metadata.
 
 ### Named Rules
 
-**The Compressed Command Rule.** Use Barlow Condensed at weight 900 for commands, ranks, and decisive names; never use it for paragraphs.
+**The Literary Utility Rule.** Use Alegreya for page hierarchy, card leaders, and ranks; use Atkinson Hyperlegible Next for every instruction, control, and dense list detail.
 
-**The Literal Label Rule.** Small uppercase text must report a real action, state, count, or direction. It is not ornamental microcopy.
+**The No-Costume Rule.** Preserve Alegreya’s natural case and editorial rhythm. Do not simulate medieval lettering with all-caps display type, blackletter, or decorative tracking.
 
 ## Layout
 
-The main work field is a centered two-column grid capped at 1440px. Search and results receive the larger working lane; the decision rail receives a slightly smaller lane with a 360px minimum. Fluid outer padding and gaps expand from compact drafting density to a generous desktop rhythm.
+The system is organized as a clothbound volume capped at 1440px. A 142px masthead establishes the binding, then two sticky page flags sit on a 62px navigation line. The picker view opens into a two-column spread: the searchable card leaf receives 1.2 fractions of the width, while the current-route leaf receives 0.8 with a 360px minimum. A narrow centre fold and one continuous book shadow make the two leaves read as one object.
 
-At the intermediate breakpoint (980px), the pack lane tightens while preserving the side-by-side decision view. At the mobile breakpoint (760px), the grid becomes a single flow, the search field sticks below the header, and a fixed Pick Light dock keeps the current leader reachable until the full pack rail enters view. A final compact adjustment at 420px tightens thumbnails, ranks, and gaps without removing decision metadata.
+The alternate All cards view uses a single map leaf with a sticky, horizontally scrollable colour index and an auto-filling grid of cards. At 1040px the route leaf tightens to 350px. At 760px both views become single-column leaves: the page flags share the width, search sticks beneath them, the pack route moves below results, a brass mobile dock keeps the leader reachable, and the atlas becomes a two-column card grid. At 420px card, rank, and title measures tighten again without dropping primary metadata.
 
-**The Decision-in-Reach Rule.** Search stays close to the results it controls, and the strongest current pick stays visible or one direct action away.
+**The Open-Volume Rule.** Picker and route belong to the same spread, while the complete atlas is a deliberate page turn—not a dashboard panel competing in the same viewport.
+
+**The Route-in-Reach Rule.** The current leader must remain visible in the right leaf or reachable through the brass mobile dock.
 
 ## Elevation & Depth
 
-Elevation is structural, not decorative. Warm Stock remains a flat work field; the rack-steel pack rail is the one lifted major surface. The search field, keycap, and card thumbnails receive tactile shadows only where they reinforce input priority or card hierarchy. Selected rows change tone instead of floating.
+Depth is book construction rather than stacked application cards. The open spread and single atlas leaf share the dominant shadow; forest cloth sits above the ground with a softer lift, and the centre fold supplies internal depth. Search, page flags, card thumbnails, and the route-leader card receive smaller tactile shadows. Ranked rows stay flat and depend on rules, tint, and typography.
 
 ### Shadow Vocabulary
 
-- **Keycap Tactility** (`0 2px 6px rgba(20, 32, 25, .18)`): A restrained lift for the keyboard shortcut cue.
-- **Thumbnail Lift** (`0 4px 12px rgba(20, 32, 25, .18)`): Separates small card art from dense list rows.
-- **Search Control** (`0 14px 34px rgba(20, 32, 25, .11)`): Marks the primary scanner input without turning it into a floating card.
-- **Search Focus** (`0 18px 40px rgba(20, 32, 25, .16)`): Deepens only while the field owns interaction.
-- **Pack Rail** (`0 24px 56px rgba(20, 32, 25, .22)`): Establishes the current pack as the decision surface.
-- **Leading Thumbnail** (`0 10px 24px rgba(20, 32, 25, .24)`): Gives the winning card more physical presence inside the Pick Light field.
-- **Mobile Dock** (`0 16px 36px rgba(20, 32, 25, .32)`): Keeps the temporary fixed control legible above page content.
+- **Cloth Binding** (`0 10px 30px rgba(22, 39, 31, .2)`): Lifts the masthead from the atlas ground.
+- **Page Flag** (`0 7px 18px rgba(22, 39, 31, .16)`): Gives navigation flags a light, handled-paper lift.
+- **Open Volume** (`0 26px 65px rgba(44, 42, 31, .28)`): Unifies the spread and complete atlas page as the principal object.
+- **Search Field** (`0 12px 30px rgba(64, 54, 37, .13)`): Marks the primary working control without detaching it from the leaf.
+- **Search Focus** (`0 16px 36px rgba(64, 54, 37, .19)`): Deepens only while the field owns input.
+- **Card Thumbnail** (`0 5px 13px rgba(49, 43, 32, .2)`): Separates card art from dense map rows.
+- **Route Leader** (`0 13px 32px rgba(18, 34, 26, .24)`): Gives the strongest baseline pick physical priority inside the cloth route leaf.
+- **Mobile Waypoint** (`0 15px 34px rgba(22, 39, 31, .34)`): Holds the temporary fixed leader control above scrolling content.
 
 ### Named Rules
 
-**The One Lifted Rail Rule.** Major surface elevation belongs to the pack rail; do not distribute card-panel shadows across the entire work field.
+**The Bound-Object Rule.** Elevate the atlas as one handled object; do not distribute independent card-panel shadows across the leaves.
 
 ## Shapes
 
-The form language combines square scanner geometry with gently eased operational surfaces. Major fields and rails use the largest established radius; the leading-pick module steps slightly tighter, controls use compact corners, and card thumbnails stay close to their physical proportions. Pills are reserved for tier badges and other short categorical markers.
+The silhouette combines softly rounded paper leaves with square-cut book geometry. The upper-left corner stays square where a page meets its active flag, while the remaining leaf corners round gently. Search and route-leader fields use medium corners, small controls and thumbnails tighten further, and pills are reserved for tier and colour-jump markers.
 
-Borders are functional: strong rack-steel outlines define inputs and mobile controls, while single-pixel dividers create ranked lanes. Inline icons use square caps and mitered turns so they read as equipment marks rather than friendly illustrations.
+Compass points, mountain rules, contour paths, route dashes, circular colour emblems, and the centre fold are the recurring geometry. Borders behave like drawn map rules: thin, useful, and usually shared between adjacent rows rather than wrapped around each item.
 
-**The Radius by Authority Rule.** Large radii belong to major fields and rails, medium radii to decisive feature blocks, small radii to controls and thumbnails, and pills only to compact categories.
+**The Bound-Corner Rule.** Preserve the square flag-to-leaf join; rounding all four corners would break the open-book silhouette.
+
+**The Map-Mark Rule.** Decorative geometry must read as navigation—compass, contour, route, mountain, or colour emblem—not as generic fantasy ornament.
 
 ## Components
 
-Components are tactile and literal. Every control announces its action, selection state, or rank without ornamental chrome.
+Components feel like useful parts of a working field atlas: clear in action, lightly tactile, and materially consistent with the leaf or binding that holds them.
 
 ### Buttons
 
-- **Shape:** Compact control corners for text and icon actions; touch targets remain explicit and solid.
-- **Primary:** Pick Light on Rack Steel for clearing or confirming pack-level actions.
-- **Dark Action:** Rack Steel on Paper Light for add, remove, and utility actions within bright surfaces.
-- **Hover / Focus:** Safety Orange marks consequential hover feedback; Focus Blue provides a separate three-pixel visible outline. Pressed states move by color or slight compression, never by decorative glow.
-- **Disabled:** Dark, low-contrast rack tones communicate unavailable pack actions without removing the label.
+- **Shape:** Compact six-pixel controls for clear and remove actions; broad pill geometry is not used for ordinary buttons.
+- **Brass Action:** Brass Page Flag on Forest Deep for pack-level clear actions and the mobile leader waypoint.
+- **Forest Action:** Forest Cloth on Map Leaf Light for search clearing and route-card removal.
+- **Hover / Focus:** Consequential hover moves to Oxblood; keyboard focus uses the separate three-pixel Focus Blue outline. Pressed states may compress subtly but do not glow.
+- **Disabled:** Deep forest tonal contrast keeps the control visible while clearly unavailable.
 
 ### Chips
 
-- **Style:** Compact categorical pills with white type and a tier-specific solid fill.
-- **State:** Pick confirmation is a rectangular Pick Light action label, not a tier pill; category and interaction state must remain visually distinct.
+- **Tier Badge:** A compact filled pill using the established tier colour table with white text.
+- **Colour Jump:** A Map Leaf Light pill with a circular colour emblem, literal colour name, and count; hover strengthens the Forest Cloth border.
+- **State:** Mapped selection is communicated by row tint and an Oxblood action label, not by repurposing the tier badge.
 
 ### Cards / Containers
 
-- **Corner Style:** Major rail surfaces use the broad surface radius; the leading-pick card uses a slightly tighter feature radius.
-- **Background:** Rack Steel contains the pack; Pick Light contains its current leader; list rows remain flat on Warm Stock or Paper Light.
-- **Shadow Strategy:** Only the pack rail, primary search field, and thumbnails receive meaningful lift.
-- **Border:** Ranked rows use dividers rather than enclosing borders.
-- **Internal Padding:** Dense row padding supports scanning; feature modules use a broader 18–24px inset.
+- **Atlas Leaves:** Map Leaf surfaces with subtle contour texture and the shared Open Volume shadow.
+- **Result Rows:** Flat, full-width actions separated by Map Line; hover tints the leaf and mapped state receives a translucent brass wash.
+- **Route Leader:** A Map Leaf card inside Forest Cloth, marked with an oxblood dashed route and a stronger thumbnail shadow.
+- **Atlas Cards:** Compact thumbnail-and-copy rows that inherit their Magic-colour group accent rather than becoming individually boxed cards.
 
 ### Inputs / Fields
 
-- **Style:** Paper Light field, strong Rack Steel stroke, heavy search text, square scanner icon, and an integrated dark clear action.
-- **Focus:** The border shifts into the darker Pick Light family while the structural shadow deepens; keyboard focus also retains the global Focus Blue outline.
+- **Style:** Map Leaf Light, a two-pixel Forest Cloth stroke, bold Atkinson search text, and an integrated forest clear control.
+- **Focus:** The field border shifts to Oxblood and the tactile shadow deepens; keyboard focus remains independently visible in Focus Blue.
 - **Error / Disabled:** No error state is currently defined. Do not invent one without a product requirement.
 
 ### Navigation
 
-- **Style:** The sticky rack-steel header behaves like equipment identification, not site navigation: icon, condensed product name, operational subtitle, and a Pick Light dataset stamp.
-- **Mobile:** The subtitle drops away while identity and dataset provenance remain visible.
+- **Masthead:** Forest Cloth with compass mark, Alegreya title, quiet subtitle, brass provenance stamp, and a mountain-edge rule.
+- **Page Flags:** Inactive flags use Forest Soft; the selected leaf rises taller and changes to Brass Page Flag.
+- **Mobile:** Both page flags share the available width and remain sticky above the active leaf.
 
-### Result Row
+### Current Route
 
-Each result is one full-width action arranged as thumbnail, rank lane, card identity, tier, and literal action state. Hover and keyboard-active states tint the row; selected rows move to Paper Light and replace “Add” with a Pick Light “In pack” confirmation.
+The right leaf is a clothbound route log. Its heading stays anchored, the route leader appears on a warm map card with an oxblood trail, and alternatives continue below with brass rank ticks and direct remove controls.
 
-### Current Pack Rail
+### Complete Card Atlas
 
-The rail is the decision instrument. It keeps the heading and clear action anchored, makes the current leader dominant on Pick Light, and orders every alternative from strongest to weakest with tabular ranks and direct remove controls.
+The All cards leaf groups every card by Magic colour. A sticky colour index, circular emblems, colour-specific rules, rank ranges, and a responsive card grid make the full set browsable without losing the atlas world.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** use Pick Light only for selection, leadership, confirmation, and other immediate decision signals.
-- **Do** write controls and metadata as literal operational language: “Add,” “In pack,” “Clear,” and numbered ranks.
-- **Do** preserve visible rank order, keyboard focus, touch-sized controls, and reduced-motion behavior.
-- **Do** use strong hierarchy before adding elevation: size, contrast, and position carry most of the work.
-- **Do** keep thumbnails physically card-like and subordinate to the card name and rank.
+- **Do** frame warm map leaves with Forest Cloth and preserve the square page-flag join.
+- **Do** reserve Oxblood for route marks, mapped state, and consequential actions.
+- **Do** use brass for page flags, provenance, route ticks, and waypoint controls.
+- **Do** keep Alegreya on titles, leaders, and ranks while Atkinson Hyperlegible Next handles working text.
+- **Do** preserve card rank, tier, Magic-colour grouping, keyboard focus, touch targets, and reduced-motion behavior.
+- **Do** keep contour and route imagery quiet enough that card names and ranks remain dominant.
 
 ### Don't:
 
-- **Don't** introduce fantasy parchment, medieval ornament, gold filigree, or lore-themed type.
-- **Don't** turn the interface into a generic analytics dashboard with soft blue cards and neutral SaaS chrome.
-- **Don't** use Safety Orange as a second primary action color or Pick Light as ambient decoration.
-- **Don't** wrap every row or section in a rounded, elevated container.
-- **Don't** replace literal state labels with ambiguous icons alone.
+- **Don't** substitute loud synthetic signal colours or monochrome machinery panels for the atlas palette.
+- **Don't** turn the atlas into theatrical parchment with distressed edges, blackletter, gold filigree, or lore ornament.
+- **Don't** use Oxblood or Brass as broad decorative backgrounds across the map leaves.
+- **Don't** wrap each ranked row in its own rounded, elevated card.
+- **Don't** mix picker, current route, and complete atlas into competing dashboard panels.
+- **Don't** replace literal card, rank, state, and colour labels with ambiguous icons alone.

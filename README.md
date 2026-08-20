@@ -6,6 +6,7 @@ A static, searchable pack comparator for The Hobbit on MTG Arena. It ships all 1
 
 - Fuzzy, accent-insensitive card search
 - Multi-card pack comparison sorted by pick rank
+- Complete 188-card atlas grouped by color identity
 - Keyboard, mouse, and touch support
 - Offline static-asset cache
 - No account, analytics, cookies, backend, or `localStorage`
@@ -27,10 +28,12 @@ Open <http://localhost:8080>.
 3. In the repository’s **Settings → Pages**, choose **GitHub Actions** as the source.
 4. The included workflow publishes the `public/` directory.
 
-When the custom domain is decided, add it in the Pages settings first. GitHub will create the repository `CNAME` file; then configure the required DNS record at the domain provider.
+The live custom domain is `hobbit.orfeasa.com`, configured in GitHub Pages with a Namecheap `CNAME` record pointing to `orfeasa.github.io`.
 
 ## Refresh the data
 
 `scripts/build-data.mjs` regenerates `public/cards.js` and the service-worker asset list from the captured JSON source files in `data/`. The current dataset is the Untapped.gg snapshot captured on 19 August 2026.
+
+`scripts/sync-colors.mjs` refreshes the local color-identity mapping from Scryfall. The deployed site does not call Scryfall at runtime.
 
 Card images and names remain the property of their respective rights holders. This is an unofficial reference tool and is not affiliated with Wizards of the Coast or Untapped.gg.

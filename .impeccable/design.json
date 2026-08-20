@@ -1,162 +1,195 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-19T23:06:51Z",
+  "generatedAt": "2026-08-20T08:43:18Z",
   "title": "Design System: The Hobbit Pick Order",
   "extensions": {
     "colorMeta": {
-      "ink": {
+      "forest-cloth": {
         "role": "neutral",
-        "displayName": "Ink",
-        "tonalRamp": ["oklch(15% 0.011 151.2)", "oklch(26% 0.011 151.2)", "oklch(38% 0.011 151.2)", "oklch(50% 0.011 151.2)", "oklch(62% 0.011 151.2)", "oklch(74% 0.011 151.2)", "oklch(86% 0.011 151.2)", "oklch(95% 0.011 151.2)"]
+        "displayName": "Forest Cloth",
+        "tonalRamp": ["oklch(15% 0.034 162.1)", "oklch(26% 0.034 162.1)", "oklch(38% 0.034 162.1)", "oklch(50% 0.034 162.1)", "oklch(62% 0.034 162.1)", "oklch(74% 0.034 162.1)", "oklch(86% 0.034 162.1)", "oklch(95% 0.034 162.1)"]
       },
-      "rack-steel": {
+      "forest-deep": {
         "role": "neutral",
-        "displayName": "Rack Steel",
-        "tonalRamp": ["oklch(15% 0.022 158.5)", "oklch(26% 0.022 158.5)", "oklch(38% 0.022 158.5)", "oklch(50% 0.022 158.5)", "oklch(62% 0.022 158.5)", "oklch(74% 0.022 158.5)", "oklch(86% 0.022 158.5)", "oklch(95% 0.022 158.5)"]
+        "displayName": "Forest Deep",
+        "tonalRamp": ["oklch(15% 0.027 163.3)", "oklch(26% 0.027 163.3)", "oklch(38% 0.027 163.3)", "oklch(50% 0.027 163.3)", "oklch(62% 0.027 163.3)", "oklch(74% 0.027 163.3)", "oklch(86% 0.027 163.3)", "oklch(95% 0.027 163.3)"]
       },
-      "warm-stock": {
+      "forest-soft": {
         "role": "neutral",
-        "displayName": "Warm Stock",
-        "tonalRamp": ["oklch(15% 0.018 92.7)", "oklch(26% 0.018 92.7)", "oklch(38% 0.018 92.7)", "oklch(50% 0.018 92.7)", "oklch(62% 0.018 92.7)", "oklch(74% 0.018 92.7)", "oklch(86% 0.018 92.7)", "oklch(95% 0.018 92.7)"]
+        "displayName": "Forest Soft",
+        "tonalRamp": ["oklch(15% 0.045 158.2)", "oklch(26% 0.045 158.2)", "oklch(38% 0.045 158.2)", "oklch(50% 0.045 158.2)", "oklch(62% 0.045 158.2)", "oklch(74% 0.045 158.2)", "oklch(86% 0.045 158.2)", "oklch(95% 0.045 158.2)"]
       },
-      "paper-light": {
+      "map-leaf": {
         "role": "neutral",
-        "displayName": "Paper Light",
-        "tonalRamp": ["oklch(15% 0.014 84.6)", "oklch(26% 0.014 84.6)", "oklch(38% 0.014 84.6)", "oklch(50% 0.014 84.6)", "oklch(62% 0.014 84.6)", "oklch(74% 0.014 84.6)", "oklch(86% 0.014 84.6)", "oklch(95% 0.014 84.6)"]
+        "displayName": "Map Leaf",
+        "tonalRamp": ["oklch(15% 0.036 89.4)", "oklch(26% 0.036 89.4)", "oklch(38% 0.036 89.4)", "oklch(50% 0.036 89.4)", "oklch(62% 0.036 89.4)", "oklch(74% 0.036 89.4)", "oklch(86% 0.036 89.4)", "oklch(95% 0.036 89.4)"]
       },
-      "paper-deep": {
+      "map-leaf-light": {
         "role": "neutral",
-        "displayName": "Paper Deep",
-        "tonalRamp": ["oklch(15% 0.025 89.2)", "oklch(26% 0.025 89.2)", "oklch(38% 0.025 89.2)", "oklch(50% 0.025 89.2)", "oklch(62% 0.025 89.2)", "oklch(74% 0.025 89.2)", "oklch(86% 0.025 89.2)", "oklch(95% 0.025 89.2)"]
+        "displayName": "Map Leaf Light",
+        "tonalRamp": ["oklch(15% 0.026 92.4)", "oklch(26% 0.026 92.4)", "oklch(38% 0.026 92.4)", "oklch(50% 0.026 92.4)", "oklch(62% 0.026 92.4)", "oklch(74% 0.026 92.4)", "oklch(86% 0.026 92.4)", "oklch(95% 0.026 92.4)"]
       },
-      "line": {
+      "map-leaf-deep": {
         "role": "neutral",
-        "displayName": "Stock Line",
-        "tonalRamp": ["oklch(15% 0.028 90.1)", "oklch(26% 0.028 90.1)", "oklch(38% 0.028 90.1)", "oklch(50% 0.028 90.1)", "oklch(62% 0.028 90.1)", "oklch(74% 0.028 90.1)", "oklch(86% 0.028 90.1)", "oklch(95% 0.028 90.1)"]
+        "displayName": "Map Leaf Deep",
+        "tonalRamp": ["oklch(15% 0.048 88.3)", "oklch(26% 0.048 88.3)", "oklch(38% 0.048 88.3)", "oklch(50% 0.048 88.3)", "oklch(62% 0.048 88.3)", "oklch(74% 0.048 88.3)", "oklch(86% 0.048 88.3)", "oklch(95% 0.048 88.3)"]
       },
-      "muted": {
+      "atlas-ground": {
+        "role": "neutral",
+        "displayName": "Atlas Ground",
+        "tonalRamp": ["oklch(15% 0.054 86.7)", "oklch(26% 0.054 86.7)", "oklch(38% 0.054 86.7)", "oklch(50% 0.054 86.7)", "oklch(62% 0.054 86.7)", "oklch(74% 0.054 86.7)", "oklch(86% 0.054 86.7)", "oklch(95% 0.054 86.7)"]
+      },
+      "contour-ink": {
+        "role": "neutral",
+        "displayName": "Contour Ink",
+        "tonalRamp": ["oklch(15% 0.020 157.1)", "oklch(26% 0.020 157.1)", "oklch(38% 0.020 157.1)", "oklch(50% 0.020 157.1)", "oklch(62% 0.020 157.1)", "oklch(74% 0.020 157.1)", "oklch(86% 0.020 157.1)", "oklch(95% 0.020 157.1)"]
+      },
+      "muted-ink": {
         "role": "neutral",
         "displayName": "Muted Ink",
-        "tonalRamp": ["oklch(15% 0.016 145.3)", "oklch(26% 0.016 145.3)", "oklch(38% 0.016 145.3)", "oklch(50% 0.016 145.3)", "oklch(62% 0.016 145.3)", "oklch(74% 0.016 145.3)", "oklch(86% 0.016 145.3)", "oklch(95% 0.016 145.3)"]
+        "tonalRamp": ["oklch(15% 0.014 145.4)", "oklch(26% 0.014 145.4)", "oklch(38% 0.014 145.4)", "oklch(50% 0.014 145.4)", "oklch(62% 0.014 145.4)", "oklch(74% 0.014 145.4)", "oklch(86% 0.014 145.4)", "oklch(95% 0.014 145.4)"]
       },
-      "pick-light": {
+      "map-line": {
+        "role": "neutral",
+        "displayName": "Map Line",
+        "tonalRamp": ["oklch(15% 0.045 88.0)", "oklch(26% 0.045 88.0)", "oklch(38% 0.045 88.0)", "oklch(50% 0.045 88.0)", "oklch(62% 0.045 88.0)", "oklch(74% 0.045 88.0)", "oklch(86% 0.045 88.0)", "oklch(95% 0.045 88.0)"]
+      },
+      "oxblood-route": {
         "role": "primary",
-        "displayName": "Pick Light",
-        "tonalRamp": ["oklch(15% 0.208 125.0)", "oklch(26% 0.208 125.0)", "oklch(38% 0.208 125.0)", "oklch(50% 0.208 125.0)", "oklch(62% 0.208 125.0)", "oklch(74% 0.208 125.0)", "oklch(86% 0.208 125.0)", "oklch(95% 0.208 125.0)"]
+        "displayName": "Oxblood Route",
+        "tonalRamp": ["oklch(15% 0.127 34.7)", "oklch(26% 0.127 34.7)", "oklch(38% 0.127 34.7)", "oklch(50% 0.127 34.7)", "oklch(62% 0.127 34.7)", "oklch(74% 0.127 34.7)", "oklch(86% 0.127 34.7)", "oklch(95% 0.127 34.7)"]
       },
-      "pick-light-dark": {
+      "oxblood-deep": {
         "role": "primary",
-        "displayName": "Pick Light Dark",
-        "tonalRamp": ["oklch(15% 0.119 125.4)", "oklch(26% 0.119 125.4)", "oklch(38% 0.119 125.4)", "oklch(50% 0.119 125.4)", "oklch(62% 0.119 125.4)", "oklch(74% 0.119 125.4)", "oklch(86% 0.119 125.4)", "oklch(95% 0.119 125.4)"]
+        "displayName": "Oxblood Deep",
+        "tonalRamp": ["oklch(15% 0.100 33.1)", "oklch(26% 0.100 33.1)", "oklch(38% 0.100 33.1)", "oklch(50% 0.100 33.1)", "oklch(62% 0.100 33.1)", "oklch(74% 0.100 33.1)", "oklch(86% 0.100 33.1)", "oklch(95% 0.100 33.1)"]
       },
-      "safety-orange": {
-        "role": "secondary",
-        "displayName": "Safety Orange",
-        "tonalRamp": ["oklch(15% 0.182 42.5)", "oklch(26% 0.182 42.5)", "oklch(38% 0.182 42.5)", "oklch(50% 0.182 42.5)", "oklch(62% 0.182 42.5)", "oklch(74% 0.182 42.5)", "oklch(86% 0.182 42.5)", "oklch(95% 0.182 42.5)"]
-      },
-      "tier-s-purple": {
+      "river-blue": {
         "role": "tertiary",
-        "displayName": "Tier S Purple",
-        "tonalRamp": ["oklch(15% 0.139 299.3)", "oklch(26% 0.139 299.3)", "oklch(38% 0.139 299.3)", "oklch(50% 0.139 299.3)", "oklch(62% 0.139 299.3)", "oklch(74% 0.139 299.3)", "oklch(86% 0.139 299.3)", "oklch(95% 0.139 299.3)"]
+        "displayName": "River Blue",
+        "tonalRamp": ["oklch(15% 0.045 214.2)", "oklch(26% 0.045 214.2)", "oklch(38% 0.045 214.2)", "oklch(50% 0.045 214.2)", "oklch(62% 0.045 214.2)", "oklch(74% 0.045 214.2)", "oklch(86% 0.045 214.2)", "oklch(95% 0.045 214.2)"]
+      },
+      "brass": {
+        "role": "secondary",
+        "displayName": "Brass",
+        "tonalRamp": ["oklch(15% 0.103 80.4)", "oklch(26% 0.103 80.4)", "oklch(38% 0.103 80.4)", "oklch(50% 0.103 80.4)", "oklch(62% 0.103 80.4)", "oklch(74% 0.103 80.4)", "oklch(86% 0.103 80.4)", "oklch(95% 0.103 80.4)"]
+      },
+      "brass-page-flag": {
+        "role": "secondary",
+        "displayName": "Brass Page Flag",
+        "tonalRamp": ["oklch(15% 0.098 89.2)", "oklch(26% 0.098 89.2)", "oklch(38% 0.098 89.2)", "oklch(50% 0.098 89.2)", "oklch(62% 0.098 89.2)", "oklch(74% 0.098 89.2)", "oklch(86% 0.098 89.2)", "oklch(95% 0.098 89.2)"]
       },
       "focus-blue": {
         "role": "tertiary",
         "displayName": "Focus Blue",
-        "tonalRamp": ["oklch(15% 0.194 259.3)", "oklch(26% 0.194 259.3)", "oklch(38% 0.194 259.3)", "oklch(50% 0.194 259.3)", "oklch(62% 0.194 259.3)", "oklch(74% 0.194 259.3)", "oklch(86% 0.194 259.3)", "oklch(95% 0.194 259.3)"]
+        "tonalRamp": ["oklch(15% 0.164 254.3)", "oklch(26% 0.164 254.3)", "oklch(38% 0.164 254.3)", "oklch(50% 0.164 254.3)", "oklch(62% 0.164 254.3)", "oklch(74% 0.164 254.3)", "oklch(86% 0.164 254.3)", "oklch(95% 0.164 254.3)"]
       }
     },
     "typographyMeta": {
       "display": {
-        "displayName": "Display Command",
-        "purpose": "Primary task headings and dominant leading-card names."
+        "displayName": "Atlas Display",
+        "purpose": "The complete-atlas title and singular page-level statements."
       },
       "headline": {
-        "displayName": "Equipment Heading",
-        "purpose": "Product identity and compact section commands."
+        "displayName": "Leaf Headline",
+        "purpose": "Picker and current-route headings."
+      },
+      "brand": {
+        "displayName": "Clothbound Brand",
+        "purpose": "The masthead title."
+      },
+      "rank": {
+        "displayName": "Route Rank",
+        "purpose": "Pick numbers and route positions with tabular numerals."
       },
       "body": {
-        "displayName": "Operational Body",
-        "purpose": "Instructions and explanatory copy."
+        "displayName": "Working Body",
+        "purpose": "Instructions, source context, and explanatory copy."
       },
       "title": {
-        "displayName": "Scan Title",
-        "purpose": "Card names and other high-scan row content."
+        "displayName": "Card Title",
+        "purpose": "Card names and high-scan working content."
       },
       "search": {
-        "displayName": "Scanner Input",
-        "purpose": "Primary text entry with stronger presence than ordinary body copy."
+        "displayName": "Atlas Search",
+        "purpose": "Primary text entry beside compact card imagery."
       },
       "label": {
-        "displayName": "Terminal Label",
-        "purpose": "Uppercase actions, states, counts, and directions."
+        "displayName": "Map Label",
+        "purpose": "Dataset stamps, controls, counts, and tier metadata."
       }
     },
     "shadows": [
       {
-        "name": "keycap-tactility",
-        "value": "0 2px 6px rgba(20, 32, 25, .18)",
-        "purpose": "Restrained lift for keyboard shortcut cues."
+        "name": "cloth-binding",
+        "value": "0 10px 30px rgba(22, 39, 31, .2)",
+        "purpose": "Lifts the masthead from the atlas ground."
       },
       {
-        "name": "thumbnail-lift",
-        "value": "0 4px 12px rgba(20, 32, 25, .18)",
-        "purpose": "Separates small card art from dense list rows."
+        "name": "page-flag",
+        "value": "0 7px 18px rgba(22, 39, 31, .16)",
+        "purpose": "Gives navigation flags a light handled-paper lift."
       },
       {
-        "name": "search-control",
-        "value": "0 14px 34px rgba(20, 32, 25, .11)",
-        "purpose": "Marks the primary scanner input."
+        "name": "open-volume",
+        "value": "0 26px 65px rgba(44, 42, 31, .28)",
+        "purpose": "Unifies the spread and complete atlas page as the principal object."
+      },
+      {
+        "name": "search-field",
+        "value": "0 12px 30px rgba(64, 54, 37, .13)",
+        "purpose": "Marks the primary working control."
       },
       {
         "name": "search-focus",
-        "value": "0 18px 40px rgba(20, 32, 25, .16)",
-        "purpose": "Deepens while the search field owns interaction."
+        "value": "0 16px 36px rgba(64, 54, 37, .19)",
+        "purpose": "Deepens while the search field owns input."
       },
       {
-        "name": "pack-rail",
-        "value": "0 24px 56px rgba(20, 32, 25, .22)",
-        "purpose": "Establishes the current pack as the decision surface."
+        "name": "card-thumbnail",
+        "value": "0 5px 13px rgba(49, 43, 32, .2)",
+        "purpose": "Separates card art from dense map rows."
       },
       {
-        "name": "leading-thumbnail",
-        "value": "0 10px 24px rgba(20, 32, 25, .24)",
-        "purpose": "Gives the winning card more physical presence."
+        "name": "route-leader",
+        "value": "0 13px 32px rgba(18, 34, 26, .24)",
+        "purpose": "Gives the strongest baseline pick physical priority."
       },
       {
-        "name": "mobile-dock",
-        "value": "0 16px 36px rgba(20, 32, 25, .32)",
-        "purpose": "Keeps the temporary fixed decision control legible above page content."
+        "name": "mobile-waypoint",
+        "value": "0 15px 34px rgba(22, 39, 31, .34)",
+        "purpose": "Holds the temporary fixed leader control above scrolling content."
       }
     ],
     "motion": [
       {
         "name": "ease-out",
         "value": "cubic-bezier(.16, 1, .3, 1)",
-        "purpose": "Shared easing for control and visibility transitions."
+        "purpose": "Shared easing for flags, controls, and visibility changes."
       },
       {
         "name": "state-fast",
         "value": "160ms",
-        "purpose": "Row, dock, and compact control feedback."
+        "purpose": "Tab, row, and dock feedback."
       },
       {
         "name": "state-standard",
         "value": "180ms",
-        "purpose": "Field focus and skip-link movement."
+        "purpose": "Search focus and skip-link movement."
       },
       {
-        "name": "leader-reveal",
-        "value": "420ms",
-        "purpose": "One-shot reveal when a new strongest baseline pick rises."
+        "name": "route-leader-reveal",
+        "value": "460ms",
+        "purpose": "One-shot reveal when a new route leader rises."
       }
     ],
     "breakpoints": [
       {
-        "name": "compact-desktop",
-        "value": "980px"
+        "name": "compact-spread",
+        "value": "1040px"
       },
       {
-        "name": "mobile-stack",
+        "name": "mobile-leaves",
         "value": "760px"
       },
       {
@@ -167,146 +200,164 @@
   },
   "components": [
     {
-      "name": "App Header",
+      "name": "Clothbound Header",
       "kind": "nav",
-      "refersTo": "app-header",
-      "description": "Sticky rack-steel equipment identification with product mark and dataset provenance.",
-      "html": "<header class=\"ds-app-header\"><div class=\"ds-app-brand\"><svg class=\"ds-app-icon\" viewBox=\"0 0 48 48\" aria-hidden=\"true\"><path d=\"M6 7h13v13H6zM29 7h13v13H29zM6 29h13v13H6z\" fill=\"currentColor\"/><path d=\"M28 35h9M33 30l5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\"/></svg><span class=\"ds-app-copy\"><strong>HOB PICK ORDER</strong><small>PACK COMPARATOR</small></span></div><span class=\"ds-app-count\"><small>DATASET</small><strong>188</strong></span></header>",
-      "css": ".ds-app-header { display: flex; align-items: stretch; justify-content: space-between; min-height: 78px; color: var(--paper); background: var(--rack); border-bottom: 4px solid var(--lime); font-family: \"Barlow\", sans-serif; } .ds-app-brand { display: flex; align-items: center; gap: 14px; padding: 12px clamp(18px, 3vw, 42px); } .ds-app-icon { width: 44px; height: 44px; color: var(--lime); } .ds-app-copy { display: grid; gap: 3px; } .ds-app-copy strong { font-family: \"Barlow Condensed\", sans-serif; font-size: 2rem; font-weight: 900; line-height: .9; letter-spacing: -.02em; } .ds-app-copy small, .ds-app-count small { font-size: .68rem; font-weight: 600; letter-spacing: .1em; } .ds-app-count { display: grid; grid-template-columns: auto auto; align-items: center; gap: 12px; min-width: 188px; padding: 9px 24px; color: var(--rack); background: var(--lime); } .ds-app-count strong { font-family: \"Barlow Condensed\", sans-serif; font-size: 2.65rem; font-weight: 900; line-height: .8; }"
+      "refersTo": "clothbound-header",
+      "description": "Forest-cloth masthead with compass mark, book title, dataset provenance, and mountain-edge rule.",
+      "html": "<header class=\"ds-cloth-header\"><div class=\"ds-cloth-brand\"><svg class=\"ds-cloth-compass\" viewBox=\"0 0 64 64\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"26\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/><path d=\"M32 10 38 28 54 32 38 36 32 54 26 36 10 32 26 28Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/><circle cx=\"32\" cy=\"32\" r=\"4\" fill=\"currentColor\"/></svg><span class=\"ds-cloth-copy\"><strong>The Hobbit Pick Order</strong><small>An expedition atlas for the next pick</small></span></div><span class=\"ds-cloth-stamp\"><strong>188</strong><span>cards<br>19 Aug 2026</span></span><svg class=\"ds-cloth-mountains\" viewBox=\"0 0 600 30\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path d=\"M0 30V24l55-10 40 8 55-16 48 15 60-8 52 11 70-16 74 15 70-10 76 11v6Z\" fill=\"currentColor\"/></svg></header>",
+      "css": ".ds-cloth-header { position: relative; display: flex; align-items: flex-start; justify-content: space-between; gap: 28px; min-height: 142px; padding: 18px clamp(20px, 4vw, 58px) 22px; overflow: hidden; color: var(--paper-light); background: var(--forest); box-shadow: 0 10px 30px rgba(22, 39, 31, .2); font-family: \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; } .ds-cloth-brand { position: relative; z-index: 1; display: flex; align-items: center; gap: 17px; } .ds-cloth-compass { width: 54px; height: 54px; color: var(--brass-light); } .ds-cloth-copy { display: grid; gap: 4px; } .ds-cloth-copy strong { font: 700 clamp(1.8rem, 3vw, 2.7rem)/.98 \"Alegreya\", Georgia, serif; letter-spacing: -.02em; } .ds-cloth-copy small { color: #d2dacd; font-size: .82rem; } .ds-cloth-stamp { position: relative; z-index: 1; display: grid; grid-template-columns: auto auto; align-items: center; min-width: 154px; padding: 10px 16px; color: var(--forest-deep); background: var(--brass-light); border-radius: 8px; box-shadow: 0 7px 18px rgba(22, 39, 31, .24); font-size: .72rem; line-height: 1.15; } .ds-cloth-stamp > strong { margin-right: 10px; font: 700 2.25rem/.85 \"Alegreya\", Georgia, serif; } .ds-cloth-mountains { position: absolute; right: 0; bottom: 0; left: 0; width: 100%; height: 54px; color: var(--forest-deep); }"
     },
     {
-      "name": "Dataset Stamp",
-      "kind": "custom",
-      "refersTo": "dataset-stamp",
-      "description": "A literal Pick Light provenance block that keeps data scope visible.",
-      "html": "<span class=\"ds-dataset-stamp\"><span class=\"ds-dataset-copy\">DATASET<br>19 AUG 2026</span><strong class=\"ds-dataset-count\">188</strong></span>",
-      "css": ".ds-dataset-stamp { display: inline-grid; grid-template-columns: auto auto; align-items: center; min-width: 188px; padding: 9px 24px; color: var(--rack); background: var(--lime); font-family: \"Barlow\", sans-serif; font-size: .68rem; font-weight: 600; letter-spacing: .09em; line-height: 1; } .ds-dataset-copy { line-height: 1.8; } .ds-dataset-count { justify-self: end; font-family: \"Barlow Condensed\", sans-serif; font-size: 2.65rem; font-weight: 900; line-height: .8; letter-spacing: -.03em; }"
+      "name": "Page Flag",
+      "kind": "nav",
+      "refersTo": "page-flag",
+      "description": "Inactive forest-soft tab for turning between the picker and full atlas leaves.",
+      "html": "<button class=\"ds-page-flag\" type=\"button\" role=\"tab\" aria-selected=\"false\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m4 6 5-2 6 2 5-2v14l-5 2-6-2-5 2zM9 4v14M15 6v14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/></svg><span>All cards</span></button>",
+      "css": ".ds-page-flag { display: inline-flex; align-items: center; gap: 9px; min-height: 50px; padding: 0 22px; color: var(--paper-light); background: var(--forest-soft); border: 1px solid rgba(238, 228, 202, .24); border-bottom: 0; border-radius: 8px 8px 0 0; box-shadow: 0 7px 18px rgba(22, 39, 31, .16); font: 700 1rem/1.5 \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; cursor: pointer; transition: color 160ms var(--ease-out), background-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-page-flag:hover { background: #4d6b59; } .ds-page-flag:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-page-flag:active { transform: translateY(1px); } .ds-page-flag svg { width: 21px; height: 21px; }"
     },
     {
-      "name": "Search Field",
+      "name": "Active Page Flag",
+      "kind": "nav",
+      "refersTo": "page-flag-active",
+      "description": "Raised brass tab that identifies the open atlas leaf.",
+      "html": "<button class=\"ds-page-flag-active\" type=\"button\" role=\"tab\" aria-selected=\"true\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 5h16v14H4zM8 9h8M8 13h5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/></svg><span>Pick a card</span></button>",
+      "css": ".ds-page-flag-active { display: inline-flex; align-items: center; gap: 9px; min-height: 58px; padding: 0 22px; color: var(--forest-deep); background: var(--brass-light); border: 1px solid var(--brass-light); border-bottom: 0; border-radius: 8px 8px 0 0; box-shadow: 0 7px 18px rgba(22, 39, 31, .16); font: 700 1rem/1.5 \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; cursor: pointer; transition: filter 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-page-flag-active:hover { filter: brightness(1.05); } .ds-page-flag-active:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-page-flag-active:active { transform: translateY(1px); } .ds-page-flag-active svg { width: 21px; height: 21px; }"
+    },
+    {
+      "name": "Atlas Search Field",
       "kind": "input",
       "refersTo": "input-search",
-      "description": "The lifted scanner control used to find pack candidates quickly.",
-      "html": "<label class=\"ds-search-field\"><span class=\"ds-search-label\">Search card names</span><svg class=\"ds-search-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"10.75\" cy=\"10.75\" r=\"6.75\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/><path d=\"m16 16 4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg><input class=\"ds-search-input\" type=\"search\" placeholder=\"Search 188 cards…\"><button class=\"ds-search-clear\" type=\"button\" aria-label=\"Clear search\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m5 5 10 10M15 5 5 15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg></button></label>",
-      "css": ".ds-search-field { position: relative; display: grid; grid-template-columns: 28px 1fr 38px; align-items: center; min-height: 70px; padding: 0 12px 0 19px; color: var(--rack); background: var(--paper); border: 2px solid var(--rack); border-radius: var(--radius); box-shadow: 0 14px 34px rgba(20, 32, 25, .11); font-family: \"Barlow\", sans-serif; transition: border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out); } .ds-search-field:focus-within { border-color: var(--lime-dark); box-shadow: 0 18px 40px rgba(20, 32, 25, .16); } .ds-search-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); } .ds-search-icon { width: 24px; height: 24px; } .ds-search-input { min-width: 0; height: 66px; padding: 0 12px; color: var(--rack); caret-color: var(--orange); background: transparent; border: 0; outline: 0; font: 600 clamp(1.12rem, 2.2vw, 1.4rem)/1.2 \"Barlow\", sans-serif; } .ds-search-clear { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; color: var(--paper); background: var(--rack); border: 0; border-radius: 6px; cursor: pointer; } .ds-search-clear:hover { background: var(--orange); } .ds-search-clear:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-search-clear:active { transform: scale(.96); } .ds-search-clear svg { width: 19px; height: 19px; }"
+      "description": "Warm map-leaf search control with forest stroke and integrated clear action.",
+      "html": "<label class=\"ds-atlas-search\"><span class=\"ds-atlas-search-label\">Search card names</span><svg class=\"ds-atlas-search-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"10.75\" cy=\"10.75\" r=\"6.75\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/><path d=\"m16 16 4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg><input class=\"ds-atlas-search-input\" type=\"search\" placeholder=\"Search 188 cards…\"><button class=\"ds-atlas-search-clear\" type=\"button\" aria-label=\"Clear search\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m5 5 10 10M15 5 5 15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg></button></label>",
+      "css": ".ds-atlas-search { position: relative; display: grid; grid-template-columns: 28px 1fr 40px; align-items: center; min-height: 68px; padding: 0 11px 0 18px; color: var(--forest-deep); background: var(--paper-light); border: 2px solid var(--forest); border-radius: 12px; box-shadow: 0 12px 30px rgba(64, 54, 37, .13); font-family: \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; transition: border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out); } .ds-atlas-search:focus-within { border-color: var(--oxblood); box-shadow: 0 16px 36px rgba(64, 54, 37, .19); } .ds-atlas-search-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); } .ds-atlas-search-icon { width: 24px; height: 24px; } .ds-atlas-search-input { min-width: 0; height: 64px; padding: 0 12px; color: var(--forest-deep); caret-color: var(--oxblood); background: transparent; border: 0; outline: 0; font: 700 clamp(1.05rem, 2vw, 1.25rem)/1.5 \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; } .ds-atlas-search-clear { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; color: var(--paper-light); background: var(--forest); border: 0; border-radius: 6px; cursor: pointer; transition: background-color 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-atlas-search-clear:hover { background: var(--oxblood); } .ds-atlas-search-clear:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-atlas-search-clear:active { transform: scale(.96); } .ds-atlas-search-clear svg { width: 19px; height: 19px; }"
     },
     {
-      "name": "Dark Icon Button",
-      "kind": "button",
-      "refersTo": "button-icon-dark",
-      "description": "Compact square utility action for clearing or removing content.",
-      "html": "<button class=\"ds-icon-button\" type=\"button\" aria-label=\"Clear search\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m5 5 10 10M15 5 5 15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg></button>",
-      "css": ".ds-icon-button { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; color: var(--paper); background: var(--rack); border: 0; border-radius: 6px; cursor: pointer; transition: background 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-icon-button:hover { background: var(--orange); } .ds-icon-button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-icon-button:active { transform: scale(.94); } .ds-icon-button svg { width: 19px; height: 19px; }"
-    },
-    {
-      "name": "Result Row",
+      "name": "Pick Result Row",
       "kind": "card",
       "refersTo": "result-row",
-      "description": "One complete candidate action with thumbnail, rank lane, card identity, tier, and action label.",
-      "html": "<button class=\"ds-result-row\" type=\"button\"><span class=\"ds-result-thumb\" aria-hidden=\"true\">CARD</span><span class=\"ds-result-rank\"><strong>#2</strong><small>PICK</small></span><span class=\"ds-result-name\"><strong>An Unexpected Party</strong><small>ADD TO CURRENT PACK</small></span><span class=\"ds-result-meta\"><span class=\"ds-result-tier\">A−</span><span class=\"ds-result-action\">ADD</span></span></button>",
-      "css": ".ds-result-row { display: grid; grid-template-columns: 55px 52px minmax(0, 1fr) auto; align-items: center; gap: 14px; width: 100%; min-height: 80px; padding: 9px 10px 9px 4px; color: var(--ink); text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line); font-family: \"Barlow\", sans-serif; cursor: pointer; transition: background-color 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-result-row:hover { background: rgba(255, 250, 240, .72); } .ds-result-row:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; } .ds-result-row:active { transform: translateY(1px); } .ds-result-thumb { display: grid; place-items: center; width: 55px; aspect-ratio: 125.3 / 176.4; color: var(--muted); background: var(--paper-deep); border-radius: 4px; box-shadow: 0 4px 12px rgba(20, 32, 25, .18); font-size: .55rem; font-weight: 600; letter-spacing: .08em; } .ds-result-rank { align-self: stretch; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--line); } .ds-result-rank strong { font-family: \"Barlow Condensed\", sans-serif; font-size: 1.75rem; font-weight: 900; line-height: 1; } .ds-result-rank small, .ds-result-name small { color: var(--muted); font-size: .62rem; font-weight: 600; letter-spacing: .1em; } .ds-result-name { display: grid; gap: 5px; min-width: 0; } .ds-result-name strong { overflow: hidden; font-size: 1rem; font-weight: 600; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; } .ds-result-meta { display: grid; justify-items: end; gap: .35rem; } .ds-result-tier { padding: 5px 8px; color: #fff; background: #a36830; border-radius: 999px; font-size: .7rem; font-weight: 600; line-height: 1; } .ds-result-action { min-width: 72px; padding: 9px 11px; color: var(--paper); background: var(--rack); border-radius: 5px; font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-align: center; }"
+      "description": "Flat candidate row with card thumbnail, Alegreya rank lane, identity, tier, and action.",
+      "html": "<button class=\"ds-pick-row\" type=\"button\"><span class=\"ds-pick-thumb\" aria-hidden=\"true\">CARD</span><span class=\"ds-pick-rank\"><strong>#2</strong><small>pick</small></span><span class=\"ds-pick-name\"><strong>An Unexpected Party</strong><small>Add to current pack</small></span><span class=\"ds-pick-meta\"><span class=\"ds-pick-tier\">A−</span><span class=\"ds-pick-action\">Add</span></span></button>",
+      "css": ".ds-pick-row { display: grid; grid-template-columns: 55px 54px minmax(0, 1fr) auto; align-items: center; gap: 14px; width: 100%; min-height: 82px; padding: 9px 8px 9px 2px; color: var(--ink); text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line); font-family: \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; cursor: pointer; transition: background-color 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-pick-row:hover { background: rgba(248, 242, 223, .74); } .ds-pick-row:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; } .ds-pick-row:active { transform: translateY(1px); } .ds-pick-thumb { display: grid; place-items: center; width: 55px; aspect-ratio: 125.3 / 176.4; color: var(--muted); background: var(--paper-deep); border-radius: 4px; box-shadow: 0 5px 13px rgba(49, 43, 32, .2); font-size: .56rem; font-weight: 700; } .ds-pick-rank { align-self: stretch; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--line); } .ds-pick-rank strong { font: 700 1.7rem/1 \"Alegreya\", Georgia, serif; } .ds-pick-rank small { color: var(--muted); font-size: .66rem; font-weight: 700; } .ds-pick-name { display: grid; gap: 5px; min-width: 0; } .ds-pick-name strong { overflow: hidden; font-size: 1rem; font-weight: 700; line-height: 1.22; text-overflow: ellipsis; white-space: nowrap; } .ds-pick-name small { color: var(--muted); font-size: .72rem; } .ds-pick-meta { display: grid; justify-items: end; gap: 6px; } .ds-pick-tier { min-width: 34px; min-height: 24px; display: grid; place-items: center; color: #fff; background: #a55d40; border-radius: 999px; font-size: .72rem; font-weight: 700; } .ds-pick-action { min-width: 64px; padding: 8px 10px; color: var(--paper-light); background: var(--forest); border-radius: 6px; font-size: .7rem; font-weight: 700; text-align: center; }"
     },
     {
-      "name": "Selected Result Row",
+      "name": "Mapped Result Row",
       "kind": "card",
-      "refersTo": "result-row-selected",
-      "description": "The selected candidate variant with an explicit Pick Light confirmation label.",
-      "html": "<button class=\"ds-selected-row\" type=\"button\" aria-selected=\"true\"><span class=\"ds-selected-thumb\" aria-hidden=\"true\">CARD</span><span class=\"ds-selected-rank\"><strong>#2</strong><small>PICK</small></span><span class=\"ds-selected-name\"><strong>An Unexpected Party</strong><small>1 PLACE BELOW LEADER</small></span><span class=\"ds-selected-meta\"><span class=\"ds-selected-tier\">A−</span><span class=\"ds-selected-action\">IN PACK</span></span></button>",
-      "css": ".ds-selected-row { display: grid; grid-template-columns: 55px 52px minmax(0, 1fr) auto; align-items: center; gap: 14px; width: 100%; min-height: 80px; padding: 9px 10px 9px 4px; color: var(--ink); text-align: left; background: var(--paper); border: 0; border-bottom: 1px solid var(--line); font-family: \"Barlow\", sans-serif; cursor: pointer; transition: background-color 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-selected-row:hover { background: color-mix(in srgb, var(--paper) 82%, var(--lime)); } .ds-selected-row:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; } .ds-selected-row:active { transform: translateY(1px); } .ds-selected-thumb { display: grid; place-items: center; width: 55px; aspect-ratio: 125.3 / 176.4; color: var(--muted); background: var(--paper-deep); border-radius: 4px; box-shadow: 0 4px 12px rgba(20, 32, 25, .18); font-size: .55rem; font-weight: 600; letter-spacing: .08em; } .ds-selected-rank { align-self: stretch; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--line); } .ds-selected-rank strong { font-family: \"Barlow Condensed\", sans-serif; font-size: 1.75rem; font-weight: 900; line-height: 1; } .ds-selected-rank small, .ds-selected-name small { color: var(--muted); font-size: .62rem; font-weight: 600; letter-spacing: .1em; } .ds-selected-name { display: grid; gap: 5px; min-width: 0; } .ds-selected-name strong { overflow: hidden; font-size: 1rem; font-weight: 600; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; } .ds-selected-meta { display: grid; justify-items: end; gap: .35rem; } .ds-selected-tier { padding: 5px 8px; color: #fff; background: #a36830; border-radius: 999px; font-size: .7rem; font-weight: 600; line-height: 1; } .ds-selected-action { min-width: 72px; padding: 9px 11px; color: var(--rack); background: var(--lime); border-radius: 5px; font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-align: center; }"
+      "refersTo": "result-row-mapped",
+      "description": "Selected result variant with a translucent brass leaf tint and oxblood state label.",
+      "html": "<button class=\"ds-mapped-row\" type=\"button\" aria-selected=\"true\"><span class=\"ds-mapped-thumb\" aria-hidden=\"true\">CARD</span><span class=\"ds-mapped-rank\"><strong>#2</strong><small>pick</small></span><span class=\"ds-mapped-name\"><strong>An Unexpected Party</strong><small>1 place below leader</small></span><span class=\"ds-mapped-meta\"><span class=\"ds-mapped-tier\">A−</span><span class=\"ds-mapped-action\">Mapped</span></span></button>",
+      "css": ".ds-mapped-row { display: grid; grid-template-columns: 55px 54px minmax(0, 1fr) auto; align-items: center; gap: 14px; width: 100%; min-height: 82px; padding: 9px 8px 9px 2px; color: var(--ink); text-align: left; background: rgba(217, 189, 116, .23); border: 0; border-bottom: 1px solid var(--line); font-family: \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; cursor: pointer; transition: background-color 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-mapped-row:hover { background: rgba(217, 189, 116, .32); } .ds-mapped-row:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; } .ds-mapped-row:active { transform: translateY(1px); } .ds-mapped-thumb { display: grid; place-items: center; width: 55px; aspect-ratio: 125.3 / 176.4; color: var(--muted); background: var(--paper-deep); border-radius: 4px; box-shadow: 0 5px 13px rgba(49, 43, 32, .2); font-size: .56rem; font-weight: 700; } .ds-mapped-rank { align-self: stretch; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--line); } .ds-mapped-rank strong { font: 700 1.7rem/1 \"Alegreya\", Georgia, serif; } .ds-mapped-rank small { color: var(--muted); font-size: .66rem; font-weight: 700; } .ds-mapped-name { display: grid; gap: 5px; min-width: 0; } .ds-mapped-name strong { overflow: hidden; font-size: 1rem; font-weight: 700; line-height: 1.22; text-overflow: ellipsis; white-space: nowrap; } .ds-mapped-name small { color: var(--muted); font-size: .72rem; } .ds-mapped-meta { display: grid; justify-items: end; gap: 6px; } .ds-mapped-tier { min-width: 34px; min-height: 24px; display: grid; place-items: center; color: #fff; background: #a55d40; border-radius: 999px; font-size: .72rem; font-weight: 700; } .ds-mapped-action { min-width: 64px; padding: 8px 10px; color: var(--paper-light); background: var(--oxblood); border-radius: 6px; font-size: .7rem; font-weight: 700; text-align: center; }"
     },
     {
-      "name": "Tier Chip",
-      "kind": "chip",
-      "refersTo": "chip-tier-s",
-      "description": "A compact categorical tier marker, shown here in the Tier S color.",
-      "html": "<span class=\"ds-tier-chip\" aria-label=\"Tier S\">S</span>",
-      "css": ".ds-tier-chip { display: inline-grid; place-items: center; min-width: 34px; min-height: 24px; padding: 0 8px; color: #fff; background: var(--purple); border-radius: 999px; font: 600 .7rem/1 \"Barlow\", sans-serif; font-variant-numeric: tabular-nums; }"
-    },
-    {
-      "name": "Confirmation Button",
+      "name": "Brass Action Button",
       "kind": "button",
-      "refersTo": "button-confirmation",
-      "description": "Pick Light pack-level action for an immediately understood operation.",
-      "html": "<button class=\"ds-confirm-button\" type=\"button\">CLEAR</button>",
-      "css": ".ds-confirm-button { min-width: 72px; min-height: 42px; padding: 0 18px; color: var(--rack); background: var(--lime); border: 0; border-radius: 6px; font: 600 .75rem/1 \"Barlow\", sans-serif; letter-spacing: .07em; cursor: pointer; transition: background 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-confirm-button:hover { background: var(--orange); } .ds-confirm-button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-confirm-button:active { transform: scale(.97); } .ds-confirm-button:disabled { color: #7e897f; background: #2b3a31; cursor: not-allowed; }"
+      "refersTo": "button-brass",
+      "description": "Compact pack-level action rendered as a brass waypoint on forest cloth.",
+      "html": "<button class=\"ds-brass-button\" type=\"button\">Clear</button>",
+      "css": ".ds-brass-button { min-width: 70px; min-height: 42px; color: var(--forest-deep); background: var(--brass-light); border: 0; border-radius: 6px; font: 700 .75rem/1.15 \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; cursor: pointer; transition: color 160ms var(--ease-out), background-color 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-brass-button:hover:not(:disabled) { color: #fff; background: var(--oxblood); } .ds-brass-button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-brass-button:active:not(:disabled) { transform: scale(.97); } .ds-brass-button:disabled { color: #819087; background: #344d40; cursor: not-allowed; }"
     },
     {
-      "name": "Best Pick Card",
+      "name": "Route Leader Card",
       "kind": "card",
-      "refersTo": "card-best-pick",
-      "description": "The dominant Pick Light module that names the strongest baseline card.",
-      "html": "<article class=\"ds-best-pick\"><span class=\"ds-best-thumb\" aria-hidden=\"true\">CARD ART</span><div class=\"ds-best-copy\"><span class=\"ds-best-label\">BEST BASELINE PICK</span><h3 class=\"ds-best-name\">Fili the Pathfinder</h3><div class=\"ds-best-meta\"><strong>#1</strong><span class=\"ds-best-tier\">S</span></div><button class=\"ds-best-remove\" type=\"button\">REMOVE FROM PACK</button></div></article>",
-      "css": ".ds-best-pick { position: relative; display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 20px; padding: 18px; color: var(--rack); background: var(--lime); border-radius: 12px; overflow: hidden; font-family: \"Barlow\", sans-serif; } .ds-best-pick::after { position: absolute; right: -28px; bottom: -38px; width: 120px; height: 120px; content: \"\"; border: 18px solid rgba(20, 32, 25, .12); transform: rotate(35deg); } .ds-best-thumb { position: relative; z-index: 1; display: grid; place-items: center; width: 110px; aspect-ratio: 125.3 / 176.4; color: var(--muted); background: var(--paper-deep); border-radius: 6px; box-shadow: 0 10px 24px rgba(20, 32, 25, .24); font-size: .62rem; font-weight: 600; letter-spacing: .08em; } .ds-best-copy { position: relative; z-index: 1; min-width: 0; } .ds-best-label { font-size: .68rem; font-weight: 600; letter-spacing: .12em; } .ds-best-name { max-width: 13ch; margin: 8px 0 13px; font: 900 clamp(2rem, 4.2vw, 3.35rem)/.88 \"Barlow Condensed\", sans-serif; letter-spacing: -.025em; } .ds-best-meta { display: flex; align-items: center; gap: 8px; } .ds-best-meta strong { font: 900 1.35rem/1 \"Barlow Condensed\", sans-serif; } .ds-best-tier { display: grid; place-items: center; min-width: 34px; min-height: 24px; color: #fff; background: var(--purple); border-radius: 999px; font-size: .7rem; font-weight: 600; } .ds-best-remove { margin-top: 17px; padding: 8px 10px; color: var(--paper); background: var(--rack); border: 0; border-radius: 5px; font-size: .7rem; font-weight: 600; letter-spacing: .08em; cursor: pointer; } .ds-best-remove:hover { background: #283c30; } .ds-best-remove:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-best-remove:active { transform: scale(.98); }"
+      "refersTo": "route-leader-card",
+      "description": "Warm map card with oxblood trail, dominant leader name, rank, tier, and direct removal.",
+      "html": "<article class=\"ds-route-leader\"><svg class=\"ds-route-mark\" viewBox=\"0 0 220 120\" aria-hidden=\"true\"><path d=\"M-8 104C32 74 53 98 85 65s68-6 105-44 39-8 45-2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-dasharray=\"5 8\"/><circle cx=\"190\" cy=\"21\" r=\"7\" fill=\"currentColor\"/></svg><span class=\"ds-route-thumb\" aria-hidden=\"true\">CARD ART</span><div class=\"ds-route-copy\"><span class=\"ds-route-label\">Route leader</span><h3 class=\"ds-route-name\">Fili the Pathfinder</h3><div class=\"ds-route-meta\"><strong>#1</strong><span>S</span></div><button class=\"ds-route-remove\" type=\"button\">Remove from pack</button></div></article>",
+      "css": ".ds-route-leader { position: relative; display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 20px; padding: 18px; overflow: hidden; color: var(--ink); background: var(--paper); border-radius: 12px; box-shadow: 0 13px 32px rgba(18, 34, 26, .24); font-family: \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; } .ds-route-mark { position: absolute; right: -26px; bottom: -12px; width: 235px; color: rgba(164, 72, 50, .34); } .ds-route-thumb { position: relative; z-index: 1; display: grid; place-items: center; width: 110px; aspect-ratio: 125.3 / 176.4; color: var(--muted); background: var(--paper-deep); border-radius: 6px; box-shadow: 0 9px 22px rgba(43, 37, 27, .24); font-size: .62rem; font-weight: 700; } .ds-route-copy { position: relative; z-index: 1; min-width: 0; } .ds-route-label { color: var(--oxblood-dark); font-size: .72rem; font-weight: 700; } .ds-route-name { max-width: 14ch; margin: 8px 0 14px; font: 700 clamp(1.9rem, 3.5vw, 3.1rem)/.94 \"Alegreya\", Georgia, serif; letter-spacing: -.025em; } .ds-route-meta { display: flex; align-items: center; gap: 9px; } .ds-route-meta strong { color: var(--oxblood-dark); font: 700 1.45rem/1 \"Alegreya\", Georgia, serif; } .ds-route-meta span { display: grid; place-items: center; min-width: 34px; min-height: 24px; color: #fff; background: #604381; border-radius: 999px; font-size: .72rem; font-weight: 700; } .ds-route-remove { margin-top: 17px; padding: 8px 10px; color: var(--paper-light); background: var(--forest); border: 0; border-radius: 5px; font-size: .72rem; font-weight: 700; cursor: pointer; transition: background-color 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-route-remove:hover { background: var(--oxblood); } .ds-route-remove:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-route-remove:active { transform: scale(.98); }"
     },
     {
-      "name": "Current Pack Rail",
-      "kind": "custom",
-      "refersTo": "panel-pack",
-      "description": "The lifted rack-steel decision instrument that keeps the leader and ordered alternatives together.",
-      "html": "<aside class=\"ds-pack-rail\"><header class=\"ds-pack-heading\"><span><strong>CURRENT PACK</strong><small>4 CARDS SCANNED</small></span><button class=\"ds-pack-clear\" type=\"button\">CLEAR</button></header><div class=\"ds-pack-leader\"><span>BEST BASELINE PICK</span><strong>Fili the Pathfinder</strong><small>#1 · TIER S</small></div><ol class=\"ds-pack-list\"><li><strong>#1</strong><span>Fili the Pathfinder<small>LEADER · TIER S</small></span></li><li><strong>#2</strong><span>An Unexpected Party<small>+1 RANK · TIER A−</small></span></li></ol></aside>",
-      "css": ".ds-pack-rail { overflow: hidden; color: var(--paper); background: var(--rack); border-radius: var(--radius); box-shadow: 0 24px 56px rgba(20, 32, 25, .22); font-family: \"Barlow\", sans-serif; } .ds-pack-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; padding: 22px 24px 18px; border-bottom: 1px solid #405147; } .ds-pack-heading span { display: grid; gap: 6px; } .ds-pack-heading strong { font: 900 3rem/.88 \"Barlow Condensed\", sans-serif; letter-spacing: -.025em; } .ds-pack-heading small { color: #bfcbbf; font-size: .76rem; font-weight: 600; letter-spacing: .08em; } .ds-pack-clear { min-width: 72px; min-height: 42px; color: var(--rack); background: var(--lime); border: 0; border-radius: 6px; font-size: .75rem; font-weight: 600; letter-spacing: .07em; cursor: pointer; } .ds-pack-clear:hover { background: var(--orange); } .ds-pack-clear:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-pack-clear:active { transform: scale(.97); } .ds-pack-leader { display: grid; gap: 8px; margin: 24px; padding: 18px; color: var(--rack); background: var(--lime); border-radius: 12px; } .ds-pack-leader span, .ds-pack-leader small { font-size: .68rem; font-weight: 600; letter-spacing: .1em; } .ds-pack-leader strong { max-width: 13ch; font: 900 2.6rem/.88 \"Barlow Condensed\", sans-serif; } .ds-pack-list { margin: 0; padding: 0 24px 24px; list-style: none; } .ds-pack-list li { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: center; gap: 11px; min-height: 70px; border-bottom: 1px solid #405147; } .ds-pack-list li > strong { color: var(--lime); font: 900 1.45rem/1 \"Barlow Condensed\", sans-serif; } .ds-pack-list li > span { display: grid; gap: 4px; font-size: .9rem; font-weight: 600; } .ds-pack-list small { color: #aeb9af; font-size: .65rem; letter-spacing: .07em; }"
+      "name": "Colour Jump Chip",
+      "kind": "chip",
+      "refersTo": "color-jump-chip",
+      "description": "Sticky atlas-index pill with a colour emblem, literal group name, and card count.",
+      "html": "<button class=\"ds-colour-jump\" type=\"button\"><span class=\"ds-colour-mark\" aria-hidden=\"true\"></span><strong>Blue</strong><span>28</span></button>",
+      "css": ".ds-colour-jump { display: inline-grid; grid-template-columns: 16px auto auto; align-items: center; gap: 7px; min-height: 38px; padding: 0 11px; white-space: nowrap; color: var(--ink); background: var(--paper-light); border: 1px solid var(--line); border-radius: 999px; font: 400 .76rem/1.5 \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; cursor: pointer; transition: border-color 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-colour-jump:hover { border-color: var(--forest); } .ds-colour-jump:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-colour-jump:active { transform: translateY(1px); } .ds-colour-mark { display: block; width: 16px; height: 16px; background: #4f8198; border: 2px solid rgba(37, 48, 41, .28); border-radius: 50%; } .ds-colour-jump > span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Atlas Card",
+      "kind": "card",
+      "refersTo": "atlas-card",
+      "description": "Compact colour-grouped atlas entry with thumbnail, rank, title, tier, and pack state.",
+      "html": "<button class=\"ds-atlas-card\" type=\"button\" aria-pressed=\"false\"><span class=\"ds-atlas-thumb\" aria-hidden=\"true\">CARD</span><span class=\"ds-atlas-copy\"><span class=\"ds-atlas-rank\">#12</span><strong>Gandalf, Friend of the Shire</strong><span class=\"ds-atlas-meta\"><span class=\"ds-atlas-tier\">B+</span><span class=\"ds-atlas-action\">Add</span></span></span></button>",
+      "css": ".ds-atlas-card { display: grid; grid-template-columns: 64px minmax(0, 1fr); align-items: center; gap: 12px; width: 100%; min-height: 112px; padding: 11px 5px; color: var(--ink); text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line); font-family: \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; cursor: pointer; transition: background-color 160ms var(--ease-out), transform 160ms var(--ease-out); } .ds-atlas-card:hover { background: rgba(248, 242, 223, .68); } .ds-atlas-card:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; } .ds-atlas-card:active { transform: translateY(1px); } .ds-atlas-card[aria-pressed=\"true\"] { background: color-mix(in srgb, #4f8198 22%, transparent); } .ds-atlas-thumb { display: grid; place-items: center; width: 64px; aspect-ratio: 125.3 / 176.4; color: var(--muted); background: var(--paper-deep); border-radius: 4px; box-shadow: 0 5px 13px rgba(49, 43, 32, .2); font-size: .56rem; font-weight: 700; } .ds-atlas-copy { display: block; min-width: 0; } .ds-atlas-rank { display: block; color: #254a5b; font: 700 1.25rem/1 \"Alegreya\", Georgia, serif; } .ds-atlas-copy > strong { display: block; margin-top: 4px; font-size: .92rem; line-height: 1.2; } .ds-atlas-meta { display: flex; align-items: center; gap: 7px; margin-top: 8px; } .ds-atlas-tier { display: grid; place-items: center; min-width: 34px; min-height: 24px; color: #fff; background: #2f644d; border-radius: 999px; font-size: .72rem; font-weight: 700; } .ds-atlas-action { color: var(--muted); font-size: .7rem; font-weight: 700; } .ds-atlas-card[aria-pressed=\"true\"] .ds-atlas-action { color: var(--oxblood-dark); }"
     }
   ],
   "narrative": {
-    "northStar": "The Pick-to-Light Terminal",
-    "overview": "This system feels like a purpose-built field terminal: operational, decisive, tactile, fast, and grounded. Warm stock carries the working surface, rack steel frames the decision machinery, and pick light confirms the action that matters. The atmosphere is physical and practical without becoming retro pastiche.\n\nInformation is organized like a pick list rather than a tier-list article. Compressed headlines, numbered lanes, literal labels, and immediate selection feedback let a drafter scan before they read. The system rejects fantasy parchment and generic dashboard polish; its character comes from workwear materials, signal color, and strict hierarchy.",
+    "northStar": "Bilbo’s Expedition Atlas",
+    "overview": "The system turns a pick order into a working expedition volume. Forest-cloth binding and brass page flags frame warm map leaves; contour lines, oxblood route marks, river-blue details, and compass geometry create a sense of place without becoming decorative fantasy. It should feel learned, practical, companionable, and ready to be opened mid-journey for a quick decision.\n\nHierarchy remains operational inside that world. Alegreya gives titles and ranks a bookish editorial voice, Atkinson Hyperlegible Next keeps search and metadata exceptionally legible, and the open spread makes the current route as tangible as the cards being considered. The system rejects generic dashboard chrome and theatrical parchment styling; materials stay quiet enough for immediate interaction.",
     "keyCharacteristics": [
-      "Warm stock work fields against near-black rack-steel structure.",
-      "Acid-lime confirmation used as a pick light, not ambient decoration.",
-      "Condensed command typography paired with clear, compact body copy.",
-      "Numbered lanes, literal status labels, and decisive selected states.",
-      "Structural elevation with tactile shadows only where hierarchy needs them."
+      "Forest-cloth framing around warm, lightly contoured map leaves.",
+      "Alegreya for titles and ranks; Atkinson Hyperlegible Next for working text.",
+      "Brass page flags for navigation, provenance, and route wayfinding.",
+      "Oxblood route marks for selection and consequential state; river blue for cartographic detail.",
+      "An open two-leaf picker spread paired with a complete colour-indexed atlas.",
+      "Restrained tactile shadows that make the atlas feel handled rather than glossy."
     ],
     "rules": [
       {
-        "name": "The Signal Economy Rule",
-        "body": "Pick Light means selection, leadership, or confirmation; Safety Orange means exception or a consequential state change. Neither is background decoration.",
+        "name": "The Route Mark Rule",
+        "body": "Oxblood belongs to mapped state, route emphasis, and consequential actions; it is never a broad decorative fill.",
         "section": "colors"
       },
       {
-        "name": "The Warm Ground Rule",
-        "body": "Keep the work field on Warm Stock or Paper Light; pure white is reserved for small contrast-critical details, not broad surfaces.",
+        "name": "The Brass Flag Rule",
+        "body": "Brass identifies places to turn, clear, or orient. Keep it compact so it continues to read as a page flag or waypoint.",
         "section": "colors"
       },
       {
-        "name": "The Compressed Command Rule",
-        "body": "Use Barlow Condensed at weight 900 for commands, ranks, and decisive names; never use it for paragraphs.",
+        "name": "The Ink-on-Leaves Rule",
+        "body": "Primary reading happens in Contour Ink on Map Leaf. Forest reversals are reserved for binding, navigation, and the current route.",
+        "section": "colors"
+      },
+      {
+        "name": "The Literary Utility Rule",
+        "body": "Use Alegreya for page hierarchy, card leaders, and ranks; use Atkinson Hyperlegible Next for every instruction, control, and dense list detail.",
         "section": "typography"
       },
       {
-        "name": "The Literal Label Rule",
-        "body": "Small uppercase text must report a real action, state, count, or direction. It is not ornamental microcopy.",
+        "name": "The No-Costume Rule",
+        "body": "Preserve Alegreya’s natural case and editorial rhythm. Do not simulate medieval lettering with all-caps display type, blackletter, or decorative tracking.",
         "section": "typography"
       },
       {
-        "name": "The Decision-in-Reach Rule",
-        "body": "Search stays close to the results it controls, and the strongest current pick stays visible or one direct action away.",
+        "name": "The Open-Volume Rule",
+        "body": "Picker and route belong to the same spread, while the complete atlas is a deliberate page turn—not a dashboard panel competing in the same viewport.",
         "section": "layout"
       },
       {
-        "name": "The One Lifted Rail Rule",
-        "body": "Major surface elevation belongs to the pack rail; do not distribute card-panel shadows across the entire work field.",
+        "name": "The Route-in-Reach Rule",
+        "body": "The current leader must remain visible in the right leaf or reachable through the brass mobile dock.",
+        "section": "layout"
+      },
+      {
+        "name": "The Bound-Object Rule",
+        "body": "Elevate the atlas as one handled object; do not distribute independent card-panel shadows across the leaves.",
         "section": "elevation"
       },
       {
-        "name": "The Radius by Authority Rule",
-        "body": "Large radii belong to major fields and rails, medium radii to decisive feature blocks, small radii to controls and thumbnails, and pills only to compact categories.",
+        "name": "The Bound-Corner Rule",
+        "body": "Preserve the square flag-to-leaf join; rounding all four corners would break the open-book silhouette.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Map-Mark Rule",
+        "body": "Decorative geometry must read as navigation—compass, contour, route, mountain, or colour emblem—not as generic fantasy ornament.",
         "section": "shapes"
       }
     ],
     "dos": [
-      "Do use Pick Light only for selection, leadership, confirmation, and other immediate decision signals.",
-      "Do write controls and metadata as literal operational language: “Add,” “In pack,” “Clear,” and numbered ranks.",
-      "Do preserve visible rank order, keyboard focus, touch-sized controls, and reduced-motion behavior.",
-      "Do use strong hierarchy before adding elevation: size, contrast, and position carry most of the work.",
-      "Do keep thumbnails physically card-like and subordinate to the card name and rank."
+      "Do frame warm map leaves with Forest Cloth and preserve the square page-flag join.",
+      "Do reserve Oxblood for route marks, mapped state, and consequential actions.",
+      "Do use brass for page flags, provenance, route ticks, and waypoint controls.",
+      "Do keep Alegreya on titles, leaders, and ranks while Atkinson Hyperlegible Next handles working text.",
+      "Do preserve card rank, tier, Magic-colour grouping, keyboard focus, touch targets, and reduced-motion behavior.",
+      "Do keep contour and route imagery quiet enough that card names and ranks remain dominant."
     ],
     "donts": [
-      "Don't introduce fantasy parchment, medieval ornament, gold filigree, or lore-themed type.",
-      "Don't turn the interface into a generic analytics dashboard with soft blue cards and neutral SaaS chrome.",
-      "Don't use Safety Orange as a second primary action color or Pick Light as ambient decoration.",
-      "Don't wrap every row or section in a rounded, elevated container.",
-      "Don't replace literal state labels with ambiguous icons alone."
+      "Don't substitute loud synthetic signal colours or monochrome machinery panels for the atlas palette.",
+      "Don't turn the atlas into theatrical parchment with distressed edges, blackletter, gold filigree, or lore ornament.",
+      "Don't use Oxblood or Brass as broad decorative backgrounds across the map leaves.",
+      "Don't wrap each ranked row in its own rounded, elevated card.",
+      "Don't mix picker, current route, and complete atlas into competing dashboard panels.",
+      "Don't replace literal card, rank, state, and colour labels with ambiguous icons alone."
     ]
   }
 }

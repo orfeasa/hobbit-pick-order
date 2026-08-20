@@ -11,7 +11,7 @@ related_targets: []
 
 ## Audience, job, and task
 
-An MTG Arena drafter searches partial card names, adds plausible pack candidates, and chooses the top-ranked baseline option. The pack rail must remain visible and decisive while the complete card library stays secondary.
+An MTG Arena drafter searches partial card names, maps plausible pack candidates, and chooses the top-ranked baseline option. They can also turn to the complete card atlas to browse all 188 cards by Magic colour without losing the current pack route.
 
 ## Content and constraints
 
@@ -19,7 +19,7 @@ Use the verified 188-card Untapped.gg snapshot, local thumbnails, rank, and tier
 
 ## Chosen direction
 
-Pick-to-light scanner: an operational field terminal with numbered inventory lanes, warm paper-white ground, near-black structure, acid-lime active marks, and safety-orange exceptions. The memorable moment is adding several search results and watching the pack rail reorder them into an unambiguous strongest-to-weakest stack.
+Bilbo’s Expedition Atlas: a working clothbound field volume with forest binding, warm map leaves, contour ink, oxblood route marks, river-blue details, and brass page flags. Alegreya carries titles and ranks while Atkinson Hyperlegible Next handles search, controls, and working text. The picker opens as a two-leaf spread—searchable ranked cards on the left and the current pack route on the right—while the alternate All cards leaf groups the complete set by Magic colour. The memorable moment is mapping several candidates and watching the route leader rise immediately. Final review disposition: ship.
 
 ## Unresolved decisions
 
