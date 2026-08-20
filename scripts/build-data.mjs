@@ -12,12 +12,17 @@ const publicDir = path.join(root, "public");
 const pickOrder = JSON.parse(fs.readFileSync(path.join(dataDir, "hobbit_pick_order.json"), "utf8"));
 const artIds = JSON.parse(fs.readFileSync(path.join(dataDir, "hobbit_art_ids.json"), "utf8"));
 const colorData = JSON.parse(fs.readFileSync(path.join(dataDir, "hobbit_colors.json"), "utf8"));
+const cardStats = JSON.parse(fs.readFileSync(path.join(dataDir, "hobbit_card_stats.json"), "utf8"));
+
+const winRate = (wins, games) => Math.round((wins / games) * 1000) / 10;
 
 const cards = [];
 let rank = 1;
 
 for (const section of pickOrder.sections) {
   for (const name of section.names) {
+    const stats = cardStats.cards[name];
+    if (!stats) throw new Error(`Missing card statistics for ${name}`);
     cards.push({
       rank,
       tier: section.tier,
@@ -25,6 +30,13 @@ for (const section of pickOrder.sections) {
       color: colorData.colors[name],
       image: `assets/cards/${artIds[rank - 1]}.jpg`,
       trainingImage: `assets/cards-large/${artIds[rank - 1]}.jpg`,
+      stats: {
+        inHandWinRate: winRate(stats.in_hand_wins, stats.in_hand_games),
+        inHandGames: stats.in_hand_games,
+        openingHandWinRate: winRate(stats.opening_hand_wins, stats.opening_hand_games),
+        openingHandGames: stats.opening_hand_games,
+        avgLastOffered: stats.avg_last_offered,
+      },
     });
     rank += 1;
   }
@@ -44,7 +56,15 @@ if (missingTrainingImages.length > 0) {
   throw new Error(`Missing high-resolution training images for: ${missingTrainingImages.map((card) => card.name).join(", ")}`);
 }
 
-const cardData = `/* Generated from the verified 19 Aug 2026 Untapped.gg snapshot. */\nwindow.HOBBIT_CARDS = ${JSON.stringify(cards, null, 2)};\n`;
+const cardData = `/* Generated from the verified Untapped.gg snapshots. */\nwindow.HOBBIT_DATASET = ${JSON.stringify({
+  pickOrderCapturedAt: pickOrder.captured_at,
+  statsCapturedAt: cardStats.captured_at,
+  statsSourceLastModified: cardStats.source_last_modified,
+  totalMatches: cardStats.total_matches,
+  totalMatchesDisplay: cardStats.total_matches_display,
+  format: cardStats.format,
+  rankRange: cardStats.rank_range,
+}, null, 2)};\nwindow.HOBBIT_CARDS = ${JSON.stringify(cards, null, 2)};\n`;
 fs.writeFileSync(path.join(publicDir, "cards.js"), cardData);
 
 const cacheFiles = [

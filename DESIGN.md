@@ -62,6 +62,16 @@ typography:
     fontSize: "0.72rem"
     fontWeight: 700
     lineHeight: 1.15
+  evidence-label:
+    fontFamily: "Atkinson Hyperlegible Next, Segoe UI, sans-serif"
+    fontSize: "0.62rem"
+    fontWeight: 700
+    lineHeight: 1.15
+  evidence-source:
+    fontFamily: "Atkinson Hyperlegible Next, Segoe UI, sans-serif"
+    fontSize: "0.6rem"
+    fontWeight: 400
+    lineHeight: 1.35
 rounded:
   card-mini: "3px"
   thumbnail: "4px"
@@ -142,6 +152,12 @@ components:
     backgroundColor: "transparent"
     textColor: "{colors.contour-ink}"
     padding: "24px 0 0"
+  card-stat-ledger:
+    backgroundColor: "transparent"
+    textColor: "{colors.contour-ink}"
+    columns: 3
+    borderColor: "{colors.map-line}"
+    padding: "10px 8px 11px"
 ---
 
 # Design System: The Hobbit Pick Order
@@ -226,6 +242,8 @@ The palette is a field atlas: deep forest binding, warm leaves and ground, dark 
 - **Body** (400, 16px, 1.5 line-height): Instructions, source context, and explanatory copy.
 - **Search** (700, fluid control scale, 1.5 line-height): Search input text with enough weight to remain legible beside card art.
 - **Label** (700, compact scale, 1.15 line-height): Dataset and score stamps, controls, counts, filters, and tier metadata.
+- **Evidence Label** (700, 0.62rem, 1.15 line-height): The three compact labels in a card-statistics ledger.
+- **Evidence Source** (400, 0.6rem, 1.35 line-height): Statistics snapshot provenance below the preview ledger.
 
 ### Named Rules
 
@@ -237,7 +255,7 @@ The palette is a field atlas: deep forest binding, warm leaves and ground, dark 
 
 The system is organized as a clothbound volume capped at 1440px. A 142px masthead establishes the binding, then three sticky page flags—Search, All cards, and Train—sit on a 62px navigation line. Search opens a single 1080px map leaf with one field and a passive ranked result list; rows show thumbnail, rank, name, colour identity, and one tier badge without selection controls.
 
-The All cards view uses a single map leaf with a sticky, horizontally scrollable colour index and an auto-filling grid of passive card entries. Search and Cards use lightweight 80 × 112 thumbnails; hovering or focusing a card art trigger opens a floating 672 × 936 inspection plate, while click or tap pins the same plate over a quiet forest scrim until close, backdrop, or Escape. The Train view is another single leaf: a Trail training header and brass session score stamp lead into a colour-filter trail, then a desktop quiz grid places the single-card forest stage in a 0.82-fraction left column and the tier-answer map in a 1.18-fraction right column, with a fluid 34–72px gap. Train loads the same large local image on demand so the studied card stays crisp on high-density mobile screens. At 760px all three views become stacked leaves: the page flags share the width with Search, Cards, and Train labels; the training card becomes a horizontal stage above the tier panel; tier choices move from four to three columns; and the neighbour context changes from three columns to three stacked rows. At 420px card, rank, and title measures tighten again without dropping primary metadata.
+The All cards view uses a single map leaf with a sticky, horizontally scrollable colour index and an auto-filling grid of passive card entries. Search and Cards use lightweight 80 × 112 thumbnails; hovering or focusing a card art trigger opens a floating 672 × 936 inspection plate, while click or tap pins the same plate over a quiet forest scrim until close, backdrop, or Escape. The inspection caption pairs rank and tier with a flat three-column statistics ledger: in-hand win rate, average last offered pick, and in-hand game sample. The Train view is another single leaf: a Trail training header and brass session score stamp lead into a colour-filter trail, then a desktop quiz grid places the single-card forest stage in a 0.82-fraction left column and the tier-answer map in a 1.18-fraction right column, with a fluid 34–72px gap. Train loads the same large local image on demand so the studied card stays crisp on high-density mobile screens. Its statistics ledger stays hidden until the user guesses or reveals, then appears above the neighbour context and scrolls into view with the answer. At 760px all three views become stacked leaves: the page flags share the width with Search, Cards, and Train labels; the training card becomes a horizontal stage above the tier panel; tier choices move from four to three columns; and the neighbour context changes from three columns to three stacked rows. At 420px card, rank, title, and statistics measures tighten again without dropping primary metadata.
 
 **The Single-Leaf Rule.** Search, Cards, and Train each own one map leaf and one task; never merge them into competing dashboard panels.
 
@@ -294,7 +312,7 @@ Components feel like useful parts of a working field atlas: clear in action, lig
 - **Atlas Leaves:** Map Leaf surfaces with subtle contour texture and the shared Open Volume shadow.
 - **Result Rows:** Flat, passive rank references separated by Map Line; they never imply selection or pack state.
 - **Atlas Cards:** Passive thumbnail-and-copy rows that inherit their Magic-colour group accent rather than becoming individually boxed cards.
-- **Card Preview:** One shared forest inspection plate loads large card art only on demand. Hover and keyboard focus remain transient; click or tap pins the plate, exposes a 42px close control, traps keyboard focus, and closes by control, backdrop, or Escape without obscuring the card face.
+- **Card Preview:** One shared forest inspection plate loads large card art only on demand. Hover and keyboard focus remain transient; click or tap pins the plate, exposes a 42px close control, traps keyboard focus, and closes by control, backdrop, or Escape without obscuring the card face. A flat ruled ledger below the caption shows in-hand win rate, average last offered pick, and in-hand game sample with the statistics snapshot source.
 - **Training Stage:** One Forest Cloth card stage holds a single large card, a quiet colour-identity oval, an oxblood route, the pass count, card name, and the exact-tier question.
 
 ### Inputs / Fields
@@ -321,7 +339,7 @@ The All cards leaf groups every card by Magic colour. A sticky colour index, cir
 
 The Train leaf opens with the Trail training title and a brass session score stamp showing exact accuracy plus reviewed/exact counts. A colour-identity filter trail changes the session queue without changing the atlas language. One card occupies the Forest Cloth stage while all 15 exact tiers—S, A+, A, A-, B+, B, B-, C+, C, C-, D+, D, D-, F, and ?—remain visible as tinted, bordered choices.
 
-After a guess or reveal, the choice map locks and distinguishes correct, near-miss, wrong, and reveal outcomes. The answer names the exact tier and global rank, then shows up to three adjacent route positions labelled One above, This card, and One below before the full-width brass Next card action. Misses and reveals are inserted back into the session queue after roughly three cards. Filter, queue, and score exist only in memory for the current page session; refreshing clears them, and the interface must never imply an account, backend, localStorage, or durable training history.
+After a guess or reveal, the choice map locks and distinguishes correct, near-miss, wrong, and reveal outcomes. The answer names the exact tier and global rank, then reveals a flat three-column statistics ledger for in-hand win rate, average last offered pick, and in-hand game sample. Supporting copy defines the metrics, and the answer scrolls into view before showing up to three adjacent route positions labelled One above, This card, and One below and the full-width brass Next card action. The statistics must stay hidden before the answer so they cannot leak tier strength. Misses and reveals are inserted back into the session queue after roughly three cards. Filter, queue, and score exist only in memory for the current page session; refreshing clears them, and the interface must never imply an account, backend, localStorage, or durable training history.
 
 ## Do's and Don'ts
 
@@ -335,6 +353,8 @@ After a guess or reveal, the choice map locks and distinguishes correct, near-mi
 - **Do** keep contour and route imagery quiet enough that card names and ranks remain dominant.
 - **Do** keep all 15 tier choices visible and distinguish correct, near-miss, wrong, and reveal outcomes without changing their labels.
 - **Do** show global rank with One above, This card, and One below context after every answer when those neighbours exist.
+- **Do** show the three supporting draft statistics as a flat ruled ledger, with sample size and snapshot provenance visible.
+- **Do** keep training statistics hidden until the user has guessed or revealed the tier.
 - **Do** keep training filters, score, queue, and requeue behavior session-only and honest about resetting on refresh.
 - **Do** load only the inspected high-resolution image and preserve the precached thumbnail as its offline fallback.
 
@@ -347,6 +367,7 @@ After a guess or reveal, the choice map locks and distinguishes correct, near-mi
 - **Don't** add a redundant five-pixel bottom stripe or pseudo-element to tier choices; the tinted fill and border are sufficient.
 - **Don't** add pack selection or turn passive search and atlas entries into action controls.
 - **Don't** let preview controls obscure mana cost, rules text, or other parts of the card face.
+- **Don't** present draft statistics as live, deck-aware predictions or let them compete visually with rank and tier.
 - **Don't** mix search, complete atlas, and training into competing dashboard panels.
 - **Don't** imply training progress persists or add localStorage, an account, or backend state to support it.
 - **Don't** replace literal card, rank, state, and colour labels with ambiguous icons alone.

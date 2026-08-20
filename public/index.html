@@ -189,6 +189,22 @@
                   </div>
                 </div>
 
+                <dl id="training-card-stats" class="card-stat-ledger" aria-label="Card draft statistics">
+                  <div>
+                    <dt>In-hand WR</dt>
+                    <dd id="training-in-hand-win-rate">—</dd>
+                  </div>
+                  <div>
+                    <dt>Usually gone by</dt>
+                    <dd id="training-last-offered">—</dd>
+                  </div>
+                  <div>
+                    <dt>In-hand games</dt>
+                    <dd id="training-in-hand-games">—</dd>
+                  </div>
+                </dl>
+                <p class="card-stat-note">In-hand WR counts games where the card was available in hand. “Gone by” is its average last offered pick.</p>
+
                 <ol id="training-neighbours" class="training-neighbours" aria-label="Nearby cards in pick order"></ol>
                 <button id="next-training-card" class="next-training-card" type="button">Next card</button>
               </div>
@@ -199,7 +215,7 @@
     </main>
 
     <footer class="app-footer">
-      <p>Untapped.gg snapshot · Premier Draft · Bronze–Platinum · 390,000 matches</p>
+      <p id="dataset-context">Untapped.gg snapshots · Pick order 19 Aug · Stats 20 Aug · 410,000 matches</p>
       <a href="https://mtga.untapped.gg/limited/draft/the-hobbit/pick-order" target="_blank" rel="noreferrer">Source data</a>
     </footer>
 
@@ -208,11 +224,30 @@
       <figure id="card-preview-panel" class="card-preview-panel">
         <img id="card-preview-image" class="card-preview-image" src="assets/cards/103382.jpg" alt="" width="672" height="936" decoding="async">
         <figcaption class="card-preview-caption">
-          <strong id="card-preview-name">Card preview</strong>
-          <span id="card-preview-meta"></span>
-          <button id="card-preview-close" class="card-preview-close" type="button" aria-label="Close card preview">
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-          </button>
+          <div class="card-preview-heading">
+            <div class="card-preview-copy">
+              <strong id="card-preview-name">Card preview</strong>
+              <span id="card-preview-meta"></span>
+            </div>
+            <button id="card-preview-close" class="card-preview-close" type="button" aria-label="Close card preview">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            </button>
+          </div>
+          <dl class="card-stat-ledger card-preview-stats" aria-label="Card draft statistics">
+            <div>
+              <dt>In-hand WR</dt>
+              <dd id="preview-in-hand-win-rate">—</dd>
+            </div>
+            <div>
+              <dt>Usually gone by</dt>
+              <dd id="preview-last-offered">—</dd>
+            </div>
+            <div>
+              <dt>In-hand games</dt>
+              <dd id="preview-in-hand-games">—</dd>
+            </div>
+          </dl>
+          <p id="card-preview-source" class="card-preview-source">Untapped.gg · Premier Draft · Bronze–Platinum</p>
         </figcaption>
       </figure>
     </div>

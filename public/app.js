@@ -2,6 +2,7 @@
   "use strict";
 
   const cards = Array.isArray(window.HOBBIT_CARDS) ? window.HOBBIT_CARDS : [];
+  const dataset = window.HOBBIT_DATASET || {};
   const byRank = new Map(cards.map((card) => [card.rank, card]));
   const resultLimit = 10;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -52,6 +53,9 @@
   const trainingAnswer = document.querySelector("#training-answer");
   const trainingResultTitle = document.querySelector("#training-result-title");
   const trainingResultCopy = document.querySelector("#training-result-copy");
+  const trainingInHandWinRate = document.querySelector("#training-in-hand-win-rate");
+  const trainingLastOffered = document.querySelector("#training-last-offered");
+  const trainingInHandGames = document.querySelector("#training-in-hand-games");
   const trainingNeighbours = document.querySelector("#training-neighbours");
   const nextTrainingCardButton = document.querySelector("#next-training-card");
   const cardPreviewLayer = document.querySelector("#card-preview-layer");
@@ -59,8 +63,13 @@
   const cardPreviewImage = document.querySelector("#card-preview-image");
   const cardPreviewName = document.querySelector("#card-preview-name");
   const cardPreviewMeta = document.querySelector("#card-preview-meta");
+  const previewInHandWinRate = document.querySelector("#preview-in-hand-win-rate");
+  const previewLastOffered = document.querySelector("#preview-last-offered");
+  const previewInHandGames = document.querySelector("#preview-in-hand-games");
+  const cardPreviewSource = document.querySelector("#card-preview-source");
   const cardPreviewClose = document.querySelector("#card-preview-close");
   const cardPreviewBackdrop = document.querySelector("#card-preview-backdrop");
+  const datasetContext = document.querySelector("#dataset-context");
 
   let currentView = "picker";
   let trainingFilter = "ALL";
@@ -88,6 +97,26 @@
     ...card,
     normalizedName: normalize(card.name),
   }));
+
+  const numberFormatter = new Intl.NumberFormat("en-GB");
+  const shortDateFormatter = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short" });
+
+  function shortDate(value) {
+    const date = new Date(value);
+    return Number.isNaN(date.getTime()) ? "—" : shortDateFormatter.format(date);
+  }
+
+  function setCardStats(card, winRateElement, lastOfferedElement, gamesElement) {
+    winRateElement.textContent = Number.isFinite(card.stats?.inHandWinRate)
+      ? `${card.stats.inHandWinRate.toFixed(1)}%`
+      : "—";
+    lastOfferedElement.textContent = Number.isFinite(card.stats?.avgLastOffered)
+      ? `Pick ${card.stats.avgLastOffered.toFixed(1)}`
+      : "—";
+    gamesElement.textContent = Number.isFinite(card.stats?.inHandGames)
+      ? numberFormatter.format(card.stats.inHandGames)
+      : "—";
+  }
 
   function fuzzyScore(name, query) {
     if (!query) return 0;
@@ -195,6 +224,7 @@
     trigger.setAttribute("aria-expanded", String(pinned));
     cardPreviewName.textContent = card.name;
     cardPreviewMeta.textContent = `Pick #${card.rank} · Tier ${card.tier}`;
+    setCardStats(card, previewInHandWinRate, previewLastOffered, previewInHandGames);
     loadCardPreview(card);
 
     cardPreviewLayer.hidden = false;
@@ -562,8 +592,15 @@
     }
 
     renderTrainingNeighbours(trainingCard);
+    setCardStats(trainingCard, trainingInHandWinRate, trainingLastOffered, trainingInHandGames);
     revealTierButton.hidden = true;
     trainingAnswer.hidden = false;
+    requestAnimationFrame(() => {
+      trainingAnswer.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    });
     if (!prefersReducedMotion) {
       trainingAnswer.animate(
         [
@@ -574,7 +611,10 @@
       );
     }
 
-    liveRegion.textContent = `${trainingResultTitle.textContent}. ${trainingResultCopy.textContent}`;
+    const winRateContext = Number.isFinite(trainingCard.stats?.inHandWinRate)
+      ? `In-hand win rate ${trainingCard.stats.inHandWinRate.toFixed(1)} percent across ${numberFormatter.format(trainingCard.stats.inHandGames)} games.`
+      : "";
+    liveRegion.textContent = `${trainingResultTitle.textContent}. ${trainingResultCopy.textContent} ${winRateContext}`.trim();
   }
 
   function clearSearch() {
@@ -670,6 +710,13 @@
   window.addEventListener("resize", () => positionCardPreview(activePreviewTrigger));
   revealTierButton.addEventListener("click", () => answerTrainingCard(null));
   nextTrainingCardButton.addEventListener("click", () => drawTrainingCard({ focusChoices: true }));
+
+  const statsDate = shortDate(dataset.statsCapturedAt);
+  const pickOrderDate = shortDate(dataset.pickOrderCapturedAt);
+  const rankRange = (dataset.rankRange || "Bronze-Platinum").replace("-", "–");
+  const datasetDetails = `${dataset.format || "Premier Draft"} · ${rankRange}`;
+  cardPreviewSource.textContent = `Untapped.gg · ${datasetDetails} · stats ${statsDate}`;
+  datasetContext.textContent = `Untapped.gg snapshots · Pick order ${pickOrderDate} · Stats ${statsDate} · ${dataset.totalMatchesDisplay || "410,000"} matches`;
 
   renderResults();
   renderAtlas();
