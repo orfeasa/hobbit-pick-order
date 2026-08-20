@@ -1,8 +1,20 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-20T10:31:44Z",
+  "generatedAt": "2026-08-20T11:03:15Z",
   "title": "Design System: The Hobbit Pick Order",
   "extensions": {
+    "brandAssets": {
+      "favicon": {
+        "source": "public/assets/icon.svg",
+        "rasterFallbacks": [
+          "public/assets/icon-32.png",
+          "public/assets/icon-192.png",
+          "public/assets/icon-512.png",
+          "public/assets/apple-touch-icon.png"
+        ],
+        "description": "A browser-size interpretation of the HOB expansion ring-and-blade mark in gold, oxblood, and Forest Deep."
+      }
+    },
     "colorMeta": {
       "forest-cloth": {
         "role": "neutral",

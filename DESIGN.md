@@ -263,7 +263,7 @@ Depth is book construction rather than stacked application cards. The single atl
 
 The silhouette combines softly rounded paper leaves with square-cut book geometry. The upper-left corner stays square where a page meets its active flag, while the remaining leaf corners round gently. Search and training-stage fields use medium corners, small controls and thumbnails tighten further, and pills are reserved for tier and colour-jump markers.
 
-Compass points, mountain rules, contour paths, route dashes, circular colour emblems, and the centre fold are the recurring geometry. Borders behave like drawn map rules: thin, useful, and usually shared between adjacent rows rather than wrapped around each item. Tier choices use only their tinted fill and full perimeter border; they do not carry a redundant bottom stripe or ornamental pseudo-element.
+Compass points, mountain rules, contour paths, route dashes, circular colour emblems, and the centre fold are the recurring geometry. The favicon is a compact HOB expansion-mark interpretation: its ring-and-blade silhouette uses a gold-to-oxblood metal note on Forest Deep, with enough weight and negative space to stay recognisable at browser-tab size. Borders behave like drawn map rules: thin, useful, and usually shared between adjacent rows rather than wrapped around each item. Tier choices use only their tinted fill and full perimeter border; they do not carry a redundant bottom stripe or ornamental pseudo-element.
 
 **The Bound-Corner Rule.** Preserve the square flag-to-leaf join; rounding all four corners would break the open-book silhouette.
 

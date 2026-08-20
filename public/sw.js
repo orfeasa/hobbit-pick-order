@@ -1,5 +1,5 @@
 /* Generated static cache manifest. */
-const CACHE = "hobbit-pick-order-919566208671";
+const CACHE = "hobbit-pick-order-6a6baa22f2dc";
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,6 +8,10 @@ const ASSETS = [
   "./app.js",
   "./manifest.webmanifest",
   "./assets/icon.svg",
+  "./assets/icon-32.png",
+  "./assets/icon-192.png",
+  "./assets/icon-512.png",
+  "./assets/apple-touch-icon.png",
   "./assets/fonts/Alegreya-SemiBold.ttf",
   "./assets/fonts/Alegreya-Bold.ttf",
   "./assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf",
