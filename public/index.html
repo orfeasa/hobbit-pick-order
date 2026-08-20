@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#142019">
-    <meta name="description" content="A fast, searchable pack comparator for The Hobbit MTG Arena draft pick order.">
+    <meta name="theme-color" content="#263c31">
+    <meta name="description" content="A fast, searchable pack comparator and complete colour atlas for The Hobbit MTG Arena draft pick order.">
     <title>The Hobbit Pick Order</title>
     <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
     <link rel="manifest" href="manifest.webmanifest">
@@ -14,108 +14,152 @@
   </head>
   <body>
     <!--
-      THESIS: A draft decision should feel like scanning a pick list, not searching a tier-list article.
-      OWN-WORLD: Warm stock, black rack steel, acid-lime confirmation, safety-orange exceptions, numbered lanes, and literal operational labels.
-      STORY: Find pack cards, add them to the rail, and see the strongest baseline pick rise immediately.
-      FIRST VIEWPORT: Search and results occupy the working field; the current pack is a dark fixed rail with the leading card dominant and clear.
-      FORM: Pick-to-light scanner, grounded direction 6, seed 63fd212a.
+      THESIS: The pick order is a working expedition atlas, not a dashboard or a decorative fantasy page.
+      OWN-WORLD: Forest-cloth binding, warm map leaves, contour ink, oxblood route marks, river blue, and brass page flags; Alegreya titles with Atkinson Hyperlegible working text.
+      STORY: Open the Pick a card leaf for a live pack decision, or turn to All cards to browse the complete ranked set by Magic colour.
+      FIRST VIEWPORT: A clothbound masthead and two page flags lead into an open atlas: searchable ranked cards on the left leaf, the current pack route on the right.
+      FORM: Bilbo’s Expedition Atlas, grounded direction 1, seed 34f4b29c.
       FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
     -->
-    <a class="skip-link" href="#main">Skip to comparator</a>
+    <a class="skip-link" href="#main">Skip to pick order</a>
 
     <header class="app-header">
-      <div class="brand-block">
-        <svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M6 7h13v13H6zM29 7h13v13H29zM6 29h13v13H6z" fill="currentColor"/>
-          <path d="M28 35h9M33 30l5 5-5 5" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="miter"/>
-        </svg>
-        <div>
-          <h1>HOB Pick Order</h1>
-          <p>Pack comparator</p>
+      <div class="header-inner">
+        <div class="brand-block">
+          <svg class="brand-icon" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="26" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M32 10 38 28 54 32 38 36 32 54 26 36 10 32 26 28Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="32" cy="32" r="4" fill="currentColor"/>
+          </svg>
+          <div>
+            <h1>The Hobbit Pick Order</h1>
+            <p>An expedition atlas for the next pick</p>
+          </div>
+        </div>
+
+        <div class="dataset-stamp" aria-label="188 cards, captured 19 August 2026">
+          <strong>188</strong>
+          <span>cards</span>
+          <span>19 Aug 2026</span>
         </div>
       </div>
 
-      <div class="dataset-stamp" aria-label="Dataset: 188 cards, captured 19 August 2026">
-        <span>DATASET</span>
-        <strong>188</strong>
-        <span>19 AUG 2026</span>
-      </div>
+      <svg class="mountain-rule" viewBox="0 0 1440 54" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 54V43L110 32l58 7 96-21 74 14 79-7 60 15 109-8 90 12 72-25 76 20 98-8 71 11 96-30 76 31 92-10 85 10 84-18 78 26 116-5v14Z" fill="currentColor"/>
+        <path d="m265 18 28 13 45 1m410-13 35 17 41 3m265-27 34 21 42 3" fill="none" stroke="rgba(238,228,202,.38)" stroke-width="2"/>
+      </svg>
     </header>
 
-    <main id="main" class="workspace">
-      <section class="scanner" aria-labelledby="scanner-title">
-        <div class="scanner-heading">
-          <div>
-            <h2 id="scanner-title">Find pack cards</h2>
-            <p>Type any part of a name, then add every card you’re considering.</p>
-          </div>
-          <span class="keyboard-note" aria-hidden="true"><kbd>/</kbd> focus</span>
-        </div>
+    <nav class="view-tabs" aria-label="Pick order views" role="tablist">
+      <button id="picker-tab" class="view-tab" type="button" role="tab" aria-selected="true" aria-controls="picker-view" data-view="picker">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM8 9h8M8 13h5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>Pick a card</span>
+      </button>
+      <button id="atlas-tab" class="view-tab" type="button" role="tab" aria-selected="false" aria-controls="atlas-view" tabindex="-1" data-view="atlas">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 6 5-2 6 2 5-2v14l-5 2-6-2-5 2zM9 4v14M15 6v14" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>All cards</span>
+      </button>
+    </nav>
 
-        <div class="search-field">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="10.75" cy="10.75" r="6.75" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
-          </svg>
-          <label class="visually-hidden" for="card-search">Search card names</label>
-          <input
-            id="card-search"
-            type="search"
-            inputmode="search"
-            autocomplete="off"
-            autocapitalize="off"
-            spellcheck="false"
-            placeholder="Search 188 cards…"
-            role="combobox"
-            aria-autocomplete="list"
-            aria-controls="search-results"
-            aria-expanded="true"
-          >
-          <button id="clear-search" class="clear-search" type="button" aria-label="Clear search" hidden>
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-          </button>
-        </div>
+    <main id="main">
+      <section id="picker-view" class="view-panel" role="tabpanel" aria-labelledby="picker-tab">
+        <div class="workspace atlas-spread">
+          <section class="scanner atlas-leaf" aria-labelledby="scanner-title">
+            <div class="leaf-heading scanner-heading">
+              <div>
+                <h2 id="scanner-title">Find pack cards</h2>
+                <p>Add the plausible picks. The route orders itself from strongest to weakest.</p>
+              </div>
+              <span class="keyboard-note" aria-hidden="true"><kbd>/</kbd> search</span>
+            </div>
 
-        <div class="result-bar">
-          <p id="result-label">Top of the order</p>
-          <p id="result-count">Showing 10 of 188</p>
-        </div>
+            <div class="search-field">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.75" cy="10.75" r="6.75" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <label class="visually-hidden" for="card-search">Search card names</label>
+              <input
+                id="card-search"
+                type="search"
+                inputmode="search"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                placeholder="Search 188 cards…"
+                role="combobox"
+                aria-autocomplete="list"
+                aria-controls="search-results"
+                aria-expanded="true"
+              >
+              <button id="clear-search" class="clear-search" type="button" aria-label="Clear search" hidden>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              </button>
+            </div>
 
-        <div id="search-results" class="search-results" role="listbox" aria-label="Card search results" aria-multiselectable="true"></div>
+            <div class="result-bar">
+              <p id="result-label">Top of the order</p>
+              <p id="result-count">Showing 10 of 188</p>
+            </div>
 
-        <div id="no-results" class="no-results" hidden>
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 14h44v36H10zM17 22h30M17 31h22M17 40h15" fill="none" stroke="currentColor" stroke-width="3"/></svg>
-          <h3>No matching card</h3>
-          <p>Try fewer letters or a different part of the name.</p>
+            <div id="search-results" class="search-results" role="listbox" aria-label="Card search results" aria-multiselectable="true"></div>
+
+            <div id="no-results" class="no-results" hidden>
+              <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 14h44v36H10zM17 22h30M17 31h22M17 40h15" fill="none" stroke="currentColor" stroke-width="3"/></svg>
+              <h3>No matching card</h3>
+              <p>Try fewer letters or a different part of the name.</p>
+            </div>
+          </section>
+
+          <aside id="pack" class="pack-panel" aria-labelledby="pack-title">
+            <div class="pack-heading">
+              <div>
+                <h2 id="pack-title" tabindex="-1">Current route</h2>
+                <p id="pack-count">0 cards mapped</p>
+              </div>
+              <button id="clear-pack" class="clear-pack" type="button" disabled>Clear</button>
+            </div>
+
+            <div id="pack-empty" class="pack-empty">
+              <svg class="empty-compass" viewBox="0 0 120 120" aria-hidden="true">
+                <circle cx="60" cy="60" r="48" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="m60 20 11 29 29 11-29 11-11 29-11-29-29-11 29-11Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="60" cy="60" r="5" fill="currentColor"/>
+              </svg>
+              <h3>No cards mapped</h3>
+              <p>Add cards from the pack. The strongest baseline pick will lead the route.</p>
+            </div>
+
+            <div id="pack-content" hidden>
+              <article id="best-pick" class="best-pick"></article>
+              <div class="alternatives-heading">
+                <h3>Pack order</h3>
+                <span>strongest → weakest</span>
+              </div>
+              <ol id="pack-list" class="pack-list"></ol>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <aside id="pack" class="pack-panel" aria-labelledby="pack-title">
-        <div class="pack-heading">
-          <div>
-            <h2 id="pack-title" tabindex="-1">Current pack</h2>
-            <p id="pack-count">0 cards scanned</p>
-          </div>
-          <button id="clear-pack" class="clear-pack" type="button" disabled>Clear</button>
-        </div>
+      <section id="atlas-view" class="view-panel atlas-view" role="tabpanel" aria-labelledby="atlas-tab" hidden>
+        <div class="atlas-page">
+          <header class="atlas-heading">
+            <div>
+              <h2>The complete card atlas</h2>
+              <p>All 188 cards, grouped by colour identity and kept in pick order.</p>
+            </div>
+            <svg class="atlas-compass" viewBox="0 0 96 96" aria-hidden="true">
+              <circle cx="48" cy="48" r="39" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <path d="m48 12 8 28 28 8-28 8-8 28-8-28-28-8 28-8Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="48" cy="48" r="4" fill="currentColor"/>
+            </svg>
+          </header>
 
-        <div id="pack-empty" class="pack-empty">
-          <div class="empty-scanner" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-          </div>
-          <h3>No cards scanned</h3>
-          <p>Add the plausible picks from your pack. The strongest baseline card will rise here.</p>
+          <nav id="color-navigation" class="color-navigation" aria-label="Jump to card colour"></nav>
+          <div id="card-atlas" class="card-atlas"></div>
         </div>
-
-        <div id="pack-content" hidden>
-          <article id="best-pick" class="best-pick"></article>
-          <div class="alternatives-heading">
-            <h3>Pack order</h3>
-            <span>strongest → weakest</span>
-          </div>
-          <ol id="pack-list" class="pack-list"></ol>
-        </div>
-      </aside>
+      </section>
     </main>
 
     <button id="pack-dock" class="pack-dock" type="button" hidden>
@@ -130,6 +174,6 @@
     </footer>
 
     <div id="live-region" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
-    <noscript><p class="noscript">This comparator requires JavaScript.</p></noscript>
+    <noscript><p class="noscript">This pick-order tool requires JavaScript.</p></noscript>
   </body>
 </html>

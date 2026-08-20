@@ -11,6 +11,7 @@ const publicDir = path.join(root, "public");
 
 const pickOrder = JSON.parse(fs.readFileSync(path.join(dataDir, "hobbit_pick_order.json"), "utf8"));
 const artIds = JSON.parse(fs.readFileSync(path.join(dataDir, "hobbit_art_ids.json"), "utf8"));
+const colorData = JSON.parse(fs.readFileSync(path.join(dataDir, "hobbit_colors.json"), "utf8"));
 
 const cards = [];
 let rank = 1;
@@ -21,6 +22,7 @@ for (const section of pickOrder.sections) {
       rank,
       tier: section.tier,
       name,
+      color: colorData.colors[name],
       image: `assets/cards/${artIds[rank - 1]}.jpg`,
     });
     rank += 1;
@@ -29,6 +31,11 @@ for (const section of pickOrder.sections) {
 
 if (cards.length !== 188 || artIds.length !== 188) {
   throw new Error(`Expected 188 cards and art IDs; got ${cards.length} and ${artIds.length}`);
+}
+
+const missingColors = cards.filter((card) => !card.color);
+if (missingColors.length > 0) {
+  throw new Error(`Missing color identity for: ${missingColors.map((card) => card.name).join(", ")}`);
 }
 
 const cardData = `/* Generated from the verified 19 Aug 2026 Untapped.gg snapshot. */\nwindow.HOBBIT_CARDS = ${JSON.stringify(cards, null, 2)};\n`;
@@ -42,9 +49,10 @@ const cacheFiles = [
   "./app.js",
   "./manifest.webmanifest",
   "./assets/icon.svg",
-  "./assets/fonts/Barlow-Regular.ttf",
-  "./assets/fonts/Barlow-SemiBold.ttf",
-  "./assets/fonts/BarlowCondensed-Black.ttf",
+  "./assets/fonts/Alegreya-SemiBold.ttf",
+  "./assets/fonts/Alegreya-Bold.ttf",
+  "./assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf",
+  "./assets/fonts/AtkinsonHyperlegibleNext-Bold.ttf",
   ...cards.map((card) => `./${card.image}`),
 ];
 
