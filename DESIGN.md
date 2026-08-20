@@ -237,7 +237,7 @@ The palette is a field atlas: deep forest binding, warm leaves and ground, dark 
 
 The system is organized as a clothbound volume capped at 1440px. A 142px masthead establishes the binding, then three sticky page flags—Search, All cards, and Train—sit on a 62px navigation line. Search opens a single 1080px map leaf with one field and a passive ranked result list; rows show thumbnail, rank, name, colour identity, and one tier badge without selection controls.
 
-The All cards view uses a single map leaf with a sticky, horizontally scrollable colour index and an auto-filling grid of passive card entries. The Train view is another single leaf: a Trail training header and brass session score stamp lead into a colour-filter trail, then a desktop quiz grid places the single-card forest stage in a 0.82-fraction left column and the tier-answer map in a 1.18-fraction right column, with a fluid 34–72px gap. Search and Cards use lightweight 80 × 112 thumbnails, while Train loads a dedicated 672 × 936 local image on demand so the studied card stays crisp on high-density mobile screens. At 760px all three views become stacked leaves: the page flags share the width with Search, Cards, and Train labels; the training card becomes a horizontal stage above the tier panel; tier choices move from four to three columns; and the neighbour context changes from three columns to three stacked rows. At 420px card, rank, and title measures tighten again without dropping primary metadata.
+The All cards view uses a single map leaf with a sticky, horizontally scrollable colour index and an auto-filling grid of passive card entries. Search and Cards use lightweight 80 × 112 thumbnails; hovering or focusing a card art trigger opens a floating 672 × 936 inspection plate, while click or tap pins the same plate over a quiet forest scrim until close, backdrop, or Escape. The Train view is another single leaf: a Trail training header and brass session score stamp lead into a colour-filter trail, then a desktop quiz grid places the single-card forest stage in a 0.82-fraction left column and the tier-answer map in a 1.18-fraction right column, with a fluid 34–72px gap. Train loads the same large local image on demand so the studied card stays crisp on high-density mobile screens. At 760px all three views become stacked leaves: the page flags share the width with Search, Cards, and Train labels; the training card becomes a horizontal stage above the tier panel; tier choices move from four to three columns; and the neighbour context changes from three columns to three stacked rows. At 420px card, rank, and title measures tighten again without dropping primary metadata.
 
 **The Single-Leaf Rule.** Search, Cards, and Train each own one map leaf and one task; never merge them into competing dashboard panels.
 
@@ -294,6 +294,7 @@ Components feel like useful parts of a working field atlas: clear in action, lig
 - **Atlas Leaves:** Map Leaf surfaces with subtle contour texture and the shared Open Volume shadow.
 - **Result Rows:** Flat, passive rank references separated by Map Line; they never imply selection or pack state.
 - **Atlas Cards:** Passive thumbnail-and-copy rows that inherit their Magic-colour group accent rather than becoming individually boxed cards.
+- **Card Preview:** One shared forest inspection plate loads large card art only on demand. Hover and keyboard focus remain transient; click or tap pins the plate, exposes a 42px close control, traps keyboard focus, and closes by control, backdrop, or Escape without obscuring the card face.
 - **Training Stage:** One Forest Cloth card stage holds a single large card, a quiet colour-identity oval, an oxblood route, the pass count, card name, and the exact-tier question.
 
 ### Inputs / Fields
@@ -310,11 +311,11 @@ Components feel like useful parts of a working field atlas: clear in action, lig
 
 ### Search
 
-The Search leaf is a read-only lookup. Fuzzy, accent-insensitive name matching returns up to ten passive rows with card art, pick rank, colour identity, and exact tier; nothing can be added, selected, mapped, or removed.
+The Search leaf is a read-only lookup. Fuzzy, accent-insensitive name matching returns up to ten passive rows with card art, pick rank, colour identity, and exact tier; the art alone triggers an on-demand preview, and nothing can be added, selected, mapped, or removed.
 
 ### Complete Card Atlas
 
-The All cards leaf groups every card by Magic colour. A sticky colour index, circular emblems, colour-specific rules, rank ranges, and a responsive card grid make the full set browsable without losing the atlas world.
+The All cards leaf groups every card by Magic colour. A sticky colour index, circular emblems, colour-specific rules, rank ranges, a responsive card grid, and the shared art preview make the full set browsable and readable without losing the atlas world.
 
 ### Trail Training
 
@@ -335,6 +336,7 @@ After a guess or reveal, the choice map locks and distinguishes correct, near-mi
 - **Do** keep all 15 tier choices visible and distinguish correct, near-miss, wrong, and reveal outcomes without changing their labels.
 - **Do** show global rank with One above, This card, and One below context after every answer when those neighbours exist.
 - **Do** keep training filters, score, queue, and requeue behavior session-only and honest about resetting on refresh.
+- **Do** load only the inspected high-resolution image and preserve the precached thumbnail as its offline fallback.
 
 ### Don't:
 
@@ -344,6 +346,7 @@ After a guess or reveal, the choice map locks and distinguishes correct, near-mi
 - **Don't** wrap each ranked row in its own rounded, elevated card.
 - **Don't** add a redundant five-pixel bottom stripe or pseudo-element to tier choices; the tinted fill and border are sufficient.
 - **Don't** add pack selection or turn passive search and atlas entries into action controls.
+- **Don't** let preview controls obscure mana cost, rules text, or other parts of the card face.
 - **Don't** mix search, complete atlas, and training into competing dashboard panels.
 - **Don't** imply training progress persists or add localStorage, an account, or backend state to support it.
 - **Don't** replace literal card, rank, state, and colour labels with ambiguous icons alone.

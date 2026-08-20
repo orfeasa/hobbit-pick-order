@@ -6,6 +6,7 @@ A static card search, colour-grouped atlas, and tier trainer for The Hobbit on M
 
 - Fuzzy, accent-insensitive card search
 - Complete 188-card atlas grouped by color identity
+- On-demand high-resolution card previews from Search and Cards by hover, focus, click, or tap
 - Session-only tier training with colour filters, accuracy, rank reveal, nearby cards, and faster repeats for misses
 - Keyboard, mouse, and touch support
 - Offline static-asset cache
@@ -36,6 +37,6 @@ The live custom domain is `hobbit.orfeasa.com`, configured in GitHub Pages with 
 
 `scripts/sync-colors.mjs` refreshes the local color-identity mapping from Scryfall. `scripts/sync-training-images.mjs` downloads Scryfall's large card images for the trainer; pass `--force` to replace existing files. Run the image sync before `scripts/build-data.mjs` when refreshing the set. The deployed site does not call Scryfall at runtime.
 
-Search and Cards use the original 80 × 112 thumbnails to stay quick. Train loads a 672 × 936 card on demand and runtime-caches each one after it is viewed, rather than precaching the full high-resolution set on first visit. If a large image is unavailable while offline, Train falls back to the precached thumbnail.
+Search and Cards use the original 80 × 112 thumbnails to stay quick, then load a 672 × 936 preview only when a card is inspected. Train uses the same large local images. Viewed images are runtime-cached rather than precaching the full high-resolution set on first visit. If a large image is unavailable while offline, the site falls back to the precached thumbnail.
 
 Card images and names remain the property of their respective rights holders. This is an unofficial reference tool and is not affiliated with Wizards of the Coast or Untapped.gg.

@@ -30,6 +30,7 @@ Used alongside a live draft or in short study sessions. The user may type a part
 
 - Ship all 188 card names, pick ranks, tiers, lightweight thumbnails, and high-resolution training images with the site.
 - Fuzzy, accent-insensitive name search.
+- High-resolution previews open from Search and Cards by hover, keyboard focus, click, or tap.
 - Exact-tier training can filter by colour, report session accuracy, reveal adjacent ranks, and return missed cards sooner.
 - Training progress is session-only memory and disappears on refresh.
 - No localStorage, cookies, analytics, account, backend, or external runtime dependency.

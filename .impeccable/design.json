@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-20T10:09:15Z",
+  "generatedAt": "2026-08-20T10:31:44Z",
   "title": "Design System: The Hobbit Pick Order",
   "extensions": {
     "colorMeta": {
@@ -154,6 +154,11 @@
         "name": "training-card-image",
         "value": "0 15px 34px rgba(7, 20, 13, .42)",
         "purpose": "Gives the one studied card clear physical focus on its forest stage."
+      },
+      {
+        "name": "card-preview",
+        "value": "0 22px 60px rgba(7, 20, 13, .42)",
+        "purpose": "Lifts the shared inspection plate above its trigger or pinned forest scrim."
       }
     ],
     "motion": [
@@ -230,9 +235,17 @@
       "name": "Search Result Row",
       "kind": "card",
       "refersTo": "result-row",
-      "description": "Passive lookup row using the lightweight 80 × 112 local thumbnail source, with an Alegreya rank lane, colour identity, and one tier badge.",
+      "description": "Passive lookup row using the lightweight 80 × 112 local thumbnail source, with an Alegreya rank lane, colour identity, one tier badge, and a shared preview trigger on the art alone.",
       "html": "<article class=\"ds-search-row\"><span class=\"ds-search-thumb\" aria-hidden=\"true\">CARD</span><span class=\"ds-search-rank\"><strong>#2</strong><small>pick</small></span><span class=\"ds-search-name\"><strong>An Unexpected Party</strong><small>Multicolour</small></span><span class=\"ds-search-tier\">A−</span></article>",
       "css": ".ds-search-row { display: grid; grid-template-columns: 55px 54px minmax(0, 1fr) auto; align-items: center; gap: 14px; min-height: 82px; padding: 9px 8px 9px 2px; color: var(--ink); border-bottom: 1px solid var(--line); font-family: \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; } .ds-search-thumb { display: grid; place-items: center; width: 55px; aspect-ratio: 125.3 / 176.4; color: var(--muted); background: var(--paper-deep); border-radius: 4px; box-shadow: 0 5px 13px rgba(49, 43, 32, .2); font-size: .56rem; font-weight: 700; } .ds-search-rank { align-self: stretch; display: flex; flex-direction: column; justify-content: center; padding-right: 8px; border-right: 1px solid var(--line); } .ds-search-rank strong { font: 700 1.7rem/1 \"Alegreya\", Georgia, serif; } .ds-search-rank small { color: var(--muted); font-size: .66rem; font-weight: 700; } .ds-search-name { display: grid; gap: 5px; min-width: 0; } .ds-search-name strong { overflow: hidden; font-size: 1rem; line-height: 1.22; text-overflow: ellipsis; white-space: nowrap; } .ds-search-name small { color: var(--muted); font-size: .72rem; } .ds-search-tier { display: grid; place-items: center; min-width: 34px; min-height: 24px; color: #fff; background: #a55d40; border-radius: 999px; font-size: .72rem; font-weight: 700; }"
+    },
+    {
+      "name": "Shared Card Preview",
+      "kind": "custom",
+      "refersTo": "card-preview",
+      "description": "One on-demand 672 × 936 inspection plate shared by Search and All cards: hover or focus is transient; click or tap pins it over a forest scrim, traps focus on the 42px caption close control, closes by control, backdrop, or Escape, and keeps the local 80 × 112 thumbnail as fallback.",
+      "html": "<div class=\"ds-card-preview-layer ds-is-pinned\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"ds-card-preview-name\" data-open=\"true\"><button class=\"ds-card-preview-backdrop\" type=\"button\" tabindex=\"-1\" aria-label=\"Close card preview\"></button><figure class=\"ds-card-preview-panel\"><div class=\"ds-card-preview-image\" role=\"img\" aria-label=\"Fili the Pathfinder card preview\"><span>672 × 936 local card art</span></div><figcaption class=\"ds-card-preview-caption\"><span class=\"ds-card-preview-copy\"><strong id=\"ds-card-preview-name\">Fili the Pathfinder</strong><span>Pick #12 · Tier B+</span></span><button class=\"ds-card-preview-close\" type=\"button\" aria-label=\"Close card preview\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m5 5 10 10M15 5 5 15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg></button></figcaption></figure></div>",
+      "css": ".ds-card-preview-layer { position: relative; display: grid; place-items: center; min-height: 650px; padding: 14px; overflow: hidden; pointer-events: none; color: var(--paper-light); background: transparent; font-family: \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; } .ds-card-preview-backdrop, .ds-card-preview-close { display: none; } .ds-card-preview-panel { position: relative; z-index: 1; width: min(320px, calc(100% - 24px)); margin: 0; padding: 10px; color: var(--paper-light); background-color: var(--forest-deep); background-image: linear-gradient(112deg, rgba(255,255,255,.035), transparent 36%, rgba(0,0,0,.07)), repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 4px), repeating-linear-gradient(90deg, rgba(0,0,0,.025) 0 1px, transparent 1px 5px); border-radius: 12px; box-shadow: 0 22px 60px rgba(7, 20, 13, .42); opacity: 0; transform: translateY(8px) scale(.985); transition: opacity 160ms var(--ease-out), transform 180ms var(--ease-out); } .ds-card-preview-layer[data-open=\"true\"] .ds-card-preview-panel { opacity: 1; transform: translateY(0) scale(1); } .ds-card-preview-image { display: grid; place-items: center; width: 100%; aspect-ratio: 672 / 936; color: var(--muted); text-align: center; background: var(--paper-deep); border-radius: 6px; transition: filter 160ms var(--ease-out), opacity 160ms var(--ease-out); } .ds-card-preview-image span { max-width: 14ch; font-size: .7rem; font-weight: 700; } .ds-card-preview-image.ds-is-loading { filter: blur(1px); opacity: .82; } .ds-card-preview-caption { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 10px 4px 2px; } .ds-card-preview-copy { display: grid; min-width: 0; gap: 4px; } .ds-card-preview-copy strong { overflow: hidden; font: 700 1rem/1.05 \"Alegreya\", Georgia, serif; text-overflow: ellipsis; white-space: nowrap; } .ds-card-preview-copy > span { color: var(--brass-light); font-size: .72rem; font-weight: 700; font-variant-numeric: tabular-nums; } .ds-card-preview-layer.ds-is-pinned { pointer-events: auto; background: color-mix(in srgb, var(--forest-deep) 82%, transparent); } .ds-card-preview-layer.ds-is-pinned .ds-card-preview-backdrop { position: absolute; inset: 0; display: block; width: 100%; height: 100%; padding: 0; background: transparent; border: 0; cursor: zoom-out; } .ds-card-preview-layer.ds-is-pinned .ds-card-preview-panel { width: min(360px, calc(100% - 28px)); } .ds-card-preview-layer.ds-is-pinned .ds-card-preview-close { display: grid; flex: 0 0 42px; place-items: center; width: 42px; height: 42px; padding: 0; color: var(--paper-light); background: var(--forest-deep); border: 1px solid var(--paper-deep); border-radius: 6px; box-shadow: 0 7px 18px rgba(22, 39, 31, .16); cursor: pointer; } .ds-card-preview-close:hover { background: var(--oxblood); } .ds-card-preview-close:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; } .ds-card-preview-close svg { width: 20px; height: 20px; } @media (prefers-reduced-motion: reduce) { .ds-card-preview-panel, .ds-card-preview-image { transition: none; } }"
     },
     {
       "name": "Training Card Stage",
@@ -262,7 +275,7 @@
       "name": "Atlas Card",
       "kind": "card",
       "refersTo": "atlas-card",
-      "description": "Passive colour-grouped atlas entry using the lightweight 80 × 112 local thumbnail source, with rank, title, and tier.",
+      "description": "Passive colour-grouped atlas entry using the lightweight 80 × 112 local thumbnail source, with rank, title, tier, and the same art-only preview trigger.",
       "html": "<article class=\"ds-atlas-card\"><span class=\"ds-atlas-thumb\" aria-hidden=\"true\">CARD</span><span class=\"ds-atlas-copy\"><span class=\"ds-atlas-rank\">#12</span><strong>Gandalf, Friend of the Shire</strong><span class=\"ds-atlas-tier\">B+</span></span></article>",
       "css": ".ds-atlas-card { display: grid; grid-template-columns: 64px minmax(0, 1fr); align-items: center; gap: 12px; min-height: 112px; padding: 11px 5px; color: var(--ink); border-bottom: 1px solid var(--line); font-family: \"Atkinson Hyperlegible Next\", \"Segoe UI\", sans-serif; } .ds-atlas-thumb { display: grid; place-items: center; width: 64px; aspect-ratio: 125.3 / 176.4; color: var(--muted); background: var(--paper-deep); border-radius: 4px; box-shadow: 0 5px 13px rgba(49, 43, 32, .2); font-size: .56rem; font-weight: 700; } .ds-atlas-copy { display: block; min-width: 0; } .ds-atlas-rank { display: block; color: #254a5b; font: 700 1.25rem/1 \"Alegreya\", Georgia, serif; } .ds-atlas-copy > strong { display: block; margin-top: 4px; font-size: .92rem; line-height: 1.2; } .ds-atlas-tier { display: grid; place-items: center; width: fit-content; min-width: 34px; min-height: 24px; margin-top: 8px; color: #fff; background: #2f644d; border-radius: 999px; font-size: .72rem; font-weight: 700; }"
     }
@@ -345,7 +358,8 @@
       "Do keep contour and route imagery quiet enough that card names and ranks remain dominant.",
       "Do keep all 15 tier choices visible and distinguish correct, near-miss, wrong, and reveal outcomes without changing their labels.",
       "Do show global rank with One above, This card, and One below context after every answer when those neighbours exist.",
-      "Do keep training filters, score, queue, and requeue behavior session-only and honest about resetting on refresh."
+      "Do keep training filters, score, queue, and requeue behavior session-only and honest about resetting on refresh.",
+      "Do load only the inspected high-resolution image and preserve the precached thumbnail as its offline fallback."
     ],
     "donts": [
       "Don't substitute loud synthetic signal colours or monochrome machinery panels for the atlas palette.",
@@ -354,6 +368,7 @@
       "Don't wrap each ranked row in its own rounded, elevated card.",
       "Don't add a redundant five-pixel bottom stripe or pseudo-element to tier choices; the tinted fill and border are sufficient.",
       "Don't add pack selection or turn passive search and atlas entries into action controls.",
+      "Don't let preview controls obscure mana cost, rules text, or other parts of the card face.",
       "Don't mix search, complete atlas, and training into competing dashboard panels.",
       "Don't imply training progress persists or add localStorage, an account, or backend state to support it.",
       "Don't replace literal card, rank, state, and colour labels with ambiguous icons alone."

@@ -5,6 +5,7 @@
   const byRank = new Map(cards.map((card) => [card.rank, card]));
   const resultLimit = 10;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
   const tierColors = {
     "S": "#604381",
@@ -53,6 +54,13 @@
   const trainingResultCopy = document.querySelector("#training-result-copy");
   const trainingNeighbours = document.querySelector("#training-neighbours");
   const nextTrainingCardButton = document.querySelector("#next-training-card");
+  const cardPreviewLayer = document.querySelector("#card-preview-layer");
+  const cardPreviewPanel = document.querySelector("#card-preview-panel");
+  const cardPreviewImage = document.querySelector("#card-preview-image");
+  const cardPreviewName = document.querySelector("#card-preview-name");
+  const cardPreviewMeta = document.querySelector("#card-preview-meta");
+  const cardPreviewClose = document.querySelector("#card-preview-close");
+  const cardPreviewBackdrop = document.querySelector("#card-preview-backdrop");
 
   let currentView = "picker";
   let trainingFilter = "ALL";
@@ -61,6 +69,12 @@
   let trainingAnswered = false;
   let trainingReviewed = 0;
   let trainingCorrect = 0;
+  let activePreviewTrigger = null;
+  let previewPinned = false;
+  let previewLoadToken = 0;
+  let previewHideTimer = 0;
+  let suppressPreviewFocus = false;
+  let suppressPreviewHoverUntil = 0;
 
   const normalize = (value) => value
     .normalize("NFD")
@@ -120,6 +134,143 @@
     return badge;
   }
 
+  function positionCardPreview(trigger) {
+    if (previewPinned || !trigger?.isConnected) return;
+
+    cardPreviewPanel.style.left = "12px";
+    cardPreviewPanel.style.top = "12px";
+    const triggerRect = trigger.getBoundingClientRect();
+    const panelRect = cardPreviewPanel.getBoundingClientRect();
+    const gap = 14;
+    const edge = 12;
+    let left = triggerRect.right + gap;
+
+    if (left + panelRect.width > window.innerWidth - edge) {
+      left = triggerRect.left - panelRect.width - gap;
+    }
+    left = Math.max(edge, Math.min(left, window.innerWidth - panelRect.width - edge));
+
+    const top = Math.max(
+      edge,
+      Math.min(triggerRect.top - 20, window.innerHeight - panelRect.height - edge),
+    );
+    cardPreviewPanel.style.left = `${Math.round(left)}px`;
+    cardPreviewPanel.style.top = `${Math.round(top)}px`;
+  }
+
+  function loadCardPreview(card) {
+    const loadToken = ++previewLoadToken;
+    const sameReadyCard = cardPreviewImage.dataset.cardRank === String(card.rank)
+      && cardPreviewImage.dataset.highResolution === "true";
+
+    cardPreviewImage.alt = `${card.name} card`;
+    if (sameReadyCard) return;
+
+    cardPreviewImage.dataset.cardRank = String(card.rank);
+    cardPreviewImage.dataset.highResolution = "false";
+    cardPreviewImage.classList.add("is-loading");
+    cardPreviewImage.src = card.image;
+
+    const largeImage = new Image();
+    largeImage.decoding = "async";
+    largeImage.onload = () => {
+      if (loadToken !== previewLoadToken) return;
+      cardPreviewImage.src = card.trainingImage;
+      cardPreviewImage.dataset.highResolution = "true";
+      cardPreviewImage.classList.remove("is-loading");
+    };
+    largeImage.onerror = () => {
+      if (loadToken === previewLoadToken) cardPreviewImage.classList.remove("is-loading");
+    };
+    largeImage.src = card.trainingImage;
+  }
+
+  function showCardPreview(card, trigger, { pinned = false } = {}) {
+    if (previewPinned && activePreviewTrigger !== trigger) return;
+
+    window.clearTimeout(previewHideTimer);
+    activePreviewTrigger?.setAttribute("aria-expanded", "false");
+    activePreviewTrigger = trigger;
+    previewPinned = pinned;
+    trigger.setAttribute("aria-expanded", String(pinned));
+    cardPreviewName.textContent = card.name;
+    cardPreviewMeta.textContent = `Pick #${card.rank} · Tier ${card.tier}`;
+    loadCardPreview(card);
+
+    cardPreviewLayer.hidden = false;
+    cardPreviewLayer.classList.toggle("is-pinned", pinned);
+    cardPreviewLayer.setAttribute("aria-hidden", String(!pinned));
+    document.body.classList.toggle("preview-open", pinned);
+
+    if (pinned) {
+      cardPreviewPanel.style.removeProperty("left");
+      cardPreviewPanel.style.removeProperty("top");
+    } else {
+      positionCardPreview(trigger);
+    }
+
+    requestAnimationFrame(() => {
+      cardPreviewLayer.dataset.open = "true";
+      if (pinned) cardPreviewClose.focus({ preventScroll: true });
+    });
+  }
+
+  function closeCardPreview({ restoreFocus = previewPinned } = {}) {
+    if (cardPreviewLayer.hidden) return;
+
+    const trigger = activePreviewTrigger;
+    const wasPinned = previewPinned;
+    previewPinned = false;
+    activePreviewTrigger = null;
+    previewLoadToken += 1;
+    trigger?.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("preview-open");
+    if (wasPinned) suppressPreviewHoverUntil = performance.now() + 350;
+    cardPreviewLayer.dataset.open = "false";
+    cardPreviewLayer.classList.remove("is-pinned");
+    if (restoreFocus && trigger?.isConnected) {
+      suppressPreviewFocus = true;
+      trigger.focus({ preventScroll: true });
+      suppressPreviewFocus = false;
+    }
+    cardPreviewLayer.setAttribute("aria-hidden", "true");
+
+    window.clearTimeout(previewHideTimer);
+    previewHideTimer = window.setTimeout(() => {
+      if (!activePreviewTrigger) cardPreviewLayer.hidden = true;
+    }, prefersReducedMotion ? 0 : 180);
+  }
+
+  function cardPreviewTrigger(card, image, hoverTarget) {
+    const trigger = document.createElement("button");
+    trigger.type = "button";
+    trigger.className = "card-preview-trigger";
+    trigger.setAttribute("aria-label", `Enlarge ${card.name} card`);
+    trigger.setAttribute("aria-haspopup", "dialog");
+    trigger.setAttribute("aria-expanded", "false");
+    trigger.append(image);
+
+    hoverTarget.addEventListener("mouseenter", () => {
+      if (hasFinePointer.matches && !previewPinned && performance.now() >= suppressPreviewHoverUntil) {
+        showCardPreview(card, trigger);
+      }
+    });
+    hoverTarget.addEventListener("mouseleave", () => {
+      if (!previewPinned) closeCardPreview({ restoreFocus: false });
+    });
+    trigger.addEventListener("focus", () => {
+      if (!previewPinned && !suppressPreviewFocus) showCardPreview(card, trigger);
+    });
+    trigger.addEventListener("blur", () => {
+      if (!previewPinned) closeCardPreview({ restoreFocus: false });
+    });
+    trigger.addEventListener("click", (event) => {
+      event.stopPropagation();
+      showCardPreview(card, trigger, { pinned: true });
+    });
+    return trigger;
+  }
+
   function resultRow(card, index) {
     const item = document.createElement("article");
     item.className = "result-row";
@@ -148,11 +299,12 @@
     metadata.className = "result-metadata";
     metadata.append(tierBadge(card.tier));
 
-    item.append(image, rank, name, metadata);
+    item.append(cardPreviewTrigger(card, image, item), rank, name, metadata);
     return item;
   }
 
   function renderResults() {
+    if (activePreviewTrigger?.closest("#search-results")) closeCardPreview({ restoreFocus: false });
     const query = searchInput.value;
     const currentResults = resultCards(query);
 
@@ -174,6 +326,7 @@
     item.setAttribute("aria-label", `${card.name}, pick rank ${card.rank}, tier ${card.tier}`);
 
     const image = document.createElement("img");
+    image.className = "card-thumb";
     image.src = card.image;
     image.alt = "";
     image.width = 64;
@@ -193,7 +346,7 @@
     meta.append(tierBadge(card.tier));
     copy.append(rank, name, meta);
 
-    item.append(image, copy);
+    item.append(cardPreviewTrigger(card, image, item), copy);
     return item;
   }
 
@@ -431,6 +584,7 @@
   }
 
   function activateView(view, { focus = false, updateHash = true } = {}) {
+    closeCardPreview({ restoreFocus: false });
     currentView = ["atlas", "training"].includes(view) ? view : "picker";
     pickerView.hidden = currentView !== "picker";
     atlasView.hidden = currentView !== "atlas";
@@ -478,6 +632,17 @@
   });
 
   document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !cardPreviewLayer.hidden) {
+      event.preventDefault();
+      closeCardPreview();
+      return;
+    }
+    if (event.key === "Tab" && previewPinned) {
+      event.preventDefault();
+      cardPreviewClose.focus({ preventScroll: true });
+      return;
+    }
+
     const target = event.target;
     const isTyping = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target?.isContentEditable;
     if (event.key === "/" && !isTyping) {
@@ -499,6 +664,10 @@
   });
 
   clearSearchButton.addEventListener("click", clearSearch);
+  cardPreviewClose.addEventListener("click", () => closeCardPreview());
+  cardPreviewBackdrop.addEventListener("click", () => closeCardPreview());
+  window.addEventListener("scroll", () => positionCardPreview(activePreviewTrigger), { passive: true });
+  window.addEventListener("resize", () => positionCardPreview(activePreviewTrigger));
   revealTierButton.addEventListener("click", () => answerTrainingCard(null));
   nextTrainingCardButton.addEventListener("click", () => drawTrainingCard({ focusChoices: true }));
 
